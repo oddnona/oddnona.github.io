@@ -6,6 +6,8 @@ body {
     line-height: 1.6;
 }
 
+/* HEADINGS */
+
 h1 {
     color: #2563eb;
     margin-bottom: 0;
@@ -15,6 +17,8 @@ h1 {
     margin-top: 8px;
     color: #555;
 }
+
+/* HOME PAGE */
 
 .home {
     margin-top: 80px;
@@ -32,10 +36,13 @@ h1 {
     padding: 30px;
     border: 1px solid #ddd;
     border-radius: 16px;
+
     text-decoration: none;
     color: #111;
+
     font-size: 1.2rem;
     font-weight: bold;
+
     transition: 0.2s;
 }
 
@@ -45,6 +52,8 @@ h1 {
     color: #2563eb;
 }
 
+/* NAVIGATION */
+
 .page-nav {
     margin: 30px 0;
 }
@@ -52,6 +61,8 @@ h1 {
 .page-nav a {
     margin-right: 20px;
 }
+
+/* GENERAL SECTIONS */
 
 .section {
     margin-top: 50px;
@@ -63,28 +74,25 @@ h1 {
     border-bottom: 1px solid #ddd;
 }
 
+/* VIDEOS */
+
 .video-wrapper {
     margin-top: 20px;
 }
 
-footer {
-    margin-top: 80px;
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
+/* IMAGES */
+
+.portfolio-image {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 12px;
+    margin-top: 20px;
 }
 
-@media (max-width: 700px) {
-    .button-grid {
-        grid-template-columns: 1fr;
-    }
-
-    body {
-        padding: 24px;
-    }
-}
 .image-placeholder {
     margin-top: 20px;
     height: 300px;
+
     border: 2px dashed #bbb;
     border-radius: 12px;
 
@@ -99,34 +107,70 @@ footer {
 .image-placeholder p {
     margin: 0;
 }
+
+/* ABOUT PAGE HERO */
+
 .hero-section {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 40px;
-    margin-top: 40px;
-}
+    gap: 30px;
 
-.hero-text {
-    flex: 2;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 .hero-image {
-    flex: 1;
+    flex: 0 0 auto;
 }
 
 .hero-image img {
-    width: 100%;
-    max-width: 300px;
+    width: 180px;
+    height: 180px;
+
+    object-fit: cover;
+
     border-radius: 12px;
 }
 
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 80px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+/* MOBILE */
+
 @media (max-width: 800px) {
+
     .hero-section {
         flex-direction: column;
+        text-align: center;
     }
 
     .hero-image img {
-        max-width: 250px;
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .button-grid {
+        grid-template-columns: 1fr;
+    }
+
+    body {
+        padding: 24px;
     }
 }
