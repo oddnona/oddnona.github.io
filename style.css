@@ -174,3 +174,10 @@ footer {
         padding: 24px;
     }
 }
+.project img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
