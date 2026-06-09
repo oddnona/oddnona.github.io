@@ -175,9 +175,10 @@ footer {
     }
 }
 .project img {
-    max-width: 100%;
+    width: 100%;
+    max-width: 900px;
     height: auto;
     display: block;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 24px auto;
+    border-radius: 12px;
 }
