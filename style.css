@@ -99,3 +99,34 @@ footer {
 .image-placeholder p {
     margin: 0;
 }
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.hero-text {
+    flex: 2;
+}
+
+.hero-image {
+    flex: 1;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+}
+
+@media (max-width: 800px) {
+    .hero-section {
+        flex-direction: column;
+    }
+
+    .hero-image img {
+        max-width: 250px;
+    }
+}
