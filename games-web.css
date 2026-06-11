@@ -5,18 +5,37 @@ body {
   background-attachment: fixed;
 }
 
-.top-nav {
+.page-nav {
   position: fixed;
-  top: 0;
+  top: 2rem;
+  left: 2rem;
   z-index: 5000;
+
   display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 1rem;
-  background: rgba(216, 203, 183, 0.88);
-  backdrop-filter: blur(8px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+
+  padding: 0.75rem;
+
+  background: rgba(245, 232, 200, 0.72);
+  border: 1px solid rgba(69, 42, 12, 0.35);
+  box-shadow: 0 10px 24px rgba(69, 42, 12, 0.22);
+  backdrop-filter: blur(6px);
 }
 
+.page-nav a {
+  color: #452a0c;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 200ms ease;
+}
+
+.page-nav a:hover {
+  background: rgba(69, 42, 12, 0.14);
+}
 .projects-hero {
   max-width: 760px;
   margin: 0 auto;
@@ -27,10 +46,13 @@ body {
 .projects-hero h1 {
   font-size: clamp(2.5rem, 7vw, 5rem);
   margin-bottom: 1rem;
+  color:#452a0c
 }
 
 .projects-hero p {
   line-height: 1.7;
+  color:#452a0c
+
 }
 
 .instructions {
@@ -103,6 +125,126 @@ body {
   justify-content: flex-end;
 }
 
+.card-sprite {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 8 frames × 527px = 4216px total */
+.sun-sprite {
+  width: 160px;
+  height: 160px;
+  background-image: url("sunsprite.png");
+  background-size: 1280px 160px;
+  animation: sun-play 1s steps(8) infinite;
+}
+
+@keyframes sun-play {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -1280px 0;
+  }
+}
+
+/* 10 frames × 954px = 9540px total */
+.horse-sprite {
+  width: 230px;
+  height: 142px;
+  background-image: url("horsesprite.png");
+  background-size: 2300px 142px;
+  animation: horse-play 1s steps(10) infinite;
+}
+
+@keyframes horse-play {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -2300px 0;
+  }
+}
+
+/* 5 frames × 48px = 240px total */
+.chest-sprite {
+  width: 96px;
+  height: 72px;
+  background-image: url("chestsprite.png");
+  background-size: 480px 72px;
+  image-rendering: pixelated;
+  animation: chest-play 1s steps(5) infinite;
+}
+
+.project-card.is-active .sun-sprite {
+  width: 276px;
+  height: 276px;
+  background-size: 2208px 276px;
+  animation: sun-play-active 1s steps(8) infinite;
+}
+
+.project-card.is-active .horse-sprite {
+  width: 397px;
+  height: 245px;
+  background-size: 3970px 245px;
+  animation: horse-play-active 1s steps(10) infinite;
+}
+
+.project-card.is-active .chest-sprite {
+  width: 166px;
+  height: 125px;
+  background-size: 830px 125px;
+  animation: chest-play-active 1s steps(5) infinite;
+}
+
+@keyframes sun-play-active {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -2208px 0;
+  }
+}
+
+@keyframes horse-play-active {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -3970px 0;
+  }
+}
+
+@keyframes chest-play-active {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -830px 0;
+  }
+}
+
+@keyframes chest-play {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -480px 0;
+  }
+}
+
 .card-back {
   transform: rotateY(180deg);
   background: #f3eadc;
@@ -125,6 +267,13 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.7;
+}
+
+.card-front .card-label,
+.card-front h2,
+.card-front p {
+  position: relative;
+  z-index: 2;
 }
 
 .project-card h2 {
@@ -152,6 +301,12 @@ body {
   background-repeat: no-repeat;
 }
 
+.weather-card .card-label,
+.weather-card h2,
+.weather-card p {
+  color: #ff7300;
+}
+
 .rts-card {
   width: 500px;
   height: 405px;
@@ -166,6 +321,11 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+.rts-card .card-label,
+.rts-card h2,
+.rts-card p {
+  color: #ffffff;
 }
 
 .rpg-card {
@@ -189,7 +349,7 @@ body {
   left: 50%;
   width: min(760px, 80vw);
   height: 612px;
-  transform: translateX(-50%) rotate(0deg) scale(1.02);
+  transform: translateX(-50%) rotate(0deg);
   z-index: 20;
   filter: drop-shadow(0 55px 45px rgba(0, 0, 0, 0.829));
   cursor: default;
