@@ -1,87 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games & Web Apps | Nona Bulubasa</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Full-Stack Projects | Nona Bulubasa</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="games-web.css" />
 </head>
+
 <body>
+    <nav class="page-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="thesis.html">Thesis</a>
+        <a href="design.html">Design</a>
+    </nav>
 
-<header>
-    <h1>Games & Web Apps</h1>
-    <p class="subtitle">Web development and game development projects</p>
-</header>
+  <header class="projects-hero">
+    <h1>Full-Stack Projects</h1>
+    <p>
+      I like building projects where technical systems become interactive,
+      visual, and playful. This archive desk collects three school projects:
+      a weather data web app, a real-time strategy game, and a dungeon crawler RPG.
+    </p>
+    <p class="instructions">
+      Click a project card to inspect it. Click outside the card to return to the desk.
+      Use “Turn Card Over” to reveal media and extra details.
+    </p>
+  </header>
 
-<nav class="page-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="thesis.html">Thesis</a>
-    <a href="design.html">Design</a>
-</nav>
+  <main class="desk-page">
+    <section class="desk" aria-label="Project archive desk">
+      <img src="deskstuffhd.png" class="desk-decoration" alt="">
+      <article class="project-card weather-card" data-project="weather">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <span class="card-label">Web App</span>
+            <h2>Weather Data Web App</h2>
+            <p>Weather API data exploration interface.</p>
+          </div>
 
-<main>
-
-    <article class="project">
-        <h2>Weather Data Web App</h2>
-        <p>
-            A web application for exploring weather data.
-        </p>
-
-        <div class="video-wrapper">
-            <div style="padding:56.25% 0 0 0;position:relative;">
+          <div class="card-face card-back">
+            <h2>Weather Data Web App</h2>
+            <div class="video-wrapper">
                 <iframe src="https://player.vimeo.com/video/1199415683?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                    frameborder="0"
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    style="position:absolute;top:0;left:0;width:100%;height:100%;"
-                    title="Weather Data Web App">
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                title="Weather Data Web App">
                 </iframe>
             </div>
+          </div>
         </div>
-    </article>
+      </article>
 
-    <article class="project">
-        <h2>RTS Game</h2>
-        <p>
-            A Game of Thrones themed real-time strategy game.
-        </p>
+      <article class="project-card rts-card" data-project="rts">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <span class="card-label">Game Dev</span>
+            <h2>RTS Game</h2>
+            <p>A Game of Thrones themed real-time strategy game.</p>
+          </div>
 
-        <div class="video-wrapper">
-            <div style="padding:53.75% 0 0 0;position:relative;">
+          <div class="card-face card-back">
+            <h2>RTS Game</h2>
+            <div class="video-wrapper">
                 <iframe src="https://player.vimeo.com/video/1199417986?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                    frameborder="0"
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    style="position:absolute;top:0;left:0;width:100%;height:100%;"
-                    title="RTS Game">
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                title="RTS Game">
                 </iframe>
             </div>
+          </div>
         </div>
-    </article>
+      </article>
 
-    <article class="project">
-        <h2>RPG Game</h2>
-        <p>
-            A mini dungeon crawler RPG.
-        </p>
+      <article class="project-card rpg-card" data-project="rpg">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <span class="card-label">Game Dev</span>
+            <h2>RPG Game</h2>
+            <p>A mini dungeon crawler RPG.</p>
+          </div>
 
-        <div class="video-wrapper">
-            <div style="padding:55% 0 0 0;position:relative;">
+          <div class="card-face card-back">
+            <h2>RPG Game</h2>
+            <div class="video-wrapper">
                 <iframe src="https://player.vimeo.com/video/1199417987?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                    frameborder="0"
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    style="position:absolute;top:0;left:0;width:100%;height:100%;"
-                    title="RPG Game">
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                title="RPG Game">
                 </iframe>
             </div>
+          </div>
         </div>
-    </article>
+      </article>
 
-</main>
+      <aside class="project-info" aria-live="polite">
+        <h2 id="info-title">Project title</h2>
+        <p id="info-description">Project description</p>
+        <button type="button" id="flip-button">Turn Card Over</button>
+      </aside>
 
-<script src="https://player.vimeo.com/api/player.js"></script>
+    </section>
+  </main>
 
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="games-web.js"></script>
 </body>
 </html>
