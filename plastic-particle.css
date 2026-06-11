@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(3, 7, 11, 0.72),
+            rgba(3, 7, 11, 0.72)
+        ),
+        url("thesistexture.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+#scene-container {
+    position: fixed;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(3, 7, 11, 0.35),
+            rgba(3, 7, 11, 0.35)
+        ),
+        url("thesistexture.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.page-nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    z-index: 10;
+
+    display: flex;
+    gap: 20px;
+}
+
+.page-nav a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.page-nav a:hover {
+    opacity: 1;
+}
+
+.hint {
+    position: fixed;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    opacity: 0.5;
+
+    letter-spacing: 2px;
+}
+
+#station-card {
+    position: fixed;
+    left: 50%;
+    top: 9%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    width: min(720px, 80vw);
+    min-height: 320px;
+
+    perspective: 1200px;
+}
+
+#station-card.expanded {
+    width: min(980px, 86vw);
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    min-height: 360px;
+
+    transition: transform 0.8s ease;
+    transform-style: preserve-3d;
+}
+
+#station-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    inset: 0;
+
+    padding: 32px;
+
+    background: rgba(3, 7, 11, 0.18);
+    border: 1px solid rgba(144, 155, 138, 0.28);
+    border-radius: 24px;
+    backdrop-filter: blur(1px);
+
+    backface-visibility: hidden;
+}
+
+.card-front {
+    overflow: hidden;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    padding: 18px;
+}
+
+.card-back iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    border-radius: 16px;
+}
+
+#close-video-button {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    z-index: 2;
+
+    width: 32px;
+    height: 32px;
+
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.station-description {
+    columns: 1;
+    column-gap: 36px;
+
+    max-height: 210px;
+    overflow: hidden;
+
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.78;
+}
+
+#station-card.expanded .station-description {
+    columns: 2;
+    max-height: 360px;
+}
+
+.station-actions {
+    margin-top: 24px;
+}
+
+#station-button {
+    padding: 12px 18px;
+
+    color: white;
+    background: rgba(144, 155, 138, 0.24);
+
+    border: 1px solid rgba(144, 155, 138, 0.55);
+    border-radius: 999px;
+
+    cursor: pointer;
+}
+
+#station-button:hover {
+    background: rgba(144, 155, 138, 0.42);
+}
+.secondary-button {
+    margin-right: 10px;
+    padding: 12px 18px;
+
+    color: white;
+    background: transparent;
+
+    border: 1px solid rgba(144, 155, 138, 0.42);
+    border-radius: 999px;
+
+    cursor: pointer;
+}
+
+.secondary-button:hover {
+    background: rgba(144, 155, 138, 0.16);
+}
+
+.toolkit-list {
+    padding-left: 18px;
+    line-height: 1.8;
+    opacity: 0.82;
+}
+
+.sunrays {
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 26% 38%,
+            rgba(255, 232, 185, 0.24),
+            rgba(255, 232, 185, 0.08) 22%,
+            transparent 48%
+        ),
+        conic-gradient(
+            from 145deg at 10% -8%,
+            transparent 0deg,
+            rgba(255, 228, 170, 0.22) 8deg,
+            transparent 18deg,
+            rgba(255, 238, 205, 0.14) 26deg,
+            transparent 42deg,
+            transparent 360deg
+        );
+
+    mix-blend-mode: screen;
+    opacity: 0.9;
+    filter: blur(10px);
+}
+
+.sunrays::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            118deg,
+            rgba(255, 232, 185, 0.22) 0%,
+            rgba(255, 232, 185, 0.09) 18%,
+            transparent 44%
+        );
+
+    clip-path: polygon(
+        0 0,
+        42% 0,
+        58% 68%,
+        12% 72%
+    );
+
+    filter: blur(22px);
+    opacity: 0.65;
+}
+
+#station-card {
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease,
+        filter 0.45s ease;
+}
+
+#station-card.card-exit {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px) scale(1.08);
+    filter: blur(8px);
+}
+
+#station-card.card-enter {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-28px) scale(0.88);
+    filter: blur(10px);
+}
