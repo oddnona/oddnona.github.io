@@ -1,0 +1,207 @@
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("texture.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+.page-nav {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+
+    z-index: 1000;
+
+    padding: 1rem;
+
+    background: transparent;
+}
+
+.page-nav a {
+    text-decoration: none;
+    color: #f5ead8;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+/* MAIN SCENE */
+
+.about-scene {
+    position: relative;
+    height: 800vh;
+}
+
+
+/* PORTRAIT THAT BECOMES THE CARD */
+
+.portrait-layer {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    z-index: 10;
+
+    background: #ddd;
+
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.portrait-layer img {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* CARD INFO INSIDE THE PORTRAIT */
+.portrait-card-info {
+    position: absolute;
+
+    right: 1.5rem;
+    bottom: 1.5rem;
+
+    background: transparent;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    text-align: right;
+
+    opacity: 0;
+    pointer-events: auto;
+
+    color: #f5ead8;
+}
+
+.portrait-card-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #000000;
+}
+
+
+
+.portrait-card-info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #000000;
+}
+
+
+/* RIGHT TEXT PANEL */
+.about-panel {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+
+    width: 50vw;
+    height: 0vh;
+
+    background: #f5ead8;
+
+    overflow: hidden;
+
+    z-index: 20;
+}
+
+.panel-content {
+    width: 50vw;
+}
+
+
+/* CONTENT BLOCKS */
+
+.about-text-block {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+.about-text-block h1 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: #5a321f;
+}
+
+.about-text-block h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #5a321f;
+}
+
+.about-text-block p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #5a321f;
+}
+
+
+/* FINAL EMPTY STATE */
+
+.reveal-photo {
+    background: transparent;
+}
+
+.skill-group {
+    margin-bottom: 2rem;
+}
+
+.skill-group h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #5a321f;
+}
+
+.skill-group p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #5a321f;
+}
+
+.portrait-card-info a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.portrait-card-info a:hover {
+    text-decoration: underline;
+}
