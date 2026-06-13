@@ -138,7 +138,6 @@ a {
     transform: translateY(18px) scale(0.96);
     pointer-events: none;
 }
-
 .book-spine {
     --spine-x: 0;
     --spine-bottom: 0;
@@ -161,11 +160,31 @@ a {
     color: transparent;
     box-shadow: none;
     outline: none;
+    overflow: hidden;
     transform-origin: center center;
     transform: rotate(calc(var(--spine-rotate) * 1deg));
     transition:
         border-color 180ms ease,
         opacity 180ms ease;
+}
+.book-spine-logo {
+    --logo-x: 50;
+    --logo-y: 50;
+    --logo-width: 70;
+    --logo-rotate: 0;
+
+    position: absolute;
+    left: calc(var(--logo-x) * 1%);
+    top: calc(var(--logo-y) * 1%);
+    width: calc(var(--logo-width) * 1%);
+    height: auto;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    transform:
+        translate(-50%, -50%)
+        rotate(calc(var(--logo-rotate) * 1deg));
+    transform-origin: center center;
 }
 
 .book-spine:nth-child(2) {

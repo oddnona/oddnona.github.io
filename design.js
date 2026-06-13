@@ -3,11 +3,18 @@ const journals = [
         id: "nature2u",
         title: "Nature2U",
         coverLabel: "Nature2U",
+        logo: {
+            image: "n2ulogo.png",
+            x: 50,
+            y: 45,
+            width: 72,
+            rotate: 0
+        },
         spine: {
-            x: 488,
-            bottom: 4,
-            width: 109,
-            height: 468,
+            x: 827,
+            bottom: 0,
+            width: 116,
+            height: 464,
             rotate: 1
         },
         entries: [
@@ -19,7 +26,7 @@ const journals = [
                 layout: "image-left"
             },
             {
-                image: "n2u2.jpeg",
+                image: "n2u2.JPEG",
                 alt: "Nature2U illustration sample 2",
                 heading: "Visual System",
                 body: "The illustrations were designed to feel consistent across screens while remaining approachable, warm, and easy to understand.",
@@ -38,6 +45,13 @@ const journals = [
         id: "nato-romania",
         title: "NATO Romania",
         coverLabel: "NATO Romania",
+        logo: {
+            image: "natologo.png",
+            x: 50,
+            y: 45,
+            width: 78,
+            rotate: 0
+        },
         spine: {
             x: 164,
             bottom: 16,
@@ -47,21 +61,21 @@ const journals = [
         },
         entries: [
             {
-                image: "nato1.jpg",
+                image: "nato1.JPG",
                 alt: "NATO Rom      ania design sample 1",
                 heading: "Logo Concept",
                 body: "A logo concept for NATO NSIP Romania, focused on professionalism, reliability, and institutional clarity.",
                 layout: "image-left"
             },
             {
-                image: "nato2.jpg",
+                image: "nato2.JPG",
                 alt: "NATO Romania design sample 2",
                 heading: "Poster Presentation",
                 body: "The logo was presented in a poster-style format to show how the visual identity could appear in a formal communication context.",
                 layout: "text-left"
             },
             {
-                image: "nato3.jpg",
+                image: "nato3.JPG",
                 alt: "NATO Romania design sample 3",
                 heading: "Design Direction",
                 body: "The design direction emphasized structure, symmetry, and a visual connection to national and international infrastructure programs.",
@@ -80,37 +94,44 @@ const journals = [
         id: "free-time",
         title: "In My Free Time",
         coverLabel: "In My Free Time",
+        logo: {
+            image: "misclogo.png",
+            x: 50,
+            y: 45,
+            width: 76,
+            rotate: 0
+        },
         spine: {
-            x: 827,
-            bottom: 0,
-            width: 116,
-            height: 464,
+            x: 488,
+            bottom: 4,
+            width: 109,
+            height: 468,
             rotate: 1
         },
         entries: [
             {
-                image: "misc1.jpg",
+                image: "misc1.JPG",
                 alt: "Personal design work sample 1",
                 heading: "Personal Experiments",
                 body: "A selection of visual experiments and design explorations created outside of formal commissions.",
                 layout: "image-left"
             },
             {
-                image: "misc2.jpg",
+                image: "misc2.JPG",
                 alt: "Personal design work sample 2",
                 heading: "Illustration Practice",
                 body: "Personal illustration work allows me to test styles, compositions, and visual ideas in a looser context.",
                 layout: "text-left"
             },
             {
-                image: "misc3.jpg",
+                image: "misc3.JPG",
                 alt: "Personal design work sample 3",
                 heading: "Design Studies",
                 body: "This section can include studies, sketches, poster concepts, or other visual pieces that show creative range.",
                 layout: "image-left"
             },
             {
-                image: "misc4.jpg",
+                image: "misc4.JPG",
                 alt: "Personal design work sample 4",
                 heading: "Playful Direction",
                 body: "Free-time projects are often where I explore more playful, expressive, or experimental design choices.",
@@ -163,11 +184,18 @@ function buildShelf() {
         book.style.setProperty("--spine-height", journal.spine.height);
         book.style.setProperty("--spine-rotate", journal.spine.rotate);
 
-        const label = document.createElement("span");
-        label.className = "book-spine-title";
-        label.textContent = journal.coverLabel;
+        const logo = document.createElement("img");
+        logo.className = "book-spine-logo";
+        logo.src = journal.logo.image;
+        logo.alt = "";
+        logo.setAttribute("aria-hidden", "true");
 
-        book.appendChild(label);
+        logo.style.setProperty("--logo-x", journal.logo.x);
+        logo.style.setProperty("--logo-y", journal.logo.y);
+        logo.style.setProperty("--logo-width", journal.logo.width);
+        logo.style.setProperty("--logo-rotate", journal.logo.rotate);
+
+        book.appendChild(logo);
 
         book.addEventListener("click", () => {
             openJournal(journal.id);
