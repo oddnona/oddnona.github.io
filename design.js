@@ -3,6 +3,13 @@ const journals = [
         id: "nature2u",
         title: "Nature2U",
         coverLabel: "Nature2U",
+        spine: {
+            x: 488,
+            bottom: 4,
+            width: 109,
+            height: 468,
+            rotate: 1
+        },
         entries: [
             {
                 image: "n2u1.jpg",
@@ -31,10 +38,17 @@ const journals = [
         id: "nato-romania",
         title: "NATO Romania",
         coverLabel: "NATO Romania",
+        spine: {
+            x: 164,
+            bottom: 16,
+            width: 103,
+            height: 460,
+            rotate: -1
+        },
         entries: [
             {
                 image: "nato1.jpg",
-                alt: "NATO Romania design sample 1",
+                alt: "NATO Rom      ania design sample 1",
                 heading: "Logo Concept",
                 body: "A logo concept for NATO NSIP Romania, focused on professionalism, reliability, and institutional clarity.",
                 layout: "image-left"
@@ -66,6 +80,13 @@ const journals = [
         id: "free-time",
         title: "In My Free Time",
         coverLabel: "In My Free Time",
+        spine: {
+            x: 827,
+            bottom: 0,
+            width: 116,
+            height: 464,
+            rotate: 1
+        },
         entries: [
             {
                 image: "misc1.jpg",
@@ -131,10 +152,16 @@ function buildShelf() {
 
     journals.forEach((journal) => {
         const book = document.createElement("button");
-        book.className = "book-spine";
+                book.className = "book-spine";
         book.type = "button";
         book.dataset.journalId = journal.id;
         book.setAttribute("aria-label", `Open ${journal.title} journal`);
+
+        book.style.setProperty("--spine-x", journal.spine.x);
+        book.style.setProperty("--spine-bottom", journal.spine.bottom);
+        book.style.setProperty("--spine-width", journal.spine.width);
+        book.style.setProperty("--spine-height", journal.spine.height);
+        book.style.setProperty("--spine-rotate", journal.spine.rotate);
 
         const label = document.createElement("span");
         label.className = "book-spine-title";

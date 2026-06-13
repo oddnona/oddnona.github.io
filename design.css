@@ -99,11 +99,16 @@ a {
     overflow: hidden;
 }
 
-.bookshelf-image {
+.bookshelf-frame {
     position: absolute;
     left: 0;
     bottom: var(--bookshelf-lift);
     z-index: 1;
+    width: 100%;
+    line-height: 0;
+}
+
+.bookshelf-image {
     display: block;
     width: 100%;
     height: auto;
@@ -116,15 +121,10 @@ a {
 .journal-shelf {
     position: absolute;
     left: 0;
-    right: 0;
-    bottom: clamp(145px, 16vw, 235px);
+    top: 0;
+    width: 100%;
+    height: 100%;
     z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 1.5rem;
-    min-height: 260px;
-    padding: 2rem;
     pointer-events: auto;
     transition:
         opacity 260ms ease,
@@ -140,14 +140,19 @@ a {
 }
 
 .book-spine {
-    --book-width: 116px;
-    --book-height: 460px;
-    --book-x: 220px;
-    --book-y: 276px;
-    --book-rotate: 1deg;
+    --spine-x: 0;
+    --spine-bottom: 0;
+    --spine-width: 80;
+    --spine-height: 300;
+    --spine-rotate: 0;
 
-    width: var(--book-width);
-    height: var(--book-height);
+    position: absolute;
+    left: calc(var(--spine-x) / 1580 * 100%);
+    bottom: calc(var(--spine-bottom) / 480 * 100%);
+    width: calc(var(--spine-width) / 1580 * 100%);
+    height: calc(var(--spine-height) / 480 * 100%);
+
+    box-sizing: border-box;
     border: 2px solid rgba(20, 12, 8, 0.9);
     border-radius: 3px;
     cursor: pointer;
@@ -157,9 +162,7 @@ a {
     box-shadow: none;
     outline: none;
     transform-origin: center center;
-    transform:
-        translate(var(--book-x), var(--book-y))
-        rotate(var(--book-rotate));
+    transform: rotate(calc(var(--spine-rotate) * 1deg));
     transition:
         border-color 180ms ease,
         opacity 180ms ease;
