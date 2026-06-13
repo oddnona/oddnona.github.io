@@ -4,69 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Illustrator & Graphic Design | Nona Bulubasa</title>
+
     <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="./design.css"></head>
 <body>
 
-<header>
+<header class="design-header">
     <h1>Illustrator & Graphic Design Experience</h1>
-    <p class="subtitle">Selected commissioned work</p>
 </header>
 
 <nav class="page-nav">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
-    <a href="thesis.html">Thesis</a>
-    <a href="games-web.html">Games & Web Apps</a>
+    <a href="thesis.html">3D Film</a>
+    <a href="games-web.html">Projects</a>
 </nav>
 
 <main>
 
-    <section class="section">
+    <section class="section design-intro">
         <p>
             I was commissioned to make illustrations and logos for clients and organizations.
+            Select a journal from the shelf below to browse the work.
         </p>
     </section>
 
-    <article class="project">
-        <h2>Nature2U Mobile App Illustrations</h2>
+    <section class="design-commissions" id="designCommissions">
+    <img class="bookshelf-image" src="books.png" alt="" aria-hidden="true">
 
-        <p>
-            Created a collection of custom illustrations for the Nature2U mobile
-            application. The artwork was designed to support the application's
-            visual identity and improve user engagement through a consistent,
-            approachable, and nature-inspired style.
-        </p>
+    <div class="journal-shelf" id="journalShelf">
+        <!-- JS will create the three books here -->
+    </div>
 
-       <img src="n2uillustrations.jpg" alt="Nature2U Illustration" class="design-image">
+        <div class="journal-stage" id="journalStage" aria-hidden="true">
+            <div class="journal-widget" id="journalWidget" role="dialog" aria-modal="false">
+                <button class="journal-close" id="journalClose" type="button" aria-label="Close journal">
+                    ×
+                </button>
 
-        <!-- Add more images later if needed -->
+                <div class="journal-title-bar">
+                    <h3 id="journalTitle">Journal Title</h3>
+                </div>
 
-        <!-- Example:
-        <img src="nature2u-1.png" alt="Nature2U Illustration">
-        -->
-    </article>
-
-    <article class="project">
-        <h2>NATO NSIP Romania Logo</h2>
-
-        <p>
-            Designed a logo concept for NATO NSIP Romania. The project focused on
-            communicating professionalism, reliability, and the organization's
-            connection to national and international infrastructure programs.
-        </p>
-
-        <img src="natologo.jpeg" alt="NSIP Romania Logo" class="design-image">
-
-        <img src="natoposter.jpg" alt="NSIP Logo Poster" class="design-image">
-
-        <!-- Add actual images later:
-        <img src="images/nato-logo-1.png" alt="NATO NSIP Romania Logo">
-        <img src="images/nato-logo-2.png" alt="NATO NSIP Romania Logo Variant">
-        -->
-    </article>
+                <div class="spread-carousel" id="spreadCarousel">
+                    <!-- JS will create the pages here -->
+                </div>
+                <p class="journal-instructions">
+                    Scroll • Swipe • ← →
+                </p>
+            </div>
+        </div>
+    </section>
 
 </main>
 
+<script src="design.js"></script>
 </body>
 </html>

@@ -130,16 +130,13 @@ body {
     height: 0vh;
 
     background: #f5ead8;
-
     overflow: hidden;
-
     z-index: 20;
 }
 
 .panel-content {
     width: 50vw;
 }
-
 
 /* CONTENT BLOCKS */
 
