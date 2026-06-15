@@ -147,3 +147,40 @@
 
     flex-shrink: 0;
 }
+
+/* MOBILE PLACEHOLDER */
+
+.mobile-under-construction {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .home-page {
+        height: 100vh;
+        overflow: hidden;
+
+        background-image: url("texture.jpg");
+        background-repeat: repeat;
+    }
+
+    .home-intro,
+    .side-drawer-nav {
+        display: none;
+    }
+
+    .mobile-under-construction {
+        height: 100vh;
+        padding: 40px;
+        box-sizing: border-box;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        font-family: Baskerville, serif;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        color: #3e1f05;
+    }
+}

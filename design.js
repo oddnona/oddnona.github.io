@@ -5,9 +5,9 @@ const journals = [
         coverLabel: "Nature2U",
         logo: {
             image: "n2ulogo.png",
-            x: 50,
-            y: 45,
-            width: 72,
+            x: 52,
+            y: 28,
+            width: 87,
             rotate: 0
         },
         spine: {
@@ -48,9 +48,9 @@ const journals = [
         logo: {
             image: "natologo.png",
             x: 50,
-            y: 45,
-            width: 78,
-            rotate: 0
+            y: 26,
+            width: 95,
+            rotate: 1
         },
         spine: {
             x: 164,
@@ -381,9 +381,14 @@ function handleWheelNavigation(event) {
 closeButton.addEventListener("click", closeJournal);
 
 stage.addEventListener("click", (event) => {
-    if (!widget.contains(event.target)) {
-        closeJournal();
+    const clickedPage = event.target.closest(".journal-page");
+    const clickedCloseButton = event.target.closest(".journal-close");
+
+    if (clickedPage || clickedCloseButton) {
+        return;
     }
+
+    closeJournal();
 });
 
 document.addEventListener("keydown", (event) => {
