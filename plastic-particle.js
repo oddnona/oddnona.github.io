@@ -206,11 +206,6 @@ const stations = [
         title: "Built as an immersive visualization",
         description: `
             <ul class="toolkit-list">
-                <li>Unity</li>
-                <li>C#</li>
-                <li>3D modelling and asset integration</li>
-                <li>Scientific data visualization techniques</li>
-                <li>User study design and analysis</li>
             </ul>
         `,
         button: null,
