@@ -1,348 +1,451 @@
-body {
-  background-image: url("texture.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-.page-nav {
-  position: fixed;
-  top: 2rem;
-  left: 2rem;
-  z-index: 5000;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.35rem;
-
-  padding: 0.75rem;
-
-  background: rgba(245, 232, 200, 0.72);
-  border: 1px solid rgba(69, 42, 12, 0.35);
-  box-shadow: 0 10px 24px rgba(69, 42, 12, 0.22);
-  backdrop-filter: blur(6px);
-}
-
-.page-nav a {
-  color: #452a0c;
-  text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: transform 200ms ease;
-}
-
-.page-nav a:hover {
-  background: rgba(69, 42, 12, 0.14);
-}
-.projects-hero {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0.01rem 1.5rem 2rem;
-  text-align: center;
-}
-
-.projects-hero h1 {
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  margin-bottom: 1rem;
-  color:#452a0c
-}
-
-.projects-hero p {
-  line-height: 1.7;
-  color:#452a0c
-
-}
-
-.instructions {
-  font-size: 0.95rem;
-  opacity: 0.75;
-}
-
-.desk-page {
-  min-height: 100vh;
-}
-
-.desk {
-  position: relative;
-  z-index: 1;
-  min-height: 1200px;
-  margin-top: 0;
-  overflow: hidden;
-  background: transparent;
-}
-
-.desk-decoration {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.project-card {
-  position: absolute;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  z-index: 10;
-  transition:
-    top 650ms ease,
-    left 650ms ease,
-    width 650ms ease,
-    height 650ms ease,
-    transform 650ms ease,
-    box-shadow 650ms ease,
-    z-index 0ms 200ms;
-  filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.22));
-  perspective: 1400px;
-}
-
-.card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition: transform 700ms ease;
-  transform-style: preserve-3d;
-}
-
-.card-face {
-  position: absolute;
-  inset: 0;
-  padding: 1.5rem;
-  border-radius: 10px;
-  backface-visibility: hidden;
-  box-sizing: border-box;
-  border: 1px solid rgba(30, 20, 10, 0.2);
-  overflow: hidden;
-}
-
-.card-front {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.card-sprite {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  display: block;
-  transform: translate(-50%, -50%);
-  background-repeat: no-repeat;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* 8 frames × 527px = 4216px total */
-.sun-sprite {
-  width: 160px;
-  height: 160px;
-  background-image: url("sunsprite.png");
-  background-size: 1280px 160px;
-  animation: sun-play 1s steps(8) infinite;
-}
-
-@keyframes sun-play {
-  from {
-    background-position: 0 0;
+  body {
+    background-image: url("texture.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
   }
 
-  to {
-    background-position: -1280px 0;
-  }
-}
+  .page-nav {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 5000;
 
-/* 10 frames × 954px = 9540px total */
-.horse-sprite {
-  width: 230px;
-  height: 142px;
-  background-image: url("horsesprite.png");
-  background-size: 2300px 142px;
-  animation: horse-play 1s steps(10) infinite;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
 
-@keyframes horse-play {
-  from {
-    background-position: 0 0;
-  }
+    padding: 0.75rem;
 
-  to {
-    background-position: -2300px 0;
-  }
-}
-
-/* 5 frames × 48px = 240px total */
-.chest-sprite {
-  width: 96px;
-  height: 72px;
-  background-image: url("chestsprite.png");
-  background-size: 480px 72px;
-  image-rendering: pixelated;
-  animation: chest-play 1s steps(5) infinite;
-}
-
-.project-card.is-active .sun-sprite {
-  width: 276px;
-  height: 276px;
-  background-size: 2208px 276px;
-  animation: sun-play-active 1s steps(8) infinite;
-}
-
-.project-card.is-active .horse-sprite {
-  width: 397px;
-  height: 245px;
-  background-size: 3970px 245px;
-  animation: horse-play-active 1s steps(10) infinite;
-}
-
-.project-card.is-active .chest-sprite {
-  width: 166px;
-  height: 125px;
-  background-size: 830px 125px;
-  animation: chest-play-active 1s steps(5) infinite;
-}
-
-@keyframes sun-play-active {
-  from {
-    background-position: 0 0;
+    background: rgba(245, 232, 200, 0.72);
+    border: 1px solid rgba(69, 42, 12, 0.35);
+    box-shadow: 0 10px 24px rgba(69, 42, 12, 0.22);
+    backdrop-filter: blur(6px);
   }
 
-  to {
-    background-position: -2208px 0;
-  }
-}
-
-@keyframes horse-play-active {
-  from {
-    background-position: 0 0;
-  }
-
-  to {
-    background-position: -3970px 0;
-  }
-}
-
-@keyframes chest-play-active {
-  from {
-    background-position: 0 0;
+  .page-nav a {
+    color: #452a0c;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: transform 200ms ease;
   }
 
-  to {
-    background-position: -830px 0;
+  .page-nav a:hover {
+    background: rgba(69, 42, 12, 0.14);
   }
-}
-
-@keyframes chest-play {
-  from {
-    background-position: 0 0;
+  .projects-hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0.01rem 1.5rem 2rem;
+    text-align: center;
   }
 
-  to {
-    background-position: -480px 0;
+  .projects-hero h1 {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    margin-bottom: 1rem;
+    color:#452a0c
   }
-}
 
-.card-back {
-  transform: rotateY(180deg);
-  background: #f3eadc;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+  .projects-hero p {
+    line-height: 1.7;
+    color:#452a0c
 
-.card-back h2 {
-  margin: 0;
-  font-size: 1.4rem;
-}
+  }
 
-.project-card.is-flipped .card-inner {
-  transform: rotateY(180deg);
-}
+  .instructions {
+    font-size: 0.95rem;
+    opacity: 0.75;
+  }
 
-.card-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.7;
-}
+  .desk-page {
+    min-height: 100vh;
+  }
 
-.card-front .card-label,
-.card-front h2,
-.card-front p {
-  position: relative;
-  z-index: 2;
-}
+  .desk {
+    position: relative;
+    z-index: 1;
+    min-height: 1200px;
+    margin-top: 0;
+    overflow: hidden;
+    background: transparent;
+  }
 
-.project-card h2 {
-  margin: 0.35rem 0;
-}
+  .desk-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    pointer-events: none;
+  }
 
-.project-card p {
-  margin: 0;
-  max-width: 24ch;
-}
+  .project-card {
+    position: absolute;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    z-index: 10;
+    transition:
+      top 650ms ease,
+      left 650ms ease,
+      width 650ms ease,
+      height 650ms ease,
+      transform 650ms ease,
+      box-shadow 650ms ease,
+      z-index 0ms 200ms;
+    filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.22));
+    perspective: 1400px;
+  }
 
-.weather-card {
-  width: 439px;
-  height: 360px;
-  top: 250px;
-  left: 50%;
-  transform: rotate(15deg);
-  z-index: 4;
-}
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+  }
 
-.weather-card .card-front {
-  background-image: url("weathercard.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+  .card-face {
+    position: absolute;
+    inset: 0;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 1px solid rgba(30, 20, 10, 0.2);
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 350ms ease;
+  }
 
-.weather-card .card-label,
-.weather-card h2,
-.weather-card p {
-  color: #ff7300;
-}
+  .card-face.is-current {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-.rts-card {
-  width: 500px;
-  height: 405px;
-  top: 90px;
-  left: 30%;
-  transform: rotate(-7deg);
-  z-index: 3;
-}
+  .project-card.is-turning .card-inner {
+    animation: page-turn 700ms ease;
+  }
 
-.rts-card .card-front {
-  background-image: url("rtscard.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.rts-card .card-label,
-.rts-card h2,
-.rts-card p {
-  color: #ffffff;
-}
+  @keyframes page-turn {
+    0% {
+      transform: rotateY(0deg) scaleX(1);
+    }
 
-.rpg-card {
-  width: 461px;
-  height: 350px;
-  top: 330px;
-  left: 17%;
-  transform: rotate(0deg);
-  z-index: 1;
-}
+    49% {
+      transform: rotateY(89deg) scaleX(0.98);
+    }
 
-.rpg-card .card-front {
-  background-image: url("rpgcard.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+    50% {
+      transform: rotateY(90deg) scaleX(0.96);
+    }
+
+    51% {
+      transform: rotateY(-89deg) scaleX(0.98);
+    }
+
+    100% {
+      transform: rotateY(0deg) scaleX(1);
+    }
+  }
+
+  .card-front {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .card-sprite {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* 8 frames × 527px = 4216px total */
+  .sun-sprite {
+    width: 160px;
+    height: 160px;
+    background-image: url("sunsprite.png");
+    background-size: 1280px 160px;
+    animation: sun-play 1s steps(8) infinite;
+  }
+
+  @keyframes sun-play {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -1280px 0;
+    }
+  }
+
+  /* 10 frames × 954px = 9540px total */
+  .horse-sprite {
+    width: 230px;
+    height: 142px;
+    background-image: url("horsesprite.png");
+    background-size: 2300px 142px;
+    animation: horse-play 1s steps(10) infinite;
+  }
+
+  @keyframes horse-play {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -2300px 0;
+    }
+  }
+
+  /* 5 frames × 48px = 240px total */
+  .chest-sprite {
+    width: 96px;
+    height: 72px;
+    background-image: url("chestsprite.png");
+    background-size: 480px 72px;
+    image-rendering: pixelated;
+    animation: chest-play 1s steps(5) infinite;
+  }
+
+  .project-card.is-active .sun-sprite {
+    width: 276px;
+    height: 276px;
+    background-size: 2208px 276px;
+    animation: sun-play-active 1s steps(8) infinite;
+  }
+
+  .project-card.is-active .horse-sprite {
+    width: 397px;
+    height: 245px;
+    background-size: 3970px 245px;
+    animation: horse-play-active 1s steps(10) infinite;
+  }
+
+  .project-card.is-active .chest-sprite {
+    width: 166px;
+    height: 125px;
+    background-size: 830px 125px;
+    animation: chest-play-active 1s steps(5) infinite;
+  }
+
+  @keyframes sun-play-active {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -2208px 0;
+    }
+  }
+
+  @keyframes horse-play-active {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -3970px 0;
+    }
+  }
+
+  @keyframes chest-play-active {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -830px 0;
+    }
+  }
+
+  @keyframes chest-play {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -480px 0;
+    }
+  }
+
+  .card-back {
+    background: var(--card-page-bg, #f3eadc);
+    color: var(--card-page-text, #111);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .card-back h2 {
+    margin: 0;
+    font-size: 1.4rem;
+  }
+
+  .blank-card-page {
+    justify-content: flex-start;
+  }
+
+  .repo-card-page {
+    align-items: flex-start;
+  }
+  .repo-button {
+    display: inline-block;
+    width: fit-content;
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--card-button-bg, #222);
+    background: var(--card-button-bg, #222);
+    color: var(--card-button-text, #fff);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: transform 200ms ease, background 200ms ease, color 200ms ease;
+  }
+
+  .repo-button:hover {
+    transform: translateY(-2px);
+    background: var(--card-button-hover-bg, #452a0c);
+  }
+
+  .card-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .card-front .card-label,
+  .card-front h2,
+  .card-front p {
+    position: relative;
+    z-index: 2;
+  }
+
+  .project-card h2 {
+    margin: 0.35rem 0;
+  }
+
+  .project-card p {
+    margin: 0;
+    max-width: 24ch;
+  }
+
+  .weather-card {
+    width: 439px;
+    height: 360px;
+    top: 250px;
+    left: 50%;
+    transform: rotate(15deg);
+    z-index: 4;
+
+    --card-page-bg: #9cb5bd;
+    --card-page-text: rgb(165, 107, 0);
+    --card-line-strong: rgb(165, 107, 0);
+    --card-line-light: rgba(165, 107, 0, 0.58);
+    --card-button-bg: rgb(165, 107, 0);
+    --card-button-text: #9cb5bd;
+    --card-button-hover-bg: rgba(216, 83, 0, 0.9);
+
+    --tech-text-color: rgb(165, 107, 0);
+    --tech-line-strong: rgb(165, 107, 0);
+    --tech-line-light: rgba(165, 107, 0, 0.58);
+    --tech-page-bg: #9cb5bd;
+    --tech-stack-front: rgba(216, 83, 0, 0.42);
+    --tech-stack-back: rgba(253, 255, 209, 0.4);
+    --tech-stack-data: rgba(239, 239, 137, 0.34);
+    --tech-stack-frame: rgba(18, 18, 19, 0.11);
+  }
+
+  .weather-card .card-front {
+    background-image: url("weathercard.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .weather-card .card-label,
+  .weather-card h2,
+  .weather-card p {
+    color: #ff7300;
+  }
+  .rts-card {
+    width: 500px;
+    height: 405px;
+    top: 90px;
+    left: 30%;
+    transform: rotate(-7deg);
+    z-index: 3;
+
+    --card-page-bg: #000000;
+    --card-page-text: #867962;
+    --card-line-strong: #867962;
+    --card-line-light: #867962;
+    --card-button-bg: #867962;
+    --card-button-text: #000000;
+    --card-button-hover-bg: #584206;
+
+    --tech-text-color: #867962;
+    --tech-line-strong: #867962;
+    --tech-line-light: #867962;
+    --tech-page-bg: #000000;
+    --tech-stack-front: #494f4e;
+    --tech-stack-back: rgba(112, 116, 92, 0.36);
+    --tech-stack-data: #584206;
+    --tech-stack-frame: rgba(255, 228, 186, 0.12);
+  }
+
+  .rts-card .card-front {
+    background-image: url("rtscard.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .rts-card .card-label,
+  .rts-card h2,
+  .rts-card p {
+    color: #ffffff;
+  }
+  .rpg-card {
+    width: 461px;
+    height: 350px;
+    top: 330px;
+    left: 17%;
+    transform: rotate(0deg);
+    z-index: 1;
+
+    --card-page-bg: #1a2530;
+    --card-page-text: #c28c6b;
+    --card-line-strong: #c28c6b;
+    --card-line-light: #c28c6b;
+    --card-button-bg: #c28c6b;
+    --card-button-text: #1a2530;
+    --card-button-hover-bg: #788d85;
+
+    --tech-text-color: #c28c6b;
+    --tech-line-strong: #c28c6b;
+    --tech-line-light: #c28c6b;
+    --tech-page-bg: #1a2530;
+    --tech-stack-front: #788d85bc;
+    --tech-stack-back: #c71acd73;
+    --tech-stack-data: rgba(149, 94, 0, 0.36);
+    --tech-stack-frame: rgba(111, 113, 120, 0.12);
+  }
+  .rpg-card .card-front {
+    background-image: url("rpgcard.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 
 .project-card.is-active {
   top: 120px;
@@ -354,83 +457,1228 @@ body {
   filter: drop-shadow(0 55px 45px rgba(0, 0, 0, 0.829));
   cursor: default;
 }
-.project-card.is-shadowed {
-  filter: drop-shadow(0 35px 28px rgba(0, 0, 0, 0.35));
-}
 
-.project-info {
-  position: absolute;
-  top: 205px;
-  right: 6vw;
-  width: 260px;
-  padding: 1.25rem;
-  background: rgba(245, 239, 229, 0.92);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: translateX(30px);
-  pointer-events: none;
-  transition: opacity 350ms ease, transform 350ms ease;
-  z-index: 100;
-}
-
-.project-info.is-visible {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-}
-
-.project-info h2 {
-  margin-top: 0;
-}
-
-.project-info button {
-  margin-top: 1rem;
-  padding: 0.65rem 0.9rem;
-  border: 1px solid #222;
-  background: #222;
-  color: #fff;
-  cursor: pointer;
-}
-
-@media (max-width: 900px) {
-  .desk {
-    min-height: 2280px;
-  }
-
-  .project-card.is-active {
-    top: 130px;
-    width: 82vw;
-    height: 360px;
+  .project-card.is-shadowed {
+    filter: drop-shadow(0 35px 28px rgba(0, 0, 0, 0.35));
   }
 
   .project-info {
-    top: 540px;
-    left: 50%;
-    right: auto;
-    width: min(82vw, 420px);
-    transform: translateX(-50%) translateY(20px);
+    position: absolute;
+    top: 205px;
+    right: 6vw;
+    width: 260px;
+    padding: 1.25rem;
+    background: rgba(245, 239, 229, 0.92);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(30px);
+    pointer-events: none;
+    transition: opacity 350ms ease, transform 350ms ease;
+    z-index: 100;
   }
 
   .project-info.is-visible {
-    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
   }
-}
 
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.28);
-  background: #111;
-  box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.08);
-}
+  .project-info h2 {
+    margin-top: 0;
+  }
 
-.video-wrapper iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
+  .project-info p {
+    white-space: pre-line;
+  }
+
+  .project-info button {
+    margin-top: 1rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid #222;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  @media (max-width: 900px) {
+    .desk {
+      min-height: 2280px;
+    }
+
+    .project-card.is-active {
+      top: 130px;
+      width: 82vw;
+      height: 360px;
+    }
+
+    .project-info {
+      top: 540px;
+      left: 50%;
+      right: auto;
+      width: min(82vw, 420px);
+      transform: translateX(-50%) translateY(20px);
+    }
+
+    .project-info.is-visible {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.28);
+    background: #111;
+    box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.08);
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .tech-card-page {
+    padding: 1.4rem 1.6rem;
+    background: var(--tech-page-bg, var(--card-page-bg, #f3eadc));
+    color: var(--tech-text-color, var(--card-page-text, #111));
+    overflow: hidden;
+  }
+
+  .tech-sheet {
+    position: relative;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 0.9fr;
+    font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .tech-sheet::before {
+    content: "";
+    position: absolute;
+    top: 0.15rem;
+    bottom: 0.15rem;
+    left: 47%;
+    width: 32%;
+    transform: translateX(-50%);
+    background: var(--tech-stack-frame);
+    clip-path: polygon(
+      50% 0%,
+      100% 12%,
+      100% 88%,
+      50% 100%,
+      0% 88%,
+      0% 12%
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .tech-sheet::after {
+    content: "";
+    position: absolute;
+    top: 0.15rem;
+    bottom: 0.15rem;
+    left: 47%;
+    width: 1px;
+    transform: translateX(-50%);
+    background: rgba(150, 155, 160, 0.12);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .tech-sheet-header {
+    display: none;
+  }
+  .tech-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 30% 34% 36%;
+    align-items: start;
+    border-top: none;
+    min-height: 0;
+    z-index: 1;
+  }
+
+  .tech-row::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-top: 2px solid var(--tech-line-strong);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .tech-row-database {
+    border-bottom: none;
+  }
+
+  .tech-row-database::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 2px solid var(--tech-line-strong);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .tech-row h3 {
+    margin: 0.6rem 0 0;
+    font-size: clamp(1.65rem, 2.7vw, 2.55rem);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.075em;
+    color: var(--tech-text-color);
+  }
+
+  .tech-row ul {
+    list-style: none;
+    margin: 0.6rem 0 0;
+    padding: 0;
+  }
+
+  .tech-row li {
+    position: relative;
+    padding: 0.24rem 0 0.33rem;
+    border-bottom: none;
+    font-size: clamp(0.72rem, 1vw, 0.95rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+
+  .tech-row li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 1px solid var(--tech-line-light);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .tech-row h3,
+  .tech-row ul,
+  .tech-row li strong,
+  .tech-row li br {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tech-row li strong {
+    font-size: clamp(0.84rem, 1.15vw, 1.05rem);
+    font-weight: 800;
+    letter-spacing: -0.055em;
+  }
+
+  .stack-graphic {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 140px;
+    z-index: 5;
+  }
+
+  .tech-row h3,
+  .tech-row ul {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stack-graphic {
+    z-index: 3;
+  }
+
+  .stack-graphic::before {
+    top: 0%;
+  }
+
+  .stack-graphic::after {
+    top: 66%;
+  }
+
+  .stack-graphic span {
+    position: absolute;
+    left: 50%;
+    width: 48%;
+    aspect-ratio: 1 / 1;
+    transform: translateX(-50%) rotate(45deg) skew(-16deg, -16deg);
+    z-index: 6;
+  }
+
+  .stack-frontend span {
+    background: var(--tech-stack-front);
+  }
+
+  .stack-frontend span:nth-child(1) {
+    top: 8%;
+    opacity: 0.92;
+  }
+
+  .stack-frontend span:nth-child(2) {
+    top: 24%;
+    opacity: 0.74;
+  }
+
+  .stack-frontend span:nth-child(3) {
+    top: 40%;
+    opacity: 0.56;
+  }
+
+  .stack-frontend span:nth-child(4) {
+    top: 56%;
+    opacity: 0.38;
+  }
+
+  .stack-backend span {
+    background: var(--tech-stack-back);
+  }
+  .stack-backend span:nth-child(1) {
+    top: 12%;
+    opacity: 0.82;
+  }
+
+  .stack-backend span:nth-child(2) {
+    top: 31%;
+    opacity: 0.62;
+  }
+
+  .stack-backend span:nth-child(3) {
+    top: 50%;
+    opacity: 0.42;
+  }
+
+  .stack-database span {
+    top: 8%;
+    background: var(--tech-stack-data);
+    opacity: 0.82;
+  }
+
+  @media (max-width: 900px) {
+    .tech-card-page {
+      padding: 1rem;
+    }
+
+    .tech-sheet {
+      grid-template-rows: 1fr 1fr 0.9fr;
+    }
+
+    .tech-row {
+      grid-template-columns: 32% 25% 43%;
+    }
+
+    .tech-row h3 {
+      font-size: 1.18rem;
+    }
+
+    .tech-row li {
+      font-size: 0.58rem;
+      line-height: 1;
+    }
+
+    .tech-row li strong {
+      font-size: 0.66rem;
+    }
+
+    .stack-graphic {
+      min-height: 86px;
+    }
+
+    .stack-graphic span {
+      width: 64%;
+    }
+  }
+  /* ------------------------------------------------------------
+    Architecture pages
+    Color roles are controlled with project-specific variables below.
+  ------------------------------------------------------------ */
+
+  .architecture-card-page {
+    padding: 1.4rem 1.6rem;
+    background: var(--arch-page-bg, var(--card-page-bg, #f3eadc));
+    color: var(--arch-title-text, var(--card-page-text, #111));
+    overflow: hidden;
+
+    --arch-line-opacity: 0.82;
+    --arch-line-width: 1.6;
+
+    /* Shared diagram color roles */
+    --arch-page-bg: var(--card-page-bg);
+    --arch-title-text: var(--card-page-text);
+
+    --arch-box-bg: var(--tech-stack-frame);
+    --arch-box-text: var(--card-page-text);
+    --arch-box-border: var(--arch-line-color);
+
+    --arch-root-bg: var(--tech-stack-front);
+    --arch-root-text: var(--arch-box-text);
+
+    --arch-chip-bg: color-mix(in srgb, var(--card-page-bg) 68%, white);
+    --arch-chip-text: var(--card-page-text);
+
+    --arch-line-color: var(--card-line-strong);
+
+    --arch-label-bg: color-mix(in srgb, var(--card-page-bg) 84%, white);
+    --arch-label-text: var(--card-page-text);
+    --arch-label-ring: var(--card-page-bg);
+  }
+
+  /* Shared architecture boxes */
+
+  .arch-box {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    min-height: 82px;
+    padding: 0rem 0rem;
+    border: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background: var(--arch-box-bg, var(--tech-stack-frame, rgba(150, 155, 160, 0.11)));
+    color: var(--arch-box-text, var(--card-page-text, #111));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .arch-root {
+    width: 46%;
+    min-height: 88px;
+    background: var(--arch-root-bg, var(--tech-stack-front, rgba(255, 57, 40, 0.42)));
+    color: var(--arch-root-text, var(--arch-box-text));
+  }
+
+  .arch-small {
+    min-height: 76px;
+  }
+
+  .arch-box > span {
+    font-size: clamp(0.82rem, 1vw, 1.05rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+  }
+
+  .arch-root > span {
+    font-size: clamp(0.9rem, 1.1vw, 1.15rem);
+  }
+
+  .arch-mini-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.24rem;
+    margin-top: 0.38rem;
+  }
+
+  .arch-mini-boxes span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.1rem 0.34rem;
+    border-radius: 1px;
+    background: var(--arch-chip-bg);
+    color: var(--arch-chip-text);
+    font-size: clamp(0.58rem, 0.68vw, 0.7rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    opacity: 0.92;
+  }
+
+  /* Shared SVG connector styling */
+
+  .arch-svg-line,
+  .arch-svg-branch-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .arch-svg-line path,
+  .arch-svg-branch-lines path {
+    fill: none;
+    stroke: var(--arch-line-color, currentColor);
+    stroke-width: var(--arch-line-width);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    opacity: var(--arch-line-opacity);
+  }
+
+  .weather-flow-arrow span,
+  .weather-response-arrow span,
+  .rts-main-arrow span,
+  .rts-view-connector span,
+  .rpg-spine-arrow span,
+  .rts-model-label,
+  .rts-branch-label,
+  .rpg-branch-label {
+    position: relative;
+    z-index: 5;
+    padding: 0.18rem 0.42rem;
+    border-radius: 999px;
+    background: var(--arch-label-bg);
+    color: var(--arch-label-text);
+    box-shadow: 0 0 0 0.18rem var(--arch-label-ring);
+    font-size: clamp(0.42rem, 0.56vw, 0.58rem);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ------------------------------------------------------------
+    Project diagram palette assignments
+    Change these variables to remap each project's existing palette.
+  ------------------------------------------------------------ */
+
+  .weather-architecture {
+    --arch-page-bg: var(--card-page-bg);
+
+    --arch-title-text: rgb(165, 107, 0);
+    --arch-box-text:  rgb(216, 83, 0);
+    --arch-root-text: rgb(216, 83, 0);
+    --arch-chip-text: rgb(0, 38, 41);
+    --arch-label-text: rgb(165, 107, 0);
+    --arch-line-color: rgba(255, 230, 0, 0.689);
+    --arch-label-ring: var(--card-page-bg);
+
+    --arch-chip-bg:rgba(253, 255, 209, 0.4);
+    --arch-label-bg:  rgba(18, 18, 19, 0.11);
+    --arch-root-bg: #9cb5bd;
+    --arch-box-bg: #9cb5bd;
+    --arch-box-border: #9cb5bd;
+
+    --weather-entry-bg: #9cb5bd;
+    --weather-frontend-bg:  #9cb5bd;
+    --weather-backend-bg:  #9cb5bd;
+    --weather-data-bg:  #9cb5bd;
+    --weather-results-bg:  #9cb5bd;
+    --weather-response-label-bg:   rgba(18, 18, 19, 0.11);
+  }
+
+  .rts-architecture {
+    --arch-page-bg: var(--card-page-bg);
+
+    --arch-title-text: #f29900;
+    --arch-box-text:  #749486;
+    --arch-root-text: #749486;
+    --arch-chip-text: #00100a;
+    --arch-label-text: #000000;
+    --arch-line-color: #867962;
+    --arch-label-ring: var(--card-page-bg);
+
+    --arch-chip-bg: #867962;
+    --arch-label-bg: #584206;
+    --arch-root-bg: rgba(0, 0, 0, 0.12);
+    --arch-box-bg:  rgba(0, 0, 0, 0.12);
+    --arch-box-border:  rgba(0, 0, 0, 0.12);
+
+    --rts-controller-bg:  rgba(0, 0, 0, 0.12);
+    --rts-model-bg:  rgba(0, 0, 0, 0.12);
+    --rts-map-bg:  rgba(0, 0, 0, 0.12);
+    --rts-factions-bg:  rgba(0, 0, 0, 0.12);
+    --rts-events-bg:  rgba(0, 0, 0, 0.12);
+    --rts-serialization-bg:  rgba(0, 0, 0, 0.12);
+    --rts-view-bg:  rgba(0, 0, 0, 0.12);
+  }
+
+  .rpg-architecture {
+    --arch-page-bg: var(--card-page-bg);
+
+    --arch-title-text: #c28c6b;
+    --arch-box-text: #c71acd;
+    --arch-root-text: #c71acd;
+    --arch-chip-text: #000000;
+    --arch-label-text: #788d85e9;
+    --arch-line-color: #c28c6b;
+    --arch-label-ring: var(--card-page-bg);
+
+    --arch-chip-bg: #c28c6bd3;
+    --arch-label-bg: color-mix(in srgb, var(--card-page-bg) 82%, black);
+    --arch-root-bg: var(--tech-stack-back);
+    --arch-box-bg: color-mix(in srgb, var(--tech-stack-front) 58%, var(--card-page-bg));
+    --arch-box-border: var(--arch-line-color);
+
+    --rpg-core-bg: #1a2530;
+    --rpg-action-bg: #1a2530;
+    --rpg-world-bg: #1a2530;
+    --rpg-entities-bg: #1a2530;
+    --rpg-ui-bg: #1a2530;
+    --rpg-state-bg: #1a2530;
+  }
+
+  /* ------------------------------------------------------------
+    Weather architecture: request / response spine
+  ------------------------------------------------------------ */
+
+  .weather-request-map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 68px 44px 76px 44px 78px 44px 82px 46px 72px;
+    gap: 0.08rem;
+    justify-items: center;
+    align-items: center;
+    font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .weather-entry-box {
+    width: 54%;
+    min-height: 64px;
+    background: var(--weather-entry-bg, var(--tech-stack-front));
+  }
+
+  .weather-frontend-box {
+    width: 60%;
+    min-height: 72px;
+    background: var(--weather-frontend-bg, var(--tech-stack-data));
+  }
+
+  .weather-backend-box {
+    width: 60%;
+    min-height: 74px;
+    background: var(--weather-backend-bg, var(--tech-stack-back));
+  }
+
+  .weather-data-box {
+    width: 62%;
+    min-height: 78px;
+    background: var(--weather-data-bg, var(--tech-stack-front));
+  }
+
+  .weather-results-box {
+    width: 58%;
+    min-height: 68px;
+    background: var(--weather-results-bg, color-mix(in srgb, var(--tech-stack-data) 72%, var(--card-page-bg)));
+    border: 2px solid var(--arch-box-border, var(--arch-line-color));
+  }
+
+  .weather-svg-connector {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: var(--arch-line-color, currentColor);
+  }
+
+  .weather-response-arrow span {
+    background: var(--weather-response-label-bg, var(--arch-label-bg));
+  }
+
+  /* ------------------------------------------------------------
+    RTS architecture: model-centered simulation map
+  ------------------------------------------------------------ */
+
+  .rts-state-map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 245px 24px 160px 62px 68px;
+    gap: 0.2rem;
+    justify-items: center;
+    font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .rts-top {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 82px 72px 92px;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .rts-controller-box {
+    width: 52%;
+    min-height: 66px;
+    background: var(--rts-controller-bg, var(--tech-stack-data));
+  }
+
+  .rts-model-box {
+    width: 50%;
+    min-height: 66px;
+    background: var(--rts-model-bg, var(--tech-stack-back));
+    border: 2px solid var(--arch-box-border, var(--arch-line-color));
+  }
+
+  .rts-main-arrow {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: var(--arch-line-color, currentColor);
+    isolation: isolate;
+  }
+
+  .rts-main-arrow::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: currentColor;
+    transform: translateX(-50%);
+    opacity: 0.78;
+    z-index: 1;
+  }
+
+  .rts-main-arrow span {
+    position: relative;
+    z-index: 4;
+    padding: 0.18rem 0.42rem;
+    border-radius: 999px;
+    background: var(--arch-label-bg);
+    color: var(--arch-label-text);
+    box-shadow: 0 0 0 0.18rem var(--arch-label-ring);
+    font-size: clamp(0.42rem, 0.56vw, 0.58rem);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .rts-model-label {
+    align-self: center;
+    opacity: 0.88;
+  }
+
+  .rts-branch-grid {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+    align-items: stretch;
+    padding-top: 0;
+    color: var(--arch-line-color, currentColor);
+  }
+
+  .rts-branch-grid::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 2.35rem;
+    background: currentColor;
+    transform: translateX(-50%);
+    opacity: 0.78;
+    z-index: 1;
+  }
+
+  .rts-branch-grid::after {
+    content: "";
+    position: absolute;
+    top: 2.35rem;
+    left: calc((100% - (3 * 0.5rem)) / 8);
+    right: calc((100% - (3 * 0.5rem)) / 8);
+    height: 1px;
+    background: currentColor;
+    opacity: 0.78;
+    z-index: 1;
+  }
+
+  .rts-branch-card {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-rows: 2.35rem 1fr auto;
+    justify-items: center;
+    align-items: start;
+  }
+
+  .rts-branch-label {
+    position: relative;
+    z-index: 4;
+    align-self: center;
+    padding: 0.18rem 0.42rem;
+    border-radius: 999px;
+    background: var(--arch-label-bg);
+    color: var(--arch-label-text);
+    box-shadow: 0 0 0 0.18rem var(--arch-label-ring);
+    font-size: clamp(0.42rem, 0.56vw, 0.58rem);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .rts-branch-stem {
+    position: relative;
+    width: 1px;
+    height: 100%;
+    min-height: 2.8rem;
+    background: currentColor;
+    opacity: 0.78;
+    z-index: 1;
+  }
+
+  .rts-branch-card .arch-box {
+    width: 100%;
+    min-height: 80px;
+    padding: 0rem 0rem;
+    align-self: start;
+    z-index: 3;
+  }
+
+  .rts-branch-card:nth-of-type(1) .arch-box {
+    background: var(--rts-map-bg, var(--tech-stack-front));
+  }
+
+  .rts-branch-card:nth-of-type(2) .arch-box {
+    background: var(--rts-factions-bg, color-mix(in srgb, var(--tech-stack-front) 45%, var(--card-page-bg)));
+  }
+
+  .rts-branch-card:nth-of-type(3) .arch-box {
+    background: var(--rts-events-bg, color-mix(in srgb, var(--tech-stack-back) 45%, var(--card-page-bg)));
+  }
+
+  .rts-branch-card:nth-of-type(4) .arch-box {
+    background: var(--rts-serialization-bg, color-mix(in srgb, var(--tech-stack-frame) 78%, var(--card-page-bg)));
+  }
+
+  .rts-view-connector {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: var(--arch-line-color, currentColor);
+    isolation: isolate;
+  }
+
+  .rts-view-connector::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: currentColor;
+    transform: translateX(-50%);
+    opacity: 0.78;
+    z-index: 1;
+  }
+
+  .rts-view-connector span {
+    position: relative;
+    z-index: 4;
+    padding: 0.18rem 0.42rem;
+    border-radius: 999px;
+    background: var(--arch-label-bg);
+    color: var(--arch-label-text);
+    box-shadow: 0 0 0 0.18rem var(--arch-label-ring);
+    font-size: clamp(0.42rem, 0.56vw, 0.58rem);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .rts-view-box {
+    width: 50%;
+    min-height: 66px;
+    align-self: center;
+    background: var(--rts-view-bg, color-mix(in srgb, var(--tech-stack-data) 45%, var(--card-page-bg)));
+  }
+
+  /* ------------------------------------------------------------
+    RPG architecture: game-loop spine map
+    Connector lines are layout rows, not absolute overlays.
+  ------------------------------------------------------------ */
+
+  .rpg-spine-map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows:
+      minmax(235px, 0.95fr)
+      minmax(78px, 0.34fr)
+      minmax(122px, auto);
+    gap: 0;
+    font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .rpg-spine-top {
+    position: relative;
+    display: grid;
+    grid-template-rows:
+      minmax(70px, auto)
+      minmax(4rem, 1fr)
+      minmax(88px, auto);
+    justify-items: center;
+    align-items: stretch;
+  }
+
+  .rpg-core-box {
+    width: 52%;
+    min-height: 70px;
+    align-self: end;
+    background: var(--rpg-core-bg, var(--tech-stack-back));
+  }
+
+  .rpg-action-box {
+    width: 46%;
+    min-height: 88px;
+    align-self: start;
+    background: var(--rpg-action-bg, var(--tech-stack-back));
+  }
+
+  .rpg-spine-arrow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: var(--arch-line-color, currentColor);
+    isolation: isolate;
+  }
+
+  .rpg-spine-arrow::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: currentColor;
+    transform: translateX(-50%);
+    opacity: 0.78;
+    z-index: 1;
+  }
+
+  .rpg-spine-arrow span {
+    position: relative;
+    z-index: 4;
+    padding: 0.2rem 0.48rem;
+    border-radius: 999px;
+    background: var(--arch-label-bg);
+    color: var(--arch-label-text);
+    box-shadow: 0 0 0 0.18rem var(--arch-label-ring);
+    font-size: clamp(0.46rem, 0.62vw, 0.62rem);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .rpg-branch-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.55rem;
+    align-items: stretch;
+    padding-top: 0;
+    color: var(--arch-line-color, currentColor);
+  }
+
+  .rpg-branch-grid::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 2.35rem;
+    background: currentColor;
+    transform: translateX(-50%);
+    opacity: 0.78;
+    z-index: 1;
+  }
+
+  .rpg-branch-grid::after {
+    content: "";
+    position: absolute;
+    top: 2.35rem;
+    left: calc((100% - (3 * 0.55rem)) / 8);
+    right: calc((100% - (3 * 0.55rem)) / 8);
+    height: 1px;
+    background: currentColor;
+    opacity: 0.78;
+    z-index: 1;
+  }
+
+  .rpg-branch-card {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-rows: 2.35rem 1fr auto;
+    justify-items: center;
+    align-items: start;
+  }
+
+  .rpg-branch-label {
+    position: relative;
+    z-index: 4;
+    align-self: center;
+    padding: 0.2rem 0.42rem;
+    border-radius: 999px;
+    background: var(--arch-label-bg);
+    color: var(--arch-label-text);
+    box-shadow: 0 0 0 0.18rem var(--arch-label-ring);
+    font-size: clamp(0.44rem, 0.6vw, 0.6rem);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .rpg-branch-stem {
+    position: relative;
+    width: 1px;
+    height: 100%;
+    min-height: 2.8rem;
+    background: currentColor;
+    opacity: 0.78;
+    z-index: 1;
+  }
+
+  .rpg-branch-card .arch-box {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.75rem 0.65rem;
+    align-self: start;
+    z-index: 3;
+  }
+
+  .rpg-branch-world .arch-box {
+    background: var(--rpg-world-bg, var(--tech-stack-front));
+  }
+
+  .rpg-branch-entities .arch-box {
+    background: var(--rpg-entities-bg, var(--tech-stack-frame));
+  }
+
+  .rpg-branch-ui .arch-box {
+    background: var(--rpg-ui-bg, color-mix(in srgb, var(--tech-stack-front) 55%, var(--card-page-bg)));
+  }
+
+  .rpg-branch-state .arch-box {
+    background: var(--rpg-state-bg, color-mix(in srgb, var(--tech-stack-front) 55%, var(--card-page-bg)));
+  }
+
+  .rpg-spine-map .arch-mini-boxes span {
+    font-size: clamp(0.56rem, 0.66vw, 0.68rem);
+  }
+
+  .rpg-spine-map .arch-box > span {
+    font-size: clamp(0.82rem, 1vw, 1.05rem);
+  }
+
+  /* Mobile fallback */
+  @media (max-width: 900px) {
+    .rpg-spine-map {
+      grid-template-rows: 155px auto;
+      gap: 0.3rem;
+    }
+
+    .rpg-spine-top {
+      grid-template-rows: 44px 38px 56px;
+    }
+
+    .rpg-core-box {
+      width: 62%;
+      min-height: 42px;
+    }
+
+    .rpg-action-box {
+      width: 54%;
+      min-height: 52px;
+    }
+
+    .rpg-spine-arrow::before {
+      width: 1px;
+    }
+
+    .rpg-spine-arrow span {
+      font-size: 0.36rem;
+      white-space: normal;
+    }
+
+    .rpg-branch-connector {
+      display: none;
+    }
+
+    .rpg-branch-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.25rem;
+    }
+
+    .rpg-branch-card .arch-box {
+      min-height: 54px;
+      padding: 0.4rem;
+    }
+  }
+
+  /* ------------------------------------------------------------
+    Architecture mobile fallback
+  ------------------------------------------------------------ */
+
+  @media (max-width: 900px) {
+    .architecture-card-page {
+      padding: 1rem;
+      --arch-line-width: 1.3;
+    }
+
+    .arch-box {
+      min-height: 54px;
+      padding: 0.45rem 0.5rem;
+    }
+
+    .arch-small {
+      min-height: 50px;
+    }
+
+    .arch-box > span,
+    .arch-root > span {
+      font-size: 0.72rem;
+      letter-spacing: -0.04em;
+    }
+
+    .arch-mini-boxes {
+      gap: 0.12rem;
+      margin-top: 0.2rem;
+    }
+
+    .arch-mini-boxes span {
+      font-size: 0.34rem;
+      padding: 0.12rem 0.18rem;
+    }
+
+    .weather-request-map {
+      grid-template-rows: 44px 24px 48px 24px 50px 24px 52px 24px 46px;
+      gap: 0.05rem;
+    }
+
+    .weather-entry-box,
+    .weather-frontend-box,
+    .weather-backend-box,
+    .weather-data-box,
+    .weather-results-box {
+      width: 72%;
+      min-height: 40px;
+    }
+
+    .weather-flow-arrow span,
+    .weather-response-arrow span,
+    .rts-main-arrow span,
+    .rts-view-connector span,
+    .rpg-spine-arrow span,
+    .rts-model-label,
+    .rts-branch-label,
+    .rpg-branch-label {
+      font-size: 0.34rem;
+      padding: 0.14rem 0.28rem;
+      white-space: normal;
+      max-width: 8rem;
+      text-align: center;
+    }
+
+    .rts-state-map {
+      grid-template-rows: 150px 20px 1fr 34px 58px;
+      gap: 0.18rem;
+    }
+
+    .rts-top {
+      grid-template-rows: 48px 42px 58px;
+    }
+
+    .rts-controller-box,
+    .rts-model-box,
+    .rts-view-box {
+      width: 62%;
+      min-height: 44px;
+    }
+
+    .rts-branch-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.25rem;
+      padding-top: 1.4rem;
+    }
+
+    .rts-branch-card {
+      grid-template-rows: auto auto;
+      gap: 0.16rem;
+    }
+
+    .rts-branch-stem,
+    .arch-svg-branch-lines {
+      display: none;
+    }
+
+    .rts-branch-card .arch-box {
+      min-height: 52px;
+      padding: 0.38rem;
+    }
+
+    .rpg-spine-map {
+      grid-template-rows: 155px 1fr;
+      gap: 0.35rem;
+    }
+
+    .rpg-spine-top {
+      grid-template-rows: 44px 42px 58px;
+    }
+
+    .rpg-core-box {
+      width: 62%;
+      min-height: 42px;
+    }
+
+    .rpg-action-box {
+      width: 54%;
+      min-height: 52px;
+    }
+
+    .rpg-branch-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.25rem;
+      padding-top: 1.4rem;
+    }
+
+    .rpg-branch-card {
+      grid-template-rows: auto auto;
+      gap: 0.18rem;
+    }
+
+    .rpg-branch-stem {
+      display: none;
+    }
+
+    .rpg-branch-card .arch-box {
+      min-height: 54px;
+      padding: 0.4rem;
+    }
+  }

@@ -10,12 +10,12 @@
 </head>
 
 <body>
-    <nav class="page-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="thesis.html">3D Film</a>
-        <a href="design.html">Design</a>
-    </nav>
+  <nav class="page-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="thesis.html">3D Film</a>
+    <a href="design.html">Design</a>
+  </nav>
 
   <header class="projects-hero">
     <h1>Full-Stack Projects</h1>
@@ -26,86 +26,588 @@
     </p>
     <p class="instructions">
       Click a project card to inspect it. Click outside the card to return to the desk.
-      Use “Turn Card Over” to reveal media and extra details.
+      Use “Flip for more” to move through the card pages.
     </p>
   </header>
 
   <main class="desk-page">
     <section class="desk" aria-label="Project archive desk">
       <img src="deskstuffhd.png" class="desk-decoration" alt="">
+
       <article class="project-card weather-card" data-project="weather">
         <div class="card-inner">
-          <div class="card-face card-front">
-            <div class="card-sprite sun-sprite" aria-hidden="true"></div>
-                <span class="card-label">Web App</span>
-                <h2>Weather Data Web App</h2>
-                <p>Weather API data exploration interface.</p>
-            </div>
 
-          <div class="card-face card-back">
+          <div class="card-face card-page card-front is-current" data-page="1">
+            <div class="card-sprite sun-sprite" aria-hidden="true"></div>
+            <span class="card-label">Web App</span>
             <h2>Weather Data Web App</h2>
+            <p>Weather API data exploration interface.</p>
+          </div>
+
+          <div class="card-face card-page card-back" data-page="2">
             <div class="video-wrapper">
-                <iframe src="https://player.vimeo.com/video/1200834203?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+              <iframe src="https://player.vimeo.com/video/1200834203?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
                 frameborder="0"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 title="Weather Data Web App">
-                </iframe>
+              </iframe>
             </div>
           </div>
+
+                    <div class="card-face card-page card-back tech-card-page" data-page="3">
+            <section class="tech-sheet" aria-label="Weather app tech stack">
+              <header class="tech-sheet-header">
+                <h2>TECH STACK</h2>
+                <p>OF A WEB APPLICATION</p>
+              </header>
+
+              <div class="tech-row tech-row-frontend">
+                <h3>FRONTEND</h3>
+                <div class="stack-graphic stack-frontend" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <ul>
+                  <li><strong>HTML/CSS</strong><br>creates structure and styling</li>
+                  <li><strong>JavaScript</strong><br>builds client-side logic</li>
+                  <li><strong>Fetch API</strong><br>connects the interface to weather data</li>
+                </ul>
+              </div>
+
+              <div class="tech-row tech-row-backend">
+                <h3>BACKEND</h3>
+                <div class="stack-graphic stack-backend" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <ul>
+                  <li><strong>REST API</strong><br>serves weather data to the frontend</li>
+                  <li><strong>Python / Server Logic</strong><br>handles data requests and responses</li>
+                </ul>
+              </div>
+
+              <div class="tech-row tech-row-database">
+                <h3>DATASET</h3>
+                <div class="stack-graphic stack-database" aria-hidden="true">
+                  <span></span>
+                </div>
+                <ul>
+                  <li><strong>Forbes Weather Dataset</strong><br>stores city weather records from 2020 onward</li>
+                </ul>
+              </div>
+            </section>
+          </div>
+
+          <div class="card-face card-page card-back architecture-card-page weather-architecture" data-page="4">
+  <section class="weather-request-map" aria-label="Weather app architecture diagram">
+
+    <div class="arch-box arch-root weather-entry-box">
+      <span>App Entry + Routing</span>
+      <div class="arch-mini-boxes">
+        <span>App.js</span>
+        <span>index.js</span>
+        <span>route selection</span>
+      </div>
+    </div>
+
+    <div class="weather-flow-arrow weather-svg-connector">
+      <svg class="arch-svg-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M50 0 V100" />
+      </svg>
+      <span>selects page component</span>
+    </div>
+
+    <div class="arch-box weather-frontend-box">
+      <span>Frontend Views</span>
+      <div class="arch-mini-boxes">
+        <span>components/*.js</span>
+        <span>weather.js</span>
+        <span>hourly.js</span>
+        <span>avgtemp.js</span>
+        <span>precipitation.js</span>
+        <span>extremetemps.js</span>
+      </div>
+    </div>
+
+    <div class="weather-flow-arrow weather-svg-connector">
+      <svg class="arch-svg-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M50 0 V100" />
+      </svg>
+      <span>sends request through weatherApi.js</span>
+    </div>
+
+    <div class="arch-box weather-backend-box">
+      <span>Backend API Logic</span>
+      <div class="arch-mini-boxes">
+        <span>api/viewsets.py</span>
+        <span>WeatherViewSet</span>
+        <span>api/urls.py</span>
+        <span>custom actions</span>
+      </div>
+    </div>
+
+    <div class="weather-flow-arrow weather-svg-connector">
+      <svg class="arch-svg-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M50 0 V100" />
+      </svg>
+      <span>queries + calculates</span>
+    </div>
+
+    <div class="arch-box weather-data-box">
+      <span>Data Model + Records</span>
+      <div class="arch-mini-boxes">
+        <span>api/models.py</span>
+        <span>Weather</span>
+        <span>WeatherSerializer</span>
+        <span>db.sqlite3</span>
+        <span>city</span>
+        <span>date_time</span>
+        <span>temperature</span>
+      </div>
+    </div>
+
+    <div class="weather-response-arrow weather-svg-connector">
+      <svg class="arch-svg-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M50 0 V100" />
+      </svg>
+      <span>serialized response returns to frontend</span>
+    </div>
+
+    <div class="arch-box weather-results-box">
+      <span>Results Display</span>
+      <div class="arch-mini-boxes">
+        <span>tables</span>
+        <span>weather values</span>
+        <span>CRUD results</span>
+        <span>avg_temp</span>
+        <span>hourly</span>
+        <span>precipitation</span>
+        <span>extreme_temps</span>
+      </div>
+    </div>
+
+  </section>
+</div>
+          <div class="card-face card-page card-back blank-card-page repo-card-page" data-page="5">
+            <h2>Repository</h2>
+            <a
+              class="repo-button"
+              href="https://github.com/oddnona/WeatherData-WebApp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open GitHub Repo
+            </a>
+          </div>
+
         </div>
       </article>
 
       <article class="project-card rts-card" data-project="rts">
         <div class="card-inner">
-          <div class="card-face card-front">
+
+          <div class="card-face card-page card-front is-current" data-page="1">
             <div class="card-sprite horse-sprite" aria-hidden="true"></div>
-                <span class="card-label">Game Dev</span>
-                <h2>RTS Game</h2>
-                <p>A Game of Thrones themed real-time strategy game.</p>
+            <span class="card-label">Game Dev</span>
+            <h2>RTS Game</h2>
+            <p>A Game of Thrones themed real-time strategy game.</p>
           </div>
 
-          <div class="card-face card-back">
-            <h2>RTS Game</h2>
+          <div class="card-face card-page card-back" data-page="2">
             <div class="video-wrapper">
-                <iframe src="https://player.vimeo.com/video/1200834202?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+              <iframe src="https://player.vimeo.com/video/1200834202?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
                 frameborder="0"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 title="RTS Game">
-                </iframe>
+              </iframe>
             </div>
+          </div>
+
+                    <div class="card-face card-page card-back tech-card-page" data-page="3">
+            <section class="tech-sheet" aria-label="RTS game tech stack">
+              <header class="tech-sheet-header">
+                <h2>TECH STACK</h2>
+                <p>OF A JAVA STRATEGY GAME</p>
+              </header>
+
+              <div class="tech-row tech-row-frontend">
+                <h3>INTERFACE</h3>
+                <div class="stack-graphic stack-frontend" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <ul>
+                  <li><strong>Java</strong><br>runs the game logic and user interaction</li>
+                  <li><strong>Console UI</strong><br>lets the player create maps and control armies</li>
+                  <li><strong>Input Handling</strong><br>processes player choices and commands</li>
+                </ul>
+              </div>
+
+              <div class="tech-row tech-row-backend">
+                <h3>SYSTEMS</h3>
+                <div class="stack-graphic stack-backend" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <ul>
+                  <li><strong>OOP</strong><br>structures armies, factions, events, and regions</li>
+                  <li><strong>Battle Simulation</strong><br>resolves conflict between opposing forces</li>
+                </ul>
+              </div>
+
+              <div class="tech-row tech-row-database">
+                <h3>MAP DATA</h3>
+                <div class="stack-graphic stack-database" aria-hidden="true">
+                  <span></span>
+                </div>
+                <ul>
+                  <li><strong>Graph Structure</strong><br>connects locations through routes and territories</li>
+                </ul>
+              </div>
+            </section>
+          </div>
+
+          <div class="card-face card-page card-back architecture-card-page rts-architecture" data-page="4">
+  <section class="rts-state-map" aria-label="RTS battle simulator architecture diagram">
+
+    <div class="rts-top">
+  <div class="arch-box arch-root rts-controller-box">
+        <span>Controller</span>
+        <div class="arch-mini-boxes">
+          <span>controller/</span>
+          <span>GameController</span>
+          <span>MouseManager</span>
+          <span>NodeController</span>
+          <span>EdgeController</span>
+          <span>RegionController</span>
+        </div>
+      </div>
+
+      <div class="rts-main-arrow">
+        <span>edits map + starts simulation</span>
+      </div>
+
+      <div class="arch-box rts-model-box">
+        <span>Model Core</span>
+        <div class="arch-mini-boxes">
+          <span>model/</span>
+          <span>Game</span>
+          <span>Simulation</span>
+          <span>Graph</span>
+          <span>Map</span>
+          <span>Army</span>
+          <span>Soldier</span>
+          <span>Player</span>
+          <span>House</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rts-model-label">model core owns the game state</div>
+
+    <div class="rts-branch-grid">
+  <div class="rts-branch-card">
+    <div class="rts-branch-label">contains territories + nodes</div>
+    <div class="rts-branch-stem" aria-hidden="true"></div>
+
+    <div class="arch-box arch-small">
+      <span>Map Structure</span>
+      <div class="arch-mini-boxes">
+        <span>model/regions/</span>
+        <span>model/nodes/</span>
+        <span>North</span>
+        <span>Dorne</span>
+        <span>Valyria</span>
+        <span>Node</span>
+        <span>ArmyCamp</span>
+        <span>Settlement</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rts-branch-card">
+    <div class="rts-branch-label">contains armies + houses</div>
+    <div class="rts-branch-stem" aria-hidden="true"></div>
+
+    <div class="arch-box arch-small">
+      <span>Factions + Units</span>
+      <div class="arch-mini-boxes">
+        <span>soldiertypes/</span>
+        <span>StarkSoldier</span>
+        <span>Dragon</span>
+        <span>Unsullied</span>
+        <span>Army</span>
+        <span>House</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rts-branch-card">
+    <div class="rts-branch-label">applies battle modifiers</div>
+    <div class="rts-branch-stem" aria-hidden="true"></div>
+
+    <div class="arch-box arch-small">
+      <span>Events + Logic</span>
+      <div class="arch-mini-boxes">
+        <span>model/events/</span>
+        <span>Event</span>
+        <span>ArmorEvent</span>
+        <span>MilkOfThePoppyEvent</span>
+        <span>TrapedBattlefieldEvent</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rts-branch-card">
+    <div class="rts-branch-label">saves + loads model state</div>
+    <div class="rts-branch-stem" aria-hidden="true"></div>
+
+    <div class="arch-box arch-small">
+      <span>Serialization</span>
+      <div class="arch-mini-boxes">
+        <span>json/</span>
+        <span>JSON</span>
+        <span>JSONObject</span>
+        <span>JSONArray</span>
+        <span>JSONStringifier</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="rts-view-connector">
+  <span>rendered as current state</span>
+</div>
+    <div class="arch-box rts-view-box">
+      <span>View</span>
+      <div class="arch-mini-boxes">
+        <span>view/</span>
+        <span>Frame</span>
+        <span>MainMap</span>
+        <span>RegionView</span>
+        <span>NodeView</span>
+        <span>panels</span>
+        <span>observers</span>
+      </div>
+    </div>
+
+  </section>
+</div>
+          <div class="card-face card-page card-back blank-card-page repo-card-page" data-page="5">
+            <h2>Repository</h2>
+            <a
+              class="repo-button"
+              href="https://github.com/oddnona/OOP-rts-game"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open GitHub Repo
+            </a>
           </div>
         </div>
       </article>
 
       <article class="project-card rpg-card" data-project="rpg">
         <div class="card-inner">
-          <div class="card-face card-front">
+
+          <div class="card-face card-page card-front is-current" data-page="1">
             <div class="card-sprite chest-sprite" aria-hidden="true"></div>
-                <span class="card-label">Game Dev</span>
-                <h2>RPG Game</h2>
-                <p>A mini dungeon crawler RPG.</p>
+            <span class="card-label">Game Dev</span>
+            <h2>RPG Game</h2>
+            <p>A mini dungeon crawler RPG.</p>
           </div>
 
-          <div class="card-face card-back">
-            <h2>RPG Game</h2>
+          <div class="card-face card-page card-back" data-page="2">
             <div class="video-wrapper">
-                <iframe src="https://player.vimeo.com/video/1199417987?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+              <iframe src="https://player.vimeo.com/video/1199417987?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
                 frameborder="0"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 title="RPG Game">
-                </iframe>
+              </iframe>
             </div>
           </div>
+
+                    <div class="card-face card-page card-back tech-card-page" data-page="3">
+            <section class="tech-sheet" aria-label="RPG game tech stack">
+              <header class="tech-sheet-header">
+                <h2>TECH STACK</h2>
+                <p>OF A JAVA RPG GAME</p>
+              </header>
+
+              <div class="tech-row tech-row-frontend">
+                <h3>INTERFACE</h3>
+                <div class="stack-graphic stack-frontend" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <ul>
+                  <li><strong>Java</strong><br>runs the game logic and player interaction</li>
+                  <li><strong>Console UI</strong><br>displays rooms, choices, combat, and inventory</li>
+                  <li><strong>Command Input</strong><br>lets the player move, fight, collect, and talk</li>
+                </ul>
+              </div>
+
+              <div class="tech-row tech-row-backend">
+                <h3>SYSTEMS</h3>
+                <div class="stack-graphic stack-backend" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <ul>
+                  <li><strong>OOP</strong><br>structures rooms, doors, enemies, items, and NPCs</li>
+                  <li><strong>Quest Logic</strong><br>tracks progression through the dungeon</li>
+                </ul>
+              </div>
+
+              <div class="tech-row tech-row-database">
+                <h3>SAVE DATA</h3>
+                <div class="stack-graphic stack-database" aria-hidden="true">
+                  <span></span>
+                </div>
+                <ul>
+                  <li><strong>File I/O</strong><br>saves and loads game progress</li>
+                </ul>
+              </div>
+            </section>
+          </div>
+
+          <div class="card-face card-page card-back architecture-card-page rpg-architecture" data-page="4">
+  <section class="rpg-spine-map" aria-label="RPG dungeon crawler architecture diagram">
+
+    <div class="rpg-spine-top">
+      <div class="arch-box arch-root rpg-core-box">
+        <span>App Core</span>
+        <div class="arch-mini-boxes">
+          <span>Main.java</span>
+          <span>Game.java</span>
+          <span>GameObject.java</span>
+          <span>Player.java</span>
+        </div>
+      </div>
+
+      <div class="rpg-spine-arrow">
+        <span>runs game loop</span>
+      </div>
+
+      <div class="arch-box rpg-action-box">
+        <span>Action System</span>
+        <div class="arch-mini-boxes">
+          <span>menu/</span>
+          <span>commands/</span>
+          <span>Menu</span>
+          <span>Command classes</span>
+          <span>player actions</span>
+        </div>
+      </div>
+    </div>
+
+      <div class="rpg-branch-grid">
+  <div class="rpg-branch-card rpg-branch-world">
+    <div class="rpg-branch-label">changes location + doors</div>
+    <div class="rpg-branch-stem" aria-hidden="true"></div>
+
+    <div class="arch-box arch-small">
+      <span>World Structure</span>
+      <div class="arch-mini-boxes">
+        <span>room/</span>
+        <span>door/</span>
+        <span>Room</span>
+        <span>Hall</span>
+        <span>Chamber</span>
+        <span>Door</span>
+        <span>LockedDoor</span>
+        <span>TrapDoor</span>
+        <span>MapConstructor</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rpg-branch-card rpg-branch-entities">
+    <div class="rpg-branch-label">interacts with characters + items</div>
+    <div class="rpg-branch-stem" aria-hidden="true"></div>
+
+    <div class="arch-box arch-small">
+      <span>Game Entities</span>
+      <div class="arch-mini-boxes">
+        <span>npc/</span>
+        <span>enemy/</span>
+        <span>item/</span>
+        <span>NPC</span>
+        <span>Trader</span>
+        <span>Healer</span>
+        <span>Enemy</span>
+        <span>Item</span>
+        <span>Sword</span>
+        <span>Shield</span>
+        <span>Key</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rpg-branch-card rpg-branch-ui">
+    <div class="rpg-branch-label">displays + reads choices</div>
+    <div class="rpg-branch-stem" aria-hidden="true"></div>
+
+    <div class="arch-box arch-small">
+      <span>UI + Input</span>
+      <div class="arch-mini-boxes">
+        <span>IO.java</span>
+        <span>Panel.java</span>
+        <span>Swing/text input</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rpg-branch-card rpg-branch-state">
+    <div class="rpg-branch-label">saves + checks global rules</div>
+    <div class="rpg-branch-stem" aria-hidden="true"></div>
+
+    <div class="arch-box arch-small">
+      <span>State + Rules</span>
+      <div class="arch-mini-boxes">
+        <span>Save.java</span>
+        <span>savedgames/</span>
+        <span>Quest.java</span>
+        <span>Difficulty.java</span>
+        <span>DifficultyOptions</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </section>
+</div>
+          <div class="card-face card-page card-back blank-card-page repo-card-page" data-page="5">
+            <h2>Repository</h2>
+            <a
+              class="repo-button"
+              href="https://github.com/oddnona/OOP-rpg-game"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open GitHub Repo
+            </a>
+          </div>
+
         </div>
       </article>
 
       <aside class="project-info" aria-live="polite">
         <h2 id="info-title">Project title</h2>
         <p id="info-description">Project description</p>
-        <button type="button" id="flip-button">Turn Card Over</button>
+        <button type="button" id="flip-button">Flip for more</button>
       </aside>
 
     </section>
