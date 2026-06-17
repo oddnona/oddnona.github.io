@@ -1,9 +1,16 @@
-  body {
-    background-image: url("texture.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-  }
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background-image: url("texture1.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: bottom center;
+  background-attachment: fixed;
+}
 
   .page-nav {
     position: fixed;
@@ -43,17 +50,97 @@
     text-align: center;
   }
 
-  .projects-hero h1 {
-    font-size: clamp(2.5rem, 7vw, 5rem);
-    margin-bottom: 1rem;
-    color:#452a0c
-  }
+  .projects-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+}
 
-  .projects-hero p {
-    line-height: 1.7;
-    color:#452a0c
+.projects-title {
+  margin: 0 auto 1.6rem;
+  color: #452a0c;
+}
 
-  }
+.ornate-title {
+  font-family: "Forum", serif;
+  font-weight: 400;
+  line-height: 0.9;
+  text-align: center;
+  color: #452a0c;
+}
+
+.title-line {
+  display: block;
+}
+
+.title-line-top {
+  font-size: clamp(3.2rem, 8vw, 7rem);
+}
+
+.title-line-bottom {
+  font-size: clamp(1.6rem, 3.6vw, 3.2rem);
+  letter-spacing: 0.04em;
+}
+
+.title-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  margin: 0.65rem auto 0.8rem;
+
+  font-family: "Cardo", serif;
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  color: #452a0c;
+}
+
+.title-divider span {
+  display: block;
+  width: min(180px, 22vw);
+  height: 2px;
+  background: currentColor;
+  opacity: 0.75;
+}
+
+.title-divider em {
+  font-style: normal;
+  line-height: 1;
+}
+
+.projects-description-box {
+  max-width: 720px;
+  margin: 1.6rem auto 0;
+  padding: 1.35rem 1.75rem;
+
+  background: rgba(245, 232, 200, 0.384);
+  border: 1px solid rgba(69, 42, 12, 0.35);
+  box-shadow: 0 10px 24px rgba(69, 42, 12, 0.22);
+  backdrop-filter: blur(6px);
+  color: #452a0c;
+}
+
+.projects-description-box p {
+  max-width: none;
+  margin: 0;
+
+  font-family: "Cardo", serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #452a0c;
+}
+
+.projects-hero .instructions {
+  max-width: 680px;
+  margin: 1rem auto 0;
+
+  font-family: "Cardo", serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+
+  color: rgb(255, 242, 209);
+}
 
   .instructions {
     font-size: 0.95rem;

@@ -6,10 +6,16 @@
     box-sizing: border-box;
 }
 
+html,
 body {
-    background-image: url("texture.jpg");
-    background-size: cover;
-    background-position: center;
+    min-height: 100%;
+}
+
+body {
+    background-image: url("texture1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: bottom center;
     background-attachment: fixed;
 
     color: #111;

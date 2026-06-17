@@ -14,8 +14,10 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-     background-image: url("texture.jpg");
-    background-repeat: repeat;
+    background-image: url("texture1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: bottom center;
     color: #4b2f1f;
 }
 
@@ -144,7 +146,7 @@ a {
     text-align: right;
     color: #452a0c;
 
-    background: rgba(245, 232, 200, 0.72);
+    background: rgba(245, 232, 200, 0.384);
     border: 1px solid rgba(69, 42, 12, 0.35);
     box-shadow: 0 10px 24px rgba(69, 42, 12, 0.22);
     backdrop-filter: blur(6px);
@@ -436,6 +438,7 @@ a {
     color: var(--journal-panel-text);
     background: var(--journal-panel-bg);
     border: 1px solid var(--journal-panel-border);
+    border-radius: 999px;
     box-shadow: 0 10px 24px var(--journal-panel-shadow);
     backdrop-filter: blur(6px);
 
@@ -458,6 +461,7 @@ a {
     color: var(--journal-panel-text);
     background: var(--journal-panel-bg);
     border: 1px solid var(--journal-panel-border);
+    border-radius: 999px;
     box-shadow: 0 10px 24px var(--journal-panel-shadow);
     backdrop-filter: blur(6px);
 
@@ -494,6 +498,7 @@ a {
     color: var(--journal-panel-text);
     background: var(--journal-panel-bg);
     border: 1px solid var(--journal-panel-border);
+    border-radius: 999px;
     box-shadow: 0 10px 24px var(--journal-panel-shadow);
     backdrop-filter: blur(6px);
 
@@ -527,7 +532,9 @@ a {
     pointer-events: auto;
     z-index: 30;
     transform: translate(-50%, -50%) translateZ(180px) rotateY(0deg) scale(1);
-    filter: none;
+    filter:
+        drop-shadow(0 28px 34px rgba(25, 15, 8, 0.87))
+        drop-shadow(0 54px 80px rgba(25, 15, 8, 0.653));
 }
 
 .journal-spread.is-prev {

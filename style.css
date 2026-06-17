@@ -7,8 +7,10 @@
     height: 100vh;
     overflow: hidden;
 
-    background-image: url("texture.jpg");
-    background-repeat: repeat;
+    background-image: url("texture1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: bottom center;
 }
 
 .home-intro {
