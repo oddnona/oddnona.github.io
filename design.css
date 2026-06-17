@@ -14,14 +14,13 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-image: url("texture.jpg");
-    background-size: cover;
-    background-position: center top;
-    background-repeat: repeat-y;
+     background-image: url("texture.jpg");
+    background-repeat: repeat;
     color: #4b2f1f;
 }
 
 main {
+    position: relative;
     flex: 1 1 auto;
     min-height: 0;
     display: flex;
@@ -37,8 +36,8 @@ a {
 
 .design-header {
     flex: 0 0 auto;
-    max-width: 760px;
-    margin: 1.4rem auto 0.35rem auto;
+    max-width: 860px;
+    margin: 1.85rem auto 0.55rem auto;
     padding: 0 1.5rem;
     text-align: center;
 }
@@ -46,46 +45,118 @@ a {
 .design-header h1 {
     margin: 0;
     color: #4b2f1f;
-    font-size: clamp(1.7rem, 3vw, 3.1rem);
-    line-height: 0.95;
+    font-family: "Forum", Georgia, serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: 0.6px 0 0 #4b2f1f;
 }
+
+.ornate-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-line {
+    display: block;
+    line-height: 0.9;
+    letter-spacing: 0.075em;
+}
+
+.title-line-top {
+    font-size: clamp(3rem, 5.2vw, 5.8rem);
+}
+
+.title-line-bottom {
+    font-size: clamp(1.65rem, 2.85vw, 3.15rem);
+    letter-spacing: 0.085em;
+}
+
+.title-divider {
+    width: min(520px, 38vw);
+    margin: 0.25rem 0 0.32rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    color: #4b2f1f;
+}
+
+.title-divider span {
+    height: 2px;
+    flex: 1;
+    background: currentColor;
+   
+}
+
+.title-divider em {
+    font-style: normal;
+    font-size: clamp(1.1rem, 1.6vw, 1.7rem);
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
 .page-nav {
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-    z-index: 100;
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 5000;
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.35rem;
+
+    padding: 0.75rem;
+
+    background: rgba(245, 232, 200, 0.72);
+    border: 1px solid rgba(69, 42, 12, 0.35);
+    box-shadow: 0 10px 24px rgba(69, 42, 12, 0.22);
+    backdrop-filter: blur(6px);
 }
 
 .page-nav a {
-    color: #4b2f1f;
+    color: #452a0c;
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: transform 200ms ease;
 }
 
 .page-nav a:hover,
 .page-nav a:focus-visible {
-    text-decoration: underline;
+    background: rgba(69, 42, 12, 0.14);
 }
 
 .design-intro {
-    flex: 0 0 auto;
-    max-width: 760px;
-    margin: 0 auto 0.2rem auto;
-    padding: 0 1.5rem;
-    text-align: center;
-    color: #4b2f1f;
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    z-index: 5000;
+
+    width: 360px;
+    max-width: 360px;
+    margin: 0;
+    padding: 0.75rem;
+
+    text-align: right;
+    color: #452a0c;
+
+    background: rgba(245, 232, 200, 0.72);
+    border: 1px solid rgba(69, 42, 12, 0.35);
+    box-shadow: 0 10px 24px rgba(69, 42, 12, 0.22);
+    backdrop-filter: blur(6px);
 }
 
 .design-intro p {
     margin: 0;
-    color: #4b2f1f;
-    font-size: 0.95rem;
-    line-height: 1.25;
+    color: #452a0c;
+    font-size: 0.9rem;
+    line-height: 1.42;
+    letter-spacing: 0.02em;
+    font-weight: 400;
 }
 
 .design-commissions {
@@ -269,7 +340,7 @@ a {
     align-items: center;
     pointer-events: none;
     perspective: 1800px;
-    z-index: 500;
+    z-index: 9000;
     opacity: 0;
     visibility: hidden;
     transform: translateY(26px) scale(0.96);
@@ -287,14 +358,52 @@ a {
 }
 
 .journal-widget {
+    --journal-page-bg: #f7eedb;
+    --journal-page-text: #4b2f1f;
+
+    --journal-panel-bg: rgba(245, 232, 200, 0.72);
+    --journal-panel-text: #452a0c;
+    --journal-panel-border: rgba(69, 42, 12, 0.35);
+    --journal-panel-shadow: rgba(69, 42, 12, 0.22);
+
     position: relative;
     width: min(980px, 88vw);
     height: min(520px, 64vh);
     pointer-events: auto;
-    border-radius: 0;
+    border-radius: 0px;
     background: transparent;
     box-shadow: none;
     overflow: visible;
+}
+
+.journal-widget.theme-nato {
+    --journal-page-text: #efe8d2;
+    --journal-page-bg: #17243a;
+
+    --journal-panel-bg: #efe8d2;
+    --journal-panel-text: #17243a;
+    --journal-panel-border: rgba(23, 36, 58, 0.35);
+    --journal-panel-shadow: rgba(23, 36, 58, 0.22);
+}
+
+.journal-widget.theme-free-time {
+    --journal-page-bg: #000000;
+    --journal-page-text:#dca89a;
+
+    --journal-panel-bg: #dca89a;
+    --journal-panel-text: #000000;
+    --journal-panel-border: rgba(91, 45, 31, 0.35);
+    --journal-panel-shadow: rgba(91, 45, 31, 0.22);
+}
+
+.journal-widget.theme-nature {
+    --journal-page-bg: #e7d8bb;
+    --journal-page-text: #403534;
+
+    --journal-panel-bg:#a34021;
+    --journal-panel-text: #939f5d;
+    --journal-panel-border: #939f5d;
+    --journal-panel-shadow: rgba(78, 101, 45, 0.22);
 }
 
 .journal-widget {
@@ -309,7 +418,7 @@ a {
 
 .journal-title-bar {
     position: absolute;
-    top: 24px;
+    top: -3.1rem;
     left: 0;
     right: 0;
     height: 40px;
@@ -320,26 +429,46 @@ a {
     pointer-events: none;
 }
 
+.journal-title-bar h3 {
+    margin: 0;
+    padding: 0.45rem 0.75rem;
+
+    color: var(--journal-panel-text);
+    background: var(--journal-panel-bg);
+    border: 1px solid var(--journal-panel-border);
+    box-shadow: 0 10px 24px var(--journal-panel-shadow);
+    backdrop-filter: blur(6px);
+
+    font-family: "Forum", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-shadow: 0.4px 0 0 var(--journal-panel-text);
+}
+
 .journal-close {
     position: absolute;
-    top: 14px;
-    right: 16px;
-    z-index: 60;
+    top: -3.25rem;
+    right: 0;
+    z-index: 80;
+
     width: 38px;
     height: 38px;
-    border: none;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.75);
-    color: #2c241e;
+    color: var(--journal-panel-text);
+    background: var(--journal-panel-bg);
+    border: 1px solid var(--journal-panel-border);
+    box-shadow: 0 10px 24px var(--journal-panel-shadow);
+    backdrop-filter: blur(6px);
+
     font-size: 1.8rem;
     line-height: 1;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
 }
 
 .journal-close:hover,
 .journal-close:focus-visible {
-    background: #ffffff;
+    background: rgba(69, 42, 12, 0.14);
 }
 
 /* 3D SPREAD CAROUSEL */
@@ -355,12 +484,20 @@ a {
 .journal-instructions {
     position: absolute;
     left: 50%;
-    bottom: 22px;
+    bottom: -2.75rem;
     transform: translateX(-50%);
     z-index: 70;
+
     margin: 0;
-    color: rgba(75, 47, 31, 0.62);
-    font-size: 0.92rem;
+    padding: 0.35rem 0.7rem;
+
+    color: var(--journal-panel-text);
+    background: var(--journal-panel-bg);
+    border: 1px solid var(--journal-panel-border);
+    box-shadow: 0 10px 24px var(--journal-panel-shadow);
+    backdrop-filter: blur(6px);
+
+    font-size: 0.78rem;
     letter-spacing: 0.16em;
     font-weight: 600;
     text-transform: uppercase;
@@ -423,8 +560,8 @@ a {
     position: relative;
     overflow: hidden;
     background:
-        linear-gradient(90deg, rgba(0, 0, 0, 0.05), transparent 10%, transparent 90%, rgba(0, 0, 0, 0.04)),
-        #f7eedb;
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05), transparent 10%, transparent 90%, rgba(0, 0, 0, 0.04)),
+    var(--journal-page-bg);
     border: 1px solid rgba(90, 60, 35, 0.18);
     box-shadow:
         inset 0 0 28px rgba(113, 83, 50, 0.12),
@@ -479,7 +616,7 @@ a {
 .page-text {
     padding: 2.3rem 2rem;
     box-sizing: border-box;
-    color: #4b2f1f;
+    color: var(--journal-page-text);
 }
 
 .page-text h4 {

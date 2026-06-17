@@ -3,6 +3,7 @@ const journals = [
         id: "nature2u",
         title: "Nature2U",
         coverLabel: "Nature2U",
+        themeClass: "theme-nature",
         logo: {
             image: "n2ulogo.png",
             x: 52,
@@ -22,21 +23,21 @@ const journals = [
                 image: "n2u1.jpg",
                 alt: "Nature2U illustration sample 1",
                 heading: "Mobile App Illustrations",
-                body: "A collection of custom illustrations created for the Nature2U mobile application, designed to support a friendly and nature-inspired visual identity.",
+                body: "s.",
                 layout: "image-left"
             },
             {
                 image: "n2u2.JPEG",
                 alt: "Nature2U illustration sample 2",
-                heading: "Visual System",
-                body: "The illustrations were designed to feel consistent across screens while remaining approachable, warm, and easy to understand.",
+                heading: "merch",
+                body: "d",
                 layout: "text-left"
             },
             {
                 image: "n2u3.jpg",
                 alt: "Nature2U illustration sample 3",
                 heading: "Commission Outcome",
-                body: "The final assets helped give the application a more polished and engaging personality through custom-made visuals.",
+                body: "r",
                 layout: "image-left"
             }
         ]
@@ -45,6 +46,7 @@ const journals = [
         id: "nato-romania",
         title: "NATO Romania",
         coverLabel: "NATO Romania",
+        themeClass: "theme-nato",
         logo: {
             image: "natologo.png",
             x: 50,
@@ -63,29 +65,29 @@ const journals = [
             {
                 image: "nato1.JPG",
                 alt: "NATO Rom      ania design sample 1",
-                heading: "Logo Concept",
+                heading: "Logo ",
                 body: "A logo concept for NATO NSIP Romania, focused on professionalism, reliability, and institutional clarity.",
                 layout: "image-left"
             },
             {
                 image: "nato2.JPG",
                 alt: "NATO Romania design sample 2",
-                heading: "Poster Presentation",
-                body: "The logo was presented in a poster-style format to show how the visual identity could appear in a formal communication context.",
+                heading: "banner",
+                body: "f",
                 layout: "text-left"
             },
             {
                 image: "nato3.JPG",
                 alt: "NATO Romania design sample 3",
-                heading: "Design Direction",
-                body: "The design direction emphasized structure, symmetry, and a visual connection to national and international infrastructure programs.",
+                heading: "d",
+                body: "d",
                 layout: "image-left"
             },
             {
                 image: "nato4.jpeg",
                 alt: "NATO Romania design sample 4",
-                heading: "Application",
-                body: "Additional mockups show how the logo could function across documents, banners, or digital materials.",
+                heading: "f",
+                body: "r",
                 layout: "text-left"
             }
         ]
@@ -94,6 +96,7 @@ const journals = [
         id: "free-time",
         title: "In My Free Time",
         coverLabel: "In My Free Time",
+        themeClass: "theme-free-time",
         logo: {
             image: "misclogo.png",
             x: 50,
@@ -110,45 +113,45 @@ const journals = [
         },
         entries: [
             {
-                image: "misc1.JPG",
+                image: "misc2.JPG",
                 alt: "Personal design work sample 1",
-                heading: "Personal Experiments",
-                body: "A selection of visual experiments and design explorations created outside of formal commissions.",
+                heading: "d",
+                body: "d",
                 layout: "image-left"
             },
             {
-                image: "misc2.JPG",
+                image: "misc6.jpg",
                 alt: "Personal design work sample 2",
-                heading: "Illustration Practice",
-                body: "Personal illustration work allows me to test styles, compositions, and visual ideas in a looser context.",
+                heading: "d",
+                body: "d.",
                 layout: "text-left"
             },
             {
-                image: "misc3.JPG",
+                image: "misc4.JPG",
                 alt: "Personal design work sample 3",
-                heading: "Design Studies",
-                body: "This section can include studies, sketches, poster concepts, or other visual pieces that show creative range.",
+                heading: "x",
+                body: "x",
                 layout: "image-left"
             },
             {
-                image: "misc4.JPG",
+                image: "misc3.JPG",
                 alt: "Personal design work sample 4",
-                heading: "Playful Direction",
-                body: "Free-time projects are often where I explore more playful, expressive, or experimental design choices.",
+                heading: "e",
+                body: "s",
                 layout: "text-left"
             },
             {
                 image: "misc5.jpg",
                 alt: "Personal design work sample 5",
-                heading: "Portfolio Extras",
-                body: "These works add personality to the portfolio and show interests beyond client-focused design.",
+                heading: "s",
+                body: "x",
                 layout: "image-left"
             },
             {
-                image: "misc6.jpg",
+                image: "misc1.JPG",
                 alt: "Personal design work sample 6",
-                heading: "Ongoing Work",
-                body: "This journal can continue growing over time as I create more personal illustrations and design pieces.",
+                heading: "x",
+                body: "x",
                 layout: "text-left"
             }
         ]
@@ -216,6 +219,10 @@ function openJournal(journalId) {
     }
 
     titleElement.textContent = activeJournal.title;
+
+    widget.classList.remove("theme-nature", "theme-nato", "theme-free-time");
+    widget.classList.add(activeJournal.themeClass);
+
     buildSpreads();
 
     designSection.classList.add("journal-is-open");
@@ -242,6 +249,7 @@ function closeJournal() {
     setTimeout(() => {
         if (!activeJournal) {
             carousel.innerHTML = "";
+            widget.classList.remove("theme-nature", "theme-nato", "theme-free-time");
         }
     }, 300);
 }
