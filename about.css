@@ -18,11 +18,10 @@ body {
     background-position: bottom center;
     background-attachment: fixed;
 
-    color: #111;
-    font-family: Arial, Helvetica, sans-serif;
+    color: #452a0c;
+    font-family: "Cardo", serif;
     overflow-x: hidden;
 }
-
 
 .page-nav {
     position: fixed;
@@ -32,21 +31,31 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.7rem;
+    gap: 0.35rem;
 
     z-index: 1000;
 
-    padding: 1rem;
+    padding: 0.75rem;
 
-    background: transparent;
+    background: rgba(245, 232, 200, 0.72);
+    border: 1px solid rgba(69, 42, 12, 0.35);
+    box-shadow: 0 10px 24px rgba(69, 42, 12, 0.22);
+    backdrop-filter: blur(6px);
 }
 
 .page-nav a {
+    color: #452a0c;
     text-decoration: none;
-    color: #f5ead8;
     font-size: 0.9rem;
-    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 200ms ease;
 }
+
+.page-nav a:hover {
+    background: rgba(69, 42, 12, 0.14);
+}
+
 /* MAIN SCENE */
 
 .about-scene {
@@ -135,7 +144,11 @@ body {
     width: 50vw;
     height: 0vh;
 
-    background: #f5ead8;
+    background: rgba(245, 232, 200, 0.84);
+    border-left: 1px solid rgba(69, 42, 12, 0.35);
+    box-shadow: -18px 0 36px rgba(69, 42, 12, 0.22);
+    backdrop-filter: blur(6px);
+
     overflow: hidden;
     z-index: 20;
 }
@@ -156,25 +169,61 @@ body {
     padding-left: 5rem;
     padding-right: 5rem;
 }
+.about-text-block h1,
+.about-text-block h2 {
+    font-family: "Forum", serif;
+    font-weight: 400;
+    line-height: 0.95;
+    color: #452a0c;
+}
 
 .about-text-block h1 {
-    font-size: 4rem;
+    font-size: clamp(3.2rem, 5vw, 5.8rem);
     margin-bottom: 2rem;
-    color: #5a321f;
 }
 
 .about-text-block h2 {
-    font-size: 3rem;
+    font-size: clamp(2.6rem, 4vw, 4.5rem);
     margin-bottom: 2rem;
-    color: #5a321f;
+}
+
+.about-text-block h1::after,
+.about-text-block h2::after {
+    content: "";
+    display: block;
+    width: 180px;
+    height: 1px;
+    margin-top: 1rem;
+    background: rgba(69, 42, 12, 0.75);
+}
+.about-text-block h1::after,
+.about-text-block h2::after {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .about-text-block p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: #5a321f;
+    font-family: "Cardo", serif;
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: #452a0c;
+    margin-bottom: 1.1rem;
 }
 
+.about-text-block {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-left: clamp(2.5rem, 5vw, 5rem);
+    padding-right: clamp(2.5rem, 5vw, 5rem);
+}
+.about-text-block {
+    text-align: center;
+    align-items: center;
+}
 
 /* FINAL EMPTY STATE */
 
@@ -183,21 +232,27 @@ body {
 }
 
 .skill-group {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    padding: 1rem 1.15rem;
+
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(69, 42, 12, 0.22);
+    box-shadow: 0 8px 18px rgba(69, 42, 12, 0.12);
 }
 
 .skill-group h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.7rem;
-    letter-spacing: 0.05em;
+    font-family: "Cardo", serif;
+    font-size: 0.95rem;
+    margin-bottom: 0.55rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #5a321f;
+    color: #452a0c;
 }
 
 .skill-group p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #5a321f;
+    font-size: 1.02rem;
+    line-height: 1.55;
+    margin-bottom: 0;
 }
 
 .portrait-card-info a {
@@ -207,4 +262,90 @@ body {
 
 .portrait-card-info a:hover {
     text-decoration: underline;
+}
+.portrait-card-info {
+    position: absolute;
+
+    right: 1.5rem;
+    bottom: 1.5rem;
+
+    padding: 1rem 1.2rem;
+
+    background: rgba(245, 232, 200, 0.74);
+    border: 1px solid rgba(69, 42, 12, 0.35);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(5px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    text-align: right;
+
+    opacity: 0;
+    pointer-events: auto;
+
+    color: #452a0c;
+}
+
+.portrait-card-info h2 {
+    font-family: "Forum", serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.45rem;
+    color: #452a0c;
+}
+
+.portrait-card-info p,
+.portrait-card-info a {
+    font-family: "Cardo", serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #452a0c;
+}
+
+.scroll-instruction-pill {
+    position: fixed;
+    left: 50%;
+    bottom: 2rem;
+    transform: translateX(-50%);
+
+    z-index: 2000;
+
+    padding: 0.65rem 1.1rem;
+
+    background: rgba(245, 232, 200, 0.72);
+    border: 1px solid rgba(69, 42, 12, 0.35);
+    border-radius: 999px;
+    box-shadow: 0 10px 24px rgba(69, 42, 12, 0.22);
+    backdrop-filter: blur(6px);
+
+    font-family: "Cardo", serif;
+    font-size: 0.95rem;
+    line-height: 1;
+    color: #452a0c;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    pointer-events: none;
+
+    animation: scroll-pill-float 1.8s ease-in-out infinite;
+    transition: opacity 300ms ease, transform 300ms ease;
+}
+
+@keyframes scroll-pill-float {
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(6px);
+    }
+}
+
+.scroll-instruction-pill.is-hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
 }

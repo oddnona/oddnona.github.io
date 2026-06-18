@@ -153,12 +153,14 @@ scene.add(particles);
 
 const stations = [
     {
-        kicker: "Film Intro",
+        kicker: "Topic",
         title: "The Life of a Plastic Particle",
         description: `
-            A thesis film and immersive visualization project about nanoplastic trajectories in the ocean.
-            The project follows the unseen movement of plastic particles through marine environments,
-            translating scientific processes into an atmospheric visual narrative.
+            Marine plastic pollution poses a global threat. Large plastic objects, discarded at the surface
+            of the ocean, fragment into smaller particles, which then settle in deeper ocean layers. Recent
+            scientific findings highlight the hazard of these microplastics and nanoplastics for marine ecologies,
+            food supply and human health. Currently, the general public does not accurately perceive the
+            urgency of these threats because picturing microscopic particles in large spaces is difficult.
         `,
         button: null,
         action: null,
@@ -166,24 +168,22 @@ const stations = [
     },
     {
         kicker: "Thesis Abstract",
-        title: "Researching the unseen journey",
+        title: "Context",
         description: `
-            Marine plastic pollution poses a global threat. Large plastic objects, discarded at the surface
-            of the ocean, fragment into smaller particles, which then settle in deeper ocean layers. Recent
-            scientific findings highlight the hazard of these microplastics and nanoplastics for marine ecologies,
-            food supply and human health.
+            Engaging and immersive scientific visualization can serve as a valuable educational tool for the
+            general public. This thesis film implemented a narrative-driven 3D visualization of nanoplastic
+            trajectories in an immersive virtual environment, depicting the transport and transformation of
+            an average particle from surface drift to deeper ocean layers.
         `,
         fullDescription: `
-            Marine plastic pollution poses a global threat. Large plastic objects, discarded at the surface
-            of the ocean, fragment into smaller particles, which then settle in deeper ocean layers. Recent
-            scientific findings highlight the hazard of these microplastics and nanoplastics for marine ecologies,
-            food supply and human health. Currently, the general public does not accurately perceive the
-            urgency of these threats because picturing microscopic particles is difficult.
-
             Engaging and immersive scientific visualization can serve as a valuable educational tool for the
             general public. This project implemented a narrative-driven 3D visualization of nanoplastic
             trajectories in an immersive virtual environment, depicting the transport and transformation of
             an average particle from surface drift to deeper ocean layers.
+
+            The system was evaluated through a user study measuring comprehension and attitude towards
+            the subject. The results indicate that this approach could improve general conceptual understanding
+            of marine plastic behavior.
         `,
         expanded: false,
         button: null,
@@ -191,11 +191,10 @@ const stations = [
         t: 0.35
     },
     {
-        kicker: "Watch Film",
-        title: "Follow the trajectory",
+        kicker: "Film",
+        title: "Follow the Trajectory",
         description: `
-            Watch the final film documenting the movement and transformation of plastic particles
-            through ocean layers.
+            A monoscopic recording of the story.
         `,
         button: "Watch Film",
         action: "film",
@@ -203,7 +202,7 @@ const stations = [
     },
     {
         kicker: "Toolkit Used",
-        title: "Built as an immersive visualization",
+        title: "VE/VR Technology",
         description: `
             <ul class="toolkit-list">
             </ul>
@@ -216,7 +215,7 @@ const stations = [
         kicker: "Thesis Paper",
         title: "Read the full thesis",
         description: `
-            Open the written thesis paper, including the research background, methodology,
+            Open the written thesis paper, including details about the research background, methodology,
             user study, and conclusions.
         `,
         button: "Open PDF",
@@ -225,9 +224,9 @@ const stations = [
     },
     {
         kicker: "Source Code",
-        title: "Explore the project files",
+        title: "Github Repo",
         description: `
-            View the GitHub repository for the implementation and project source files.
+            View the repository for the implementation and project source files.
         `,
         button: "Open GitHub",
         action: "github",

@@ -19,8 +19,8 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
 
-    color: white;
-    font-family: Arial, sans-serif;
+    color: #f5ead8;
+    font-family: "Cardo", serif;
 }
 
 #scene-container {
@@ -40,25 +40,37 @@ body {
 
 .page-nav {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 1.5rem;
+    left: 1.5rem;
 
-    z-index: 10;
+    z-index: 1000;
 
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+
+    padding: 0.75rem;
+
+    background: rgba(3, 7, 11, 0.42);
+    border: 1px solid rgba(245, 232, 200, 0.28);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
 }
 
 .page-nav a {
-    color: white;
+    color: #f5ead8;
     text-decoration: none;
-    opacity: 0.8;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.9;
 }
 
 .page-nav a:hover {
+    background: rgba(245, 232, 200, 0.12);
     opacity: 1;
 }
-
 .hint {
     position: fixed;
 
@@ -112,7 +124,7 @@ body {
 
     background: rgba(3, 7, 11, 0.18);
     border: 1px solid rgba(144, 155, 138, 0.28);
-    border-radius: 24px;
+    border-radius: 2px;
     backdrop-filter: blur(1px);
 
     backface-visibility: hidden;
@@ -159,9 +171,12 @@ body {
     max-height: 210px;
     overflow: hidden;
 
-    font-size: 1rem;
-    line-height: 1.6;
-    opacity: 0.78;
+    font-family: "Cardo", serif;
+    font-size: 1.05rem;
+    line-height: 1.65;
+
+    color: rgba(245, 232, 200, 0.82);
+    opacity: 1;
 }
 
 #station-card.expanded .station-description {
@@ -172,39 +187,39 @@ body {
 .station-actions {
     margin-top: 24px;
 }
+#station-button,
+.secondary-button {
+    padding: 0.75rem 1.1rem;
+
+    font-family: "Cardo", serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    color: #f5ead8;
+    border-radius: 999px;
+
+    cursor: pointer;
+    transition: background 200ms ease, transform 200ms ease, border-color 200ms ease;
+}
 
 #station-button {
-    padding: 12px 18px;
-
-    color: white;
-    background: rgba(144, 155, 138, 0.24);
-
-    border: 1px solid rgba(144, 155, 138, 0.55);
-    border-radius: 999px;
-
-    cursor: pointer;
+    background: rgba(245, 232, 200, 0.14);
+    border: 1px solid rgba(245, 232, 200, 0.42);
 }
 
-#station-button:hover {
-    background: rgba(144, 155, 138, 0.42);
-}
 .secondary-button {
     margin-right: 10px;
-    padding: 12px 18px;
-
-    color: white;
     background: transparent;
-
-    border: 1px solid rgba(144, 155, 138, 0.42);
-    border-radius: 999px;
-
-    cursor: pointer;
+    border: 1px solid rgba(245, 232, 200, 0.28);
 }
 
+#station-button:hover,
 .secondary-button:hover {
-    background: rgba(144, 155, 138, 0.16);
+    transform: translateY(-2px);
+    background: rgba(245, 232, 200, 0.22);
+    border-color: rgba(245, 232, 200, 0.58);
 }
-
 .toolkit-list {
     padding-left: 18px;
     line-height: 1.8;
@@ -280,4 +295,38 @@ body {
     opacity: 0;
     transform: translateX(-50%) translateY(-28px) scale(0.88);
     filter: blur(10px);
+}
+
+.station-kicker {
+    margin-bottom: 0.8rem;
+
+    font-family: "Cardo", serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    color: rgba(245, 232, 200, 0.72);
+}
+
+.card-front h1 {
+    max-width: 620px;
+
+    font-family: "Forum", serif;
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3vw, 2.8rem);
+    line-height: 1;
+
+    color: #f5ead8;
+}
+
+.card-front h1::after {
+    content: "";
+    display: block;
+
+    width: 180px;
+    height: 1px;
+
+    margin: 1.1rem 0 1.4rem;
+
+    background: rgba(245, 232, 200, 0.65);
 }

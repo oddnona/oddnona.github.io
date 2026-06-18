@@ -111,6 +111,18 @@ function updateAboutScene() {
     cardInfo.style.opacity = infoProgress;
 }
 
+const scrollPill = document.querySelector(".scroll-instruction-pill");
+
+window.addEventListener("scroll", () => {
+    if (!scrollPill) return;
+
+    if (window.scrollY > 80) {
+        scrollPill.classList.add("is-hidden");
+    } else {
+        scrollPill.classList.remove("is-hidden");
+    }
+});
+
 window.addEventListener("scroll", updateAboutScene);
 window.addEventListener("resize", updateAboutScene);
 
