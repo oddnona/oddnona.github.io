@@ -11,12 +11,17 @@ const journals = [
             width: 87,
             rotate: 0
         },
-        spine: {
-            x: 827,
-            bottom: 0,
-            width: 116,
-            height: 464,
-            rotate: 1
+        book: {
+            x: 50,
+            bottom: 35,
+            width: 178,
+            height: 430,
+            spineWidth: 58,
+            spineImage: "n2uspine.jpg",
+            spineColor: "#efe1cc",
+            coverColor: "#b05a32",
+            textColor: "#4b2f1f",
+            tilt: "-1deg"
         },
         entries: [
             {
@@ -54,12 +59,17 @@ const journals = [
             width: 95,
             rotate: 1
         },
-        spine: {
-            x: 164,
-            bottom: 16,
-            width: 103,
-            height: 460,
-            rotate: -1
+        book: {
+            x: 57,
+            bottom: 30,
+            width: 170,
+            height: 205,
+            spineWidth: 56,
+            spineImage: "natospine.jpg",
+            spineColor: "#9b5d34",
+            coverColor: "#17243a",
+            textColor: "#efe8d2",
+            tilt: "0deg"
         },
         entries: [
             {
@@ -104,12 +114,17 @@ const journals = [
             width: 76,
             rotate: 0
         },
-        spine: {
-            x: 488,
-            bottom: 4,
-            width: 109,
-            height: 468,
-            rotate: 1
+        book: {
+            x: 63,
+            bottom: 30,
+            width: 190,
+            height: 355,
+            spineWidth: 60,
+            spineImage: "miscspine.jpg",
+            spineColor: "#c58a65",
+            coverColor: "#000000",
+            textColor: "#dca89a",
+            tilt: "1deg"
         },
         entries: [
             {
@@ -170,38 +185,102 @@ let activeJournal = null;
 let activeSpreadIndex = 0;
 let wheelLocked = false;
 let wheelTotal = 0;
-
+let previewedJournalId = null;
 function buildShelf() {
     shelf.innerHTML = "";
 
-    journals.forEach((journal) => {
+    journals.forEach((journal, index) => {
         const book = document.createElement("button");
-                book.className = "book-spine";
+        book.className = "book";
+
+        if (index === 0) {
+            book.classList.add("book-left");
+        }
+
+        if (index === 1) {
+            book.classList.add("book-center");
+        }
+
+        if (index === 2) {
+            book.classList.add("book-right");
+        }
+
         book.type = "button";
         book.dataset.journalId = journal.id;
-        book.setAttribute("aria-label", `Open ${journal.title} journal`);
+        book.setAttribute("aria-label", `Preview ${journal.title} journal`);
 
-        book.style.setProperty("--spine-x", journal.spine.x);
-        book.style.setProperty("--spine-bottom", journal.spine.bottom);
-        book.style.setProperty("--spine-width", journal.spine.width);
-        book.style.setProperty("--spine-height", journal.spine.height);
-        book.style.setProperty("--spine-rotate", journal.spine.rotate);
+        book.style.setProperty("--book-x", `${journal.book.x}%`);
+        book.style.setProperty("--book-bottom", `${journal.book.bottom}%`);
+        book.style.setProperty("--book-width", `${journal.book.width}px`);
+        book.style.setProperty("--book-height", `${journal.book.height}px`);
+        book.style.setProperty("--spine-width", `${journal.book.spineWidth}px`);
+        book.style.setProperty("--spine-image", `url("${journal.book.spineImage}")`);
+        book.style.setProperty("--spine-color", journal.book.spineColor);
+        book.style.setProperty("--cover-color", journal.book.coverColor);
+        book.style.setProperty("--book-text-color", journal.book.textColor);
+        book.style.setProperty("--book-tilt", journal.book.tilt);
+        const inner = document.createElement("div");
+        inner.className = "book-inner";
 
-        const logo = document.createElement("img");
-        logo.className = "book-spine-logo";
-        logo.src = journal.logo.image;
-        logo.alt = "";
-        logo.setAttribute("aria-hidden", "true");
+        const spine = document.createElement("div");
+        spine.className = "book-spine";
 
-        logo.style.setProperty("--logo-x", journal.logo.x);
-        logo.style.setProperty("--logo-y", journal.logo.y);
-        logo.style.setProperty("--logo-width", journal.logo.width);
-        logo.style.setProperty("--logo-rotate", journal.logo.rotate);
+        const cover = document.createElement("div");
+        cover.className = "book-cover";
 
-        book.appendChild(logo);
+        const spineLogo = document.createElement("img");
+        spineLogo.className = "book-spine-logo";
+        spineLogo.src = journal.logo.image;
+        spineLogo.alt = "";
+        spineLogo.setAttribute("aria-hidden", "true");
 
-        book.addEventListener("click", () => {
-            openJournal(journal.id);
+        const coverLogo = document.createElement("img");
+        coverLogo.className = "book-cover-logo";
+        coverLogo.src = journal.logo.image;
+        coverLogo.alt = "";
+        coverLogo.setAttribute("aria-hidden", "true");
+
+        const spineTitle = document.createElement("span");
+        spineTitle.className = "book-spine-title";
+        spineTitle.textContent = journal.coverLabel;
+
+        const coverTitle = document.createElement("span");
+        coverTitle.className = "book-cover-title";
+        coverTitle.textContent = journal.coverLabel;
+
+        spine.appendChild(spineLogo);
+        spine.appendChild(spineTitle);
+
+        cover.appendChild(coverLogo);
+        cover.appendChild(coverTitle);
+
+        inner.appendChild(cover);
+        inner.appendChild(spine);
+
+        book.appendChild(inner);
+
+        book.addEventListener("click", (event) => {
+            event.stopPropagation();
+
+            const clickedAlreadyPreviewed = previewedJournalId === journal.id;
+
+            if (clickedAlreadyPreviewed) {
+                openJournal(journal.id);
+                return;
+            }
+
+            previewedJournalId = journal.id;
+
+            shelf.querySelectorAll(".book").forEach((shelfBook) => {
+                shelfBook.classList.remove("is-previewed");
+                shelfBook.setAttribute(
+                    "aria-label",
+                    `Preview ${journals.find((item) => item.id === shelfBook.dataset.journalId).title} journal`
+                );
+            });
+
+            book.classList.add("is-previewed");
+            book.setAttribute("aria-label", `Open ${journal.title} journal`);
         });
 
         shelf.appendChild(book);
@@ -241,6 +320,11 @@ function closeJournal() {
     activeSpreadIndex = 0;
     wheelLocked = false;
     wheelTotal = 0;
+    previewedJournalId = null;
+
+    shelf.querySelectorAll(".book").forEach((book) => {
+        book.classList.remove("is-previewed");
+    });
 
     designSection.classList.remove("journal-is-open");
     stage.classList.remove("is-open");
@@ -397,6 +481,22 @@ stage.addEventListener("click", (event) => {
     }
 
     closeJournal();
+});
+
+document.addEventListener("click", (event) => {
+    if (activeJournal) {
+        return;
+    }
+
+    if (event.target.closest(".book")) {
+        return;
+    }
+
+    previewedJournalId = null;
+
+    shelf.querySelectorAll(".book").forEach((book) => {
+        book.classList.remove("is-previewed");
+    });
 });
 
 document.addEventListener("keydown", (event) => {
