@@ -11,6 +11,14 @@ const journals = [
             width: 91,
             rotate: 0
         },
+        coverLogo: {
+            x: 50,
+            y: 50,
+            width: 96,
+            rotate: 0,
+            skewY: -4,
+            scaleX: 0.94
+        },
         book: {
             x: 48,
             bottom: 35,
@@ -61,6 +69,14 @@ const journals = [
             y: 25,
             width: 83,
             rotate: 0
+        },
+        coverLogo: {
+            x: 50,
+            y: 42,
+            width: 100,
+            rotate: 0,
+            skewY: -4,
+            scaleX: 0.94
         },
         book: {
             x: 54,
@@ -120,10 +136,18 @@ const journals = [
             width: 66,
             rotate: 0
         },
+        coverLogo: {
+            x: 50,
+            y: 49,
+            width: 85,
+            rotate: 0,
+            skewY: -4,
+            scaleX: 0.94
+        },
         book: {
             x: 60,
             bottom: 35,
-            width: 190,
+            width: 170,
             height: 185,
             spineWidth: 73,
             spineImage: "miscspine.jpg",
