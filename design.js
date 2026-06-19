@@ -6,22 +6,22 @@ const journals = [
         themeClass: "theme-nature",
         logo: {
             image: "n2ulogo.png",
-            x: 52,
-            y: 28,
-            width: 87,
+            x: 50,
+            y: 13,
+            width: 91,
             rotate: 0
         },
         book: {
-            x: 50,
+            x: 48,
             bottom: 35,
-            width: 178,
-            height: 430,
-            spineWidth: 58,
+            width: 180,
+            height: 230,
+            spineWidth: 63,
             spineImage: "n2uspine.jpg",
             spineColor: "#efe1cc",
             coverColor: "#b05a32",
             textColor: "#4b2f1f",
-            tilt: "-1deg"
+            tilt: "0deg"
         },
         entries: [
             {
@@ -55,16 +55,16 @@ const journals = [
         logo: {
             image: "natologo.png",
             x: 50,
-            y: 26,
-            width: 95,
-            rotate: 1
+            y: 25,
+            width: 83,
+            rotate: 0
         },
         book: {
-            x: 57,
-            bottom: 30,
+            x: 54,
+            bottom: 33,
             width: 170,
-            height: 205,
-            spineWidth: 56,
+            height: 270,
+            spineWidth: 60,
             spineImage: "natospine.jpg",
             spineColor: "#9b5d34",
             coverColor: "#17243a",
@@ -110,21 +110,21 @@ const journals = [
         logo: {
             image: "misclogo.png",
             x: 50,
-            y: 45,
-            width: 76,
+            y: 48,
+            width: 66,
             rotate: 0
         },
         book: {
-            x: 63,
-            bottom: 30,
+            x: 60,
+            bottom: 35,
             width: 190,
-            height: 355,
-            spineWidth: 60,
+            height: 185,
+            spineWidth: 73,
             spineImage: "miscspine.jpg",
             spineColor: "#c58a65",
             coverColor: "#000000",
             textColor: "#dca89a",
-            tilt: "1deg"
+            tilt: "0deg"
         },
         entries: [
             {
@@ -186,6 +186,34 @@ let activeSpreadIndex = 0;
 let wheelLocked = false;
 let wheelTotal = 0;
 let previewedJournalId = null;
+const SCENE_BASE_WIDTH = 1686;
+const BOOK_SCENE_SCALE = 1.25;
+
+function sceneVw(pixelValue) {
+    return `${((pixelValue * BOOK_SCENE_SCALE) / SCENE_BASE_WIDTH) * 100}vw`;
+}
+const NEIGHBOR_MOVES = {
+    n2uPreviewCenter: 50,
+    n2uPreviewRight: 45,
+
+    natoPreviewLeft: -35,
+    natoPreviewRight: 25,
+
+    miscPreviewLeft: -22,
+    miscPreviewCenter: -30
+};
+
+function setShelfMovementVariables() {
+    shelf.style.setProperty("--move-n2u-preview-center", sceneVw(NEIGHBOR_MOVES.n2uPreviewCenter));
+    shelf.style.setProperty("--move-n2u-preview-right", sceneVw(NEIGHBOR_MOVES.n2uPreviewRight));
+
+    shelf.style.setProperty("--move-nato-preview-left", sceneVw(NEIGHBOR_MOVES.natoPreviewLeft));
+    shelf.style.setProperty("--move-nato-preview-right", sceneVw(NEIGHBOR_MOVES.natoPreviewRight));
+
+    shelf.style.setProperty("--move-misc-preview-left", sceneVw(NEIGHBOR_MOVES.miscPreviewLeft));
+    shelf.style.setProperty("--move-misc-preview-center", sceneVw(NEIGHBOR_MOVES.miscPreviewCenter));
+}
+
 function buildShelf() {
     shelf.innerHTML = "";
 
@@ -211,22 +239,29 @@ function buildShelf() {
 
         book.style.setProperty("--book-x", `${journal.book.x}%`);
         book.style.setProperty("--book-bottom", `${journal.book.bottom}%`);
-        book.style.setProperty("--book-width", `${journal.book.width}px`);
-        book.style.setProperty("--book-height", `${journal.book.height}px`);
-        book.style.setProperty("--spine-width", `${journal.book.spineWidth}px`);
-        book.style.setProperty("--spine-image", `url("${journal.book.spineImage}")`);
+        book.style.setProperty("--book-width", sceneVw(journal.book.width));
+        book.style.setProperty("--book-height", sceneVw(journal.book.height));
+        book.style.setProperty("--spine-width", sceneVw(journal.book.spineWidth));
         book.style.setProperty("--spine-color", journal.book.spineColor);
         book.style.setProperty("--cover-color", journal.book.coverColor);
         book.style.setProperty("--book-text-color", journal.book.textColor);
         book.style.setProperty("--book-tilt", journal.book.tilt);
+
         const inner = document.createElement("div");
         inner.className = "book-inner";
 
-        const spine = document.createElement("div");
-        spine.className = "book-spine";
+        const object = document.createElement("div");
+        object.className = "book-object";
 
-        const cover = document.createElement("div");
-        cover.className = "book-cover";
+        const bottomPlane = document.createElement("div");
+        bottomPlane.className = "book-bottom-plane";
+        bottomPlane.setAttribute("aria-hidden", "true");
+
+        const spineFace = document.createElement("div");
+        spineFace.className = "book-face book-spine";
+
+        const coverFace = document.createElement("div");
+        coverFace.className = "book-face book-cover";
 
         const spineLogo = document.createElement("img");
         spineLogo.className = "book-spine-logo";
@@ -234,11 +269,21 @@ function buildShelf() {
         spineLogo.alt = "";
         spineLogo.setAttribute("aria-hidden", "true");
 
+        spineLogo.style.setProperty("--logo-x", `${journal.logo.x}%`);
+        spineLogo.style.setProperty("--logo-y", `${journal.logo.y}%`);
+        spineLogo.style.setProperty("--logo-width", `${journal.logo.width}%`);
+        spineLogo.style.setProperty("--logo-rotate", `${journal.logo.rotate}deg`);
+
         const coverLogo = document.createElement("img");
         coverLogo.className = "book-cover-logo";
         coverLogo.src = journal.logo.image;
         coverLogo.alt = "";
         coverLogo.setAttribute("aria-hidden", "true");
+
+        coverLogo.style.setProperty("--logo-x", `${journal.coverLogo?.x ?? 50}%`);
+        coverLogo.style.setProperty("--logo-y", `${journal.coverLogo?.y ?? 42}%`);
+        coverLogo.style.setProperty("--logo-width", `${journal.coverLogo?.width ?? 64}%`);
+        coverLogo.style.setProperty("--logo-rotate", `${journal.coverLogo?.rotate ?? 0}deg`);
 
         const spineTitle = document.createElement("span");
         spineTitle.className = "book-spine-title";
@@ -248,15 +293,17 @@ function buildShelf() {
         coverTitle.className = "book-cover-title";
         coverTitle.textContent = journal.coverLabel;
 
-        spine.appendChild(spineLogo);
-        spine.appendChild(spineTitle);
+        spineFace.appendChild(spineLogo);
+        spineFace.appendChild(spineTitle);
 
-        cover.appendChild(coverLogo);
-        cover.appendChild(coverTitle);
+        coverFace.appendChild(coverLogo);
+        coverFace.appendChild(coverTitle);
 
-        inner.appendChild(cover);
-        inner.appendChild(spine);
+        object.appendChild(bottomPlane);
+        object.appendChild(spineFace);
+        object.appendChild(coverFace);
 
+        inner.appendChild(object);
         book.appendChild(inner);
 
         book.addEventListener("click", (event) => {
@@ -272,10 +319,14 @@ function buildShelf() {
             previewedJournalId = journal.id;
 
             shelf.querySelectorAll(".book").forEach((shelfBook) => {
+                const shelfBookJournal = journals.find((item) => {
+                    return item.id === shelfBook.dataset.journalId;
+                });
+
                 shelfBook.classList.remove("is-previewed");
                 shelfBook.setAttribute(
                     "aria-label",
-                    `Preview ${journals.find((item) => item.id === shelfBook.dataset.journalId).title} journal`
+                    `Preview ${shelfBookJournal.title} journal`
                 );
             });
 
@@ -521,4 +572,5 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("wheel", handleWheelNavigation, { passive: false });
 
+setShelfMovementVariables();
 buildShelf();
