@@ -18,10 +18,13 @@ const journals = [
             height: 230,
             spineWidth: 63,
             spineImage: "n2uspine.jpg",
-            spineColor: "#efe1cc",
-            coverColor: "#b05a32",
-            textColor: "#4b2f1f",
-            tilt: "0deg"
+            spineColor: "#939f5d",
+            coverColor: "#a34021",
+            textColor: "#403534",
+            tilt: "0deg",
+            spineTitleX: "50%",
+            spineTitleY: "34%",
+            spineTitleSize: 0.47
         },
         entries: [
             {
@@ -66,10 +69,13 @@ const journals = [
             height: 270,
             spineWidth: 60,
             spineImage: "natospine.jpg",
-            spineColor: "#9b5d34",
             coverColor: "#17243a",
+            spineColor: "#000000",
             textColor: "#efe8d2",
-            tilt: "0deg"
+            tilt: "0deg",
+            spineTitleX: "50%",
+            spineTitleY: "65%",
+            spineTitleSize: 0.27
         },
         entries: [
             {
@@ -121,10 +127,13 @@ const journals = [
             height: 185,
             spineWidth: 73,
             spineImage: "miscspine.jpg",
-            spineColor: "#c58a65",
-            coverColor: "#000000",
-            textColor: "#dca89a",
-            tilt: "0deg"
+            coverColor: "#dca89a",
+            spineColor: "#b98779",
+            textColor: "#000000",
+            tilt: "0deg",
+            spineTitleX: "50%",
+            spineTitleY: "25%",
+            spineTitleSize: 0.22
         },
         entries: [
             {
@@ -246,6 +255,9 @@ function buildShelf() {
         book.style.setProperty("--cover-color", journal.book.coverColor);
         book.style.setProperty("--book-text-color", journal.book.textColor);
         book.style.setProperty("--book-tilt", journal.book.tilt);
+        book.style.setProperty("--spine-title-x", journal.book.spineTitleX ?? "50%");
+        book.style.setProperty("--spine-title-y", journal.book.spineTitleY ?? "32%");
+        book.style.setProperty("--spine-title-size", journal.book.spineTitleSize ?? 0.22);
 
         const inner = document.createElement("div");
         inner.className = "book-inner";
@@ -263,17 +275,6 @@ function buildShelf() {
         const coverFace = document.createElement("div");
         coverFace.className = "book-face book-cover";
 
-        const spineLogo = document.createElement("img");
-        spineLogo.className = "book-spine-logo";
-        spineLogo.src = journal.logo.image;
-        spineLogo.alt = "";
-        spineLogo.setAttribute("aria-hidden", "true");
-
-        spineLogo.style.setProperty("--logo-x", `${journal.logo.x}%`);
-        spineLogo.style.setProperty("--logo-y", `${journal.logo.y}%`);
-        spineLogo.style.setProperty("--logo-width", `${journal.logo.width}%`);
-        spineLogo.style.setProperty("--logo-rotate", `${journal.logo.rotate}deg`);
-
         const coverLogo = document.createElement("img");
         coverLogo.className = "book-cover-logo";
         coverLogo.src = journal.logo.image;
@@ -289,15 +290,8 @@ function buildShelf() {
         spineTitle.className = "book-spine-title";
         spineTitle.textContent = journal.coverLabel;
 
-        const coverTitle = document.createElement("span");
-        coverTitle.className = "book-cover-title";
-        coverTitle.textContent = journal.coverLabel;
-
-        spineFace.appendChild(spineLogo);
         spineFace.appendChild(spineTitle);
-
         coverFace.appendChild(coverLogo);
-        coverFace.appendChild(coverTitle);
 
         object.appendChild(bottomPlane);
         object.appendChild(spineFace);
