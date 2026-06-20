@@ -219,6 +219,14 @@ let activeSpreadIndex = 0;
 let wheelLocked = false;
 let wheelTotal = 0;
 let previewedJournalId = null;
+
+let isFlipAnimating = false;
+let flipDirection = null;
+let outgoingSpreadIndex = null;
+let incomingSpreadIndex = null;
+let flipMidpointTimer = null;
+let flipFinishTimer = null;
+const FLIP_ANIMATION_MS = 800;
 const SCENE_BASE_WIDTH = 1686;
 const BOOK_SCENE_SCALE = 1.25;
 
@@ -362,6 +370,13 @@ function openJournal(journalId) {
     wheelLocked = true;
     wheelTotal = 0;
 
+    clearFlipTimers();
+
+    isFlipAnimating = false;
+    flipDirection = null;
+    outgoingSpreadIndex = null;
+    incomingSpreadIndex = null;
+
     if (!activeJournal) {
         return;
     }
@@ -391,6 +406,13 @@ function closeJournal() {
     wheelTotal = 0;
     previewedJournalId = null;
 
+    clearFlipTimers();
+
+    isFlipAnimating = false;
+    flipDirection = null;
+    outgoingSpreadIndex = null;
+    incomingSpreadIndex = null;
+
     shelf.querySelectorAll(".book").forEach((book) => {
         book.classList.remove("is-previewed");
     });
@@ -406,7 +428,6 @@ function closeJournal() {
         }
     }, 300);
 }
-
 function buildSpreads() {
     carousel.innerHTML = "";
 
@@ -418,16 +439,21 @@ function buildSpreads() {
         const imagePage = createImagePage(entry);
         const textPage = createTextPage(entry);
 
-        if (entry.layout === "text-left") {
-            spread.appendChild(textPage);
-            spread.appendChild(imagePage);
-        } else {
-            spread.appendChild(imagePage);
-            spread.appendChild(textPage);
-        }
+        spread.appendChild(imagePage);
+        spread.appendChild(textPage);
 
         carousel.appendChild(spread);
     });
+
+    const flipAxis = document.createElement("div");
+    flipAxis.className = "journal-flip-axis";
+    flipAxis.setAttribute("aria-hidden", "true");
+
+    const flipPage = document.createElement("div");
+    flipPage.className = "journal-flip-page";
+
+    flipAxis.appendChild(flipPage);
+    carousel.appendChild(flipAxis);
 }
 
 function createImagePage(entry) {
@@ -459,6 +485,56 @@ function createTextPage(entry) {
     return page;
 }
 
+function createPageForSide(entry, side) {
+    if (side === "left") {
+        return createImagePage(entry);
+    }
+
+    return createTextPage(entry);
+}
+
+function setFlipPageContent(entry, side) {
+    const flipPage = carousel.querySelector(".journal-flip-page");
+
+    if (!flipPage) {
+        return;
+    }
+
+    const page = createPageForSide(entry, side);
+    const content = document.createElement("div");
+
+    content.className = "journal-flip-content";
+
+    if (page.classList.contains("page-image")) {
+        content.classList.add("is-image");
+    }
+
+    if (page.classList.contains("page-text")) {
+        content.classList.add("is-text");
+    }
+
+    flipPage.innerHTML = "";
+    flipPage.classList.remove("page-image", "page-text");
+
+    while (page.firstChild) {
+        content.appendChild(page.firstChild);
+    }
+
+    flipPage.appendChild(content);
+}
+
+function clearFlipTimers() {
+    if (flipMidpointTimer) {
+        clearTimeout(flipMidpointTimer);
+        flipMidpointTimer = null;
+    }
+
+    if (flipFinishTimer) {
+        clearTimeout(flipFinishTimer);
+        flipFinishTimer = null;
+    }
+}
+
 function updateSpreadPositions() {
     const spreads = carousel.querySelectorAll(".journal-spread");
 
@@ -468,8 +544,36 @@ function updateSpreadPositions() {
             "is-prev",
             "is-next",
             "is-hidden-left",
-            "is-hidden-right"
+            "is-hidden-right",
+            "is-flip-out-next",
+            "is-flip-in-next",
+            "is-flip-out-prev",
+            "is-flip-in-prev",
+            "is-stable-out-next",
+            "is-stable-in-next",
+            "is-stable-out-prev",
+            "is-stable-in-prev"
         );
+
+        if (isFlipAnimating && index === outgoingSpreadIndex) {
+            if (flipDirection === "next") {
+                spread.classList.add("is-stable-out-next");
+            } else {
+                spread.classList.add("is-stable-out-prev");
+            }
+
+            return;
+        }
+
+        if (isFlipAnimating && index === incomingSpreadIndex) {
+            if (flipDirection === "next") {
+                spread.classList.add("is-stable-in-next");
+            } else {
+                spread.classList.add("is-stable-in-prev");
+            }
+
+            return;
+        }
 
         if (index === activeSpreadIndex) {
             spread.classList.add("is-active");
@@ -485,28 +589,116 @@ function updateSpreadPositions() {
     });
 }
 
+function startSpreadFlip(targetIndex, direction) {
+    if (!activeJournal || isFlipAnimating) {
+        return;
+    }
+
+    if (targetIndex < 0 || targetIndex > activeJournal.entries.length - 1) {
+        return;
+    }
+
+    clearFlipTimers();
+
+    outgoingSpreadIndex = activeSpreadIndex;
+    incomingSpreadIndex = targetIndex;
+    flipDirection = direction;
+    isFlipAnimating = true;
+    wheelLocked = true;
+
+    const flipAxis = carousel.querySelector(".journal-flip-axis");
+    const flipPage = carousel.querySelector(".journal-flip-page");
+
+    if (!flipAxis || !flipPage) {
+        return;
+    }
+
+    flipAxis.classList.remove(
+        "is-flipping-next",
+        "is-flipping-prev",
+        "has-swapped"
+    );
+
+    flipPage.classList.remove(
+        "page-image",
+        "page-text"
+    );
+
+    if (direction === "next") {
+        setFlipPageContent(activeJournal.entries[outgoingSpreadIndex], "right");
+        flipAxis.classList.add("is-flipping-next");
+    } else {
+        setFlipPageContent(activeJournal.entries[outgoingSpreadIndex], "left");
+        flipAxis.classList.add("is-flipping-prev");
+    }
+
+    updateSpreadPositions();
+
+    flipMidpointTimer = setTimeout(() => {
+        if (!activeJournal || !isFlipAnimating) {
+            return;
+        }
+
+        if (direction === "next") {
+            setFlipPageContent(activeJournal.entries[incomingSpreadIndex], "left");
+        } else {
+            setFlipPageContent(activeJournal.entries[incomingSpreadIndex], "right");
+        }
+
+        flipAxis.classList.add("has-swapped");
+    }, FLIP_ANIMATION_MS / 2);
+
+    flipFinishTimer = setTimeout(() => {
+        activeSpreadIndex = targetIndex;
+
+        isFlipAnimating = false;
+        flipDirection = null;
+        outgoingSpreadIndex = null;
+        incomingSpreadIndex = null;
+        wheelTotal = 0;
+
+        updateSpreadPositions();
+
+        requestAnimationFrame(() => {
+            flipAxis.classList.remove(
+                "is-flipping-next",
+                "is-flipping-prev",
+                "has-swapped"
+            );
+
+            flipPage.classList.remove(
+                "page-image",
+                "page-text"
+            );
+
+            flipPage.innerHTML = "";
+        });
+
+        setTimeout(() => {
+            wheelLocked = false;
+        }, 90);
+    }, FLIP_ANIMATION_MS);
+}
+
 function goToPreviousSpread() {
-    if (!activeJournal) {
+    if (!activeJournal || isFlipAnimating) {
         return;
     }
 
     if (activeSpreadIndex > 0) {
-        activeSpreadIndex -= 1;
-        updateSpreadPositions();
+        startSpreadFlip(activeSpreadIndex - 1, "prev");
     }
 }
 
 function goToNextSpread() {
-    if (!activeJournal) {
+    if (!activeJournal || isFlipAnimating) {
         return;
     }
 
     if (activeSpreadIndex < activeJournal.entries.length - 1) {
-        activeSpreadIndex += 1;
-        updateSpreadPositions();
+        startSpreadFlip(activeSpreadIndex + 1, "next");
     }
 }
-
 function handleWheelNavigation(event) {
     if (!activeJournal) {
         return;
@@ -514,7 +706,7 @@ function handleWheelNavigation(event) {
 
     event.preventDefault();
 
-    if (wheelLocked) {
+    if (wheelLocked || isFlipAnimating) {
         return;
     }
 
@@ -524,8 +716,6 @@ function handleWheelNavigation(event) {
         return;
     }
 
-    wheelLocked = true;
-
     if (wheelTotal > 0) {
         goToNextSpread();
     } else {
@@ -533,10 +723,6 @@ function handleWheelNavigation(event) {
     }
 
     wheelTotal = 0;
-
-    setTimeout(() => {
-        wheelLocked = false;
-    }, 620);
 }
 
 closeButton.addEventListener("click", closeJournal);
