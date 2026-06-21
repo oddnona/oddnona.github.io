@@ -44,20 +44,27 @@
 }
 
 .about-button {
-    --about-button-size: 260px;
+    --about-button-height: 320px;
+
+    /*
+       Text position controls.
+       Change these two values to move the text on the button.
+    */
+    --about-text-left: 50%;
+    --about-text-top: 27%;
 
     position: fixed;
-    left: clamp(32px, 5vw, 90px);
-    top: 50%;
+    left: clamp(16px, 2.5vw, 45px);
+    top: 60%;
     transform: translateY(-50%);
 
-    width: min(var(--about-button-size), 28vw);
-    aspect-ratio: 1015 / 976;
+    height: min(var(--about-button-height), 70vh);
+    aspect-ratio: 2474 / 3992;
 
-    background-image: url("empty.png");
+    background-image: url("meclosed.png");
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: center;
 
     background-color: transparent;
     border: none;
@@ -66,38 +73,122 @@
 
     display: block;
     text-decoration: none;
+    overflow: hidden;
 
+    filter:
+        drop-shadow(0 10px 10px rgba(35, 20, 8, 0.35))
+        drop-shadow(0 0 8px rgba(255, 225, 160, 0.28));
+
+    cursor: pointer;
     z-index: 20;
+
+    transition:
+        filter 0.25s ease,
+        transform 0.18s ease;
 }
 
+.about-button::before {
+    content: "";
 
-.about-button:hover {
-    animation: fillAboutButton 0.28s forwards;
+    position: absolute;
+
+    /*
+       Shimmer position controls.
+       These values place the shimmer over the oval area
+       in the upper closed box.
+    */
+    left: 30%;
+    top: 15%;
+    width: 20%;
+    height: 26%;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        transparent 35%,
+        rgba(255, 241, 190, 0.08) 43%,
+        rgba(255, 241, 190, 0.443) 50%,
+        rgba(255, 241, 190, 0.162) 57%,
+        transparent 65%,
+        transparent 100%
+    );
+
+    transform: translateX(-140%);
+    animation: aboutButtonShimmer 5.5s ease-in-out infinite;
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+.about-button:hover,
+.about-button:focus-visible {
+    background-image: url("meopen.png");
+
+    filter:
+        drop-shadow(0 14px 14px rgba(35, 20, 8, 0.42))
+        drop-shadow(0 0 14px rgba(255, 225, 160, 0.5));
+}
+
+.about-button:active {
+    background-image: url("meopen.png");
+    transform: translateY(-50%) scale(0.97);
+
+    filter:
+        drop-shadow(0 6px 7px rgba(35, 20, 8, 0.35))
+        drop-shadow(0 0 10px rgba(255, 225, 160, 0.45));
 }
 
 .about-button-text {
-    font-family: Baskerville, serif;
-    font-size: 1.2rem;
-    color: #3e1f05;
-    font-weight: bold;
+    position: absolute;
+    left: var(--about-text-left);
+    top: var(--about-text-top);
+    transform: translate(-50%, -50%);
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.05em;
+
+    font-family: "Cardo", serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: #3e1f05;
+
+    white-space: nowrap;
     pointer-events: none;
+
+    z-index: 2;
 }
 
-@keyframes fillAboutButton {
+@keyframes aboutButtonShimmer {
     0% {
-        background-image: url("empty.png");
+        transform: translateX(-140%);
+        opacity: 0;
     }
 
-    50% {
-        background-image: url("half.png");
+    8% {
+        opacity: 1;
+    }
+
+    22% {
+        transform: translateX(140%);
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 0;
     }
 
     100% {
-        background-image: url("full.png");
+        transform: translateX(140%);
+        opacity: 0;
     }
 }
-
 
 /* RIGHT DRAWER BUTTONS */
 

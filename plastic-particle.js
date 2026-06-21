@@ -202,10 +202,55 @@ const stations = [
     },
     {
         kicker: "Toolkit Used",
-        title: "VE/VR Technology",
+        title: "",
         description: `
-            <ul class="toolkit-list">
-            </ul>
+            <section class="particle-tech-sheet" aria-label="Particle film technology stack">
+
+                <div class="particle-tech-row">
+                    <h3>SECTION ONE</h3>
+
+                    <div class="particle-stack-graphic particle-stack-large" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <ul>
+                        <li><strong>Placeholder Tool</strong><br>short description here</li>
+                        <li><strong>Placeholder Tool</strong><br>short description here</li>
+                    </ul>
+                </div>
+
+                <div class="particle-tech-row">
+                    <h3>SECTION TWO</h3>
+
+                    <div class="particle-stack-graphic particle-stack-medium" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <ul>
+                        <li><strong>Placeholder Tool</strong><br>short description here</li>
+                        <li><strong>Placeholder Tool</strong><br>short description here</li>
+                    </ul>
+                </div>
+
+                <div class="particle-tech-row">
+                    <h3>SECTION THREE</h3>
+
+                    <div class="particle-stack-graphic particle-stack-small" aria-hidden="true">
+                        <span></span>
+                    </div>
+
+                    <ul>
+                        <li><strong>Placeholder Tool</strong><br>short description here</li>
+                        <li><strong>Placeholder Tool</strong><br>short description here</li>
+                    </ul>
+                </div>
+
+            </section>
         `,
         button: null,
         action: null,
@@ -258,6 +303,7 @@ function updateStationUI() {
     const card = document.querySelector("#station-card");
 
     card.classList.remove("flipped");
+    card.classList.toggle("toolkit-card", station.kicker === "Toolkit Used");
 
     kickerElement.textContent = station.kicker;
     titleElement.textContent = station.title;
