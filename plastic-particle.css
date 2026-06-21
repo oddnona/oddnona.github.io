@@ -341,29 +341,32 @@ body {
     grid-template-rows: repeat(3, 1fr);
 
     font-family: "Cardo", serif;
+    --container-cap-depth: 32px;
+    --container-bottom-extension: 34px;
 }
+
 
 .particle-tech-sheet::before {
     content: "";
     position: absolute;
 
     top: 0.15rem;
-    bottom: 0.15rem;
-    left: 47%;
+    bottom: calc(0.15rem - var(--container-bottom-extension));
+    left: 44%;
 
-    width: 32%;
+    width: 18%;
 
     transform: translateX(-50%);
 
     background: rgba(245, 232, 200, 0.075);
 
     clip-path: polygon(
-        50% 0%,
-        100% 12%,
-        100% 88%,
+        50% 0,
+        100% var(--container-cap-depth),
+        100% calc(100% - var(--container-cap-depth)),
         50% 100%,
-        0% 88%,
-        0% 12%
+        0 calc(100% - var(--container-cap-depth)),
+        0 var(--container-cap-depth)
     );
 
     z-index: 0;
@@ -375,8 +378,8 @@ body {
     position: absolute;
 
     top: 0.15rem;
-    bottom: 0.15rem;
-    left: 47%;
+    bottom: calc(0.15rem - var(--container-bottom-extension));
+    left: 44%;
 
     width: 1px;
 
@@ -393,7 +396,7 @@ body {
     z-index: 1;
 
     display: grid;
-    grid-template-columns: 30% 34% 36%;
+    grid-template-columns: 32% 24% 44%;
     align-items: start;
 
     min-height: 0;
@@ -415,7 +418,7 @@ body {
     position: absolute;
     left: 50%;
 
-    width: 48%;
+    width: 40%;
     aspect-ratio: 1 / 1;
 
     transform: translateX(-50%) rotate(45deg) skew(-16deg, -16deg);
@@ -518,6 +521,7 @@ body {
     background: rgba(245, 232, 200, 0.18);
     opacity: 0.78;
 }
+
 #station-card.toolkit-card h1,
 #station-card.toolkit-card h1::after {
     display: none;

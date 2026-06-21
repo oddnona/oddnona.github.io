@@ -207,7 +207,7 @@ const stations = [
             <section class="particle-tech-sheet" aria-label="Particle film technology stack">
 
                 <div class="particle-tech-row">
-                    <h3>SECTION ONE</h3>
+                    <h3>DATA & PREPROCESSING</h3>
 
                     <div class="particle-stack-graphic particle-stack-large" aria-hidden="true">
                         <span></span>
@@ -217,13 +217,14 @@ const stations = [
                     </div>
 
                     <ul>
-                        <li><strong>Placeholder Tool</strong><br>short description here</li>
-                        <li><strong>Placeholder Tool</strong><br>short description here</li>
+                        <li><strong>Lagrangian Simulation Data</strong><br>10k virtual particle trajectories over 10 years of daily observations, in 3D coordinates over the South Atlantic</li>
+                        <li><strong>NetCDF</strong><br>dataset storage</li>
+                        <li><strong>Coordinate Mapping & Sampling</strong><br>performance-friendly path reduction</li>
                     </ul>
                 </div>
 
                 <div class="particle-tech-row">
-                    <h3>SECTION TWO</h3>
+                    <h3>3D RENDERING & ANIMATION</h3>
 
                     <div class="particle-stack-graphic particle-stack-medium" aria-hidden="true">
                         <span></span>
@@ -232,21 +233,20 @@ const stations = [
                     </div>
 
                     <ul>
-                        <li><strong>Placeholder Tool</strong><br>short description here</li>
-                        <li><strong>Placeholder Tool</strong><br>short description here</li>
+                        <li><strong>C++</strong><br>main programming language; build configuration in CMake</li>
+                        <li><strong>OpenSceneGraph</strong><br>real-time 3D rendering</li>
                     </ul>
                 </div>
 
                 <div class="particle-tech-row">
-                    <h3>SECTION THREE</h3>
+                    <h3>HARDWARE</h3>
 
                     <div class="particle-stack-graphic particle-stack-small" aria-hidden="true">
                         <span></span>
                     </div>
 
                     <ul>
-                        <li><strong>Placeholder Tool</strong><br>short description here</li>
-                        <li><strong>Placeholder Tool</strong><br>short description here</li>
+                        <li><strong>zSpace</strong><br>stereoscopic display built for immersion; the project is adaptable to other Virtual Reality technologies</li>
                     </ul>
                 </div>
 
