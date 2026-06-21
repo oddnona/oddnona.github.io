@@ -4,6 +4,7 @@ const infoTitle = document.querySelector("#info-title");
 const infoDescription = document.querySelector("#info-description");
 const flipButton = document.querySelector("#flip-button");
 const desk = document.querySelector(".desk");
+const pageDots = document.querySelectorAll(".page-dot");
 const projectInfo = {
   weather: {
     pages: [
@@ -150,6 +151,25 @@ function openCard(card) {
 
   card.style.zIndex = 50;
   card.classList.add("is-active");
+  infoPanel.style.setProperty(
+    "--active-button-bg",
+    getComputedStyle(card).getPropertyValue("--card-button-bg")
+  );
+
+  infoPanel.style.setProperty(
+    "--active-button-text",
+    getComputedStyle(card).getPropertyValue("--card-button-text")
+  );
+
+  infoPanel.style.setProperty(
+    "--active-button-hover-bg",
+    getComputedStyle(card).getPropertyValue("--card-button-hover-bg")
+  );
+
+  infoPanel.style.setProperty(
+    "--active-button-hover-text",
+    getComputedStyle(card).getPropertyValue("--card-button-text")
+  );
 
   cards.forEach((otherCard) => {
     if (otherCard !== card) {
@@ -189,6 +209,9 @@ function closeCard() {
 
   activeCard = null;
   activePage = 1;
+  pageDots.forEach((dot, index) => {
+    dot.classList.toggle("is-active", index === 0);
+  });
 }
 
 function updateCardPage() {
@@ -217,4 +240,7 @@ function updateCardPage() {
 
   flipButton.textContent =
     activePage === 5 ? "Put card down" : "Flip for more";
+  pageDots.forEach((dot, index) => {
+    dot.classList.toggle("is-active", index === activePage - 1);
+  });
 }
