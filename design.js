@@ -36,17 +36,52 @@ const journals = [
         },
         entries: [
             {
+                image: "n2u0.png",
+                alt: "Who is Nature2U ?",
+                heading: "Who is Nature2U?",
+                body: ["Nature2U is a Dutch nature-education company that develops accessible digital field guides and various nature apps since 2011.",
+                    "The company focuses on combining nature knowledge with user-friendly mobile tools: species descriptions, professional nature photography, bird sounds, spotting/logging features, and maps. It works with nature professionals to make nature recognition easy for beginners as well as enthusiasts.",
+                    "In 2023, I was part of a software developing team that helped N2U with adding a new feature to their mobile apps."
+                ],
+                button: {
+                    label: "N2U website",
+                    href: "https://nature2u.nl/",
+                    download: false,
+                    external: true
+                },
+                layout: "image-left"
+            },
+            {
+                image: "n2u01.png",
+                alt: "Nature2U illustration sample 1",
+                heading: "N2U: The Initial Project",
+                body: ["Our team had one primary task: implement a data transfering feature for the Tuinvogelgids app, so users can move their data from one device to another without authentication. Our solution consisted of a QR scanning system.",
+                    "The client put heavy emphasis on user-friendly instructions, something that anyone with little understanding of mobile devices would understand. This meant clear text instructions, but naturally my instict was to provide supporting illustrations as well."
+                ],
+                layout: "image-left"
+            },
+            {
                 image: "n2u1.jpg",
                 alt: "Nature2U illustration sample 1",
-                heading: "Mobile App Illustrations",
-                body: "s.",
+                heading: "N2U: The Initial Project",
+                body: ["The digital drawings were done by me. The design was intended to mirror the Tuinvogelgids logo, down to the color palette and bird species. This way it was clear to the user: 'The anthropomorphized robin scans a QR code with its phone, and so should I'.",
+                    "The bottom two illustrations would be shown to the user depending on the success of the transfer, 'Something went wrong' or 'Transfer done!'."
+                ],
                 layout: "image-left"
             },
             {
                 image: "n2u2.JPEG",
                 alt: "Nature2U illustration sample 2",
-                heading: "merch",
-                body: "d",
+                heading: "N2U: Client Satisfied!",
+                body: ["Our N2U client was happy with our software feature, but they were even happier with the illustrations. At the end of the project, they surprised the whole team with printed mugs to show their gratitude.",
+                    "My illustrations motivated the client to comission me after the project as well. They wanted me to remake some of their older app instruction illustrations."
+                ],
+                button: {
+                    label: "Read the LinkedIn Post",
+                    href: "https://www.linkedin.com/posts/timvisscher_nature2u-softwareengineering-unico-activity-7079408300617814016-2-PK?utm_source=share&utm_medium=member_desktop&rcm=ACoAADk_PrUBZXhR_di3LlrepX-DoQxF1A4zMQo",
+                    download: false,
+                    external: true
+                },
                 layout: "text-left"
             },
             {
@@ -96,7 +131,7 @@ const journals = [
         entries: [
             {
                 image: "nato1.JPG",
-                alt: "NATO Rom      ania design sample 1",
+                alt: "NATO Romania design sample 1",
                 heading: "Logo ",
                 body: "A logo concept for NATO NSIP Romania, focused on professionalism, reliability, and institutional clarity.",
                 layout: "image-left"
@@ -125,6 +160,78 @@ const journals = [
         ]
     },
     {
+        id: "disruptive-delivery",
+        title: "Disruptive Delivery",
+        coverLabel: "Disruptive Delivery",
+        themeClass: "theme-delivery",
+        logo: {
+            image: "ddlogo.png",
+            x: 50,
+            y: 48,
+            width: 66,
+            rotate: 0
+        },
+        coverLogo: {
+            x: 50,
+            y: 49,
+            width: 85,
+            rotate: 0,
+            skewY: -4,
+            scaleX: 0.94
+        },
+        book: {
+            x: 59,
+            bottom: 35,
+            width: 145,
+            height: 215,
+            spineWidth: 46,
+            spineImage: "miscspine.jpg",
+            coverColor: "#6e5422",
+            spineColor: "#86611e",
+            textColor: "#f9e0a1",
+            tilt: "0deg",
+            spineTitleX: "50%",
+            spineTitleY: "38%",
+            spineTitleSize: 0.32
+        },
+        entries: [
+            {
+                image: "misc0.JPG",
+                alt: "Disruptive Delivery software identity concept",
+                heading: "Disruptive Delivery - Software Identity Concept",
+                body: [
+                    "Disruptive Delivery is a fictional parcel delivery company. My team built a web application prototype for tracking deliveries, to be used by the company employees and the clients alike.",
+                    "I went one step further: I gave Disruptive Delivery a distinctive look."
+                ],
+                layout: "image-left"
+            },
+            {
+                image: "misc1.JPG",
+                alt: "Disruptive Delivery design decisions",
+                heading: "Disruptive Delivery - Design Decisions",
+                body: [
+                    "All illustrations were drawn by me digitally. I wanted Disruptive Delivery to communicate several things at once: we are friendly, we focus on our client's needs, we are Dutch.",
+                    "The logo, two 'D's slanted in a circle, is meant to be a play on the company name alliteration, imitate a spinning wheel, and keep an identifiable shape that can be applied to multiple color palettes.",
+                    "The capybaras were a result of 2023's newly-found infatuation with obscure species. They are a warm and welcoming symbol of focused direction."
+                ],
+                layout: "image-left"
+            },
+            {
+                image: "misc7.png",
+                alt: "Disruptive Delivery presentation",
+                heading: "Disruptive Delivery - Presentation",
+                body: "Become more familiar with the application prototype and Disruptive Delivery's personality by watching the slide presentation of its key features!",
+                button: {
+                    label: "see canva presentation",
+                    href: "https://canva.link/wyfkbqrctoolg9c",
+                    download: false,
+                    external: true
+                },
+                layout: "image-left"
+            }
+        ]
+    },
+    {
         id: "free-time",
         title: "In My Free Time",
         coverLabel: "In My Free Time",
@@ -145,7 +252,7 @@ const journals = [
             scaleX: 0.94
         },
         book: {
-            x: 60,
+            x: 64,
             bottom: 35,
             width: 170,
             height: 185,
@@ -160,13 +267,6 @@ const journals = [
             spineTitleSize: 0.22
         },
         entries: [
-            {
-                image: "misc2.JPG",
-                alt: "Personal design work sample 1",
-                heading: "d",
-                body: "d",
-                layout: "image-left"
-            },
             {
                 image: "misc6.jpg",
                 alt: "Personal design work sample 2",
@@ -234,25 +334,39 @@ function sceneVw(pixelValue) {
     return `${((pixelValue * BOOK_SCENE_SCALE) / SCENE_BASE_WIDTH) * 100}vw`;
 }
 const NEIGHBOR_MOVES = {
-    n2uPreviewCenter: 50,
-    n2uPreviewRight: 45,
+    naturePreviewNato: 42,
+    naturePreviewDelivery: 46,
+    naturePreviewFree: 46,
 
-    natoPreviewLeft: -35,
-    natoPreviewRight: 25,
+    natoPreviewNature: -28,
+    natoPreviewDelivery: 42,
+    natoPreviewFree: 44,
 
-    miscPreviewLeft: -22,
-    miscPreviewCenter: -30
+    deliveryPreviewNature: -24,
+    deliveryPreviewNato: -34,
+    deliveryPreviewFree: 38,
+
+    freePreviewNature: -20,
+    freePreviewNato: -30,
+    freePreviewDelivery: -42
 };
 
 function setShelfMovementVariables() {
-    shelf.style.setProperty("--move-n2u-preview-center", sceneVw(NEIGHBOR_MOVES.n2uPreviewCenter));
-    shelf.style.setProperty("--move-n2u-preview-right", sceneVw(NEIGHBOR_MOVES.n2uPreviewRight));
+    shelf.style.setProperty("--move-nature-preview-nato", sceneVw(NEIGHBOR_MOVES.naturePreviewNato));
+    shelf.style.setProperty("--move-nature-preview-delivery", sceneVw(NEIGHBOR_MOVES.naturePreviewDelivery));
+    shelf.style.setProperty("--move-nature-preview-free", sceneVw(NEIGHBOR_MOVES.naturePreviewFree));
 
-    shelf.style.setProperty("--move-nato-preview-left", sceneVw(NEIGHBOR_MOVES.natoPreviewLeft));
-    shelf.style.setProperty("--move-nato-preview-right", sceneVw(NEIGHBOR_MOVES.natoPreviewRight));
+    shelf.style.setProperty("--move-nato-preview-nature", sceneVw(NEIGHBOR_MOVES.natoPreviewNature));
+    shelf.style.setProperty("--move-nato-preview-delivery", sceneVw(NEIGHBOR_MOVES.natoPreviewDelivery));
+    shelf.style.setProperty("--move-nato-preview-free", sceneVw(NEIGHBOR_MOVES.natoPreviewFree));
 
-    shelf.style.setProperty("--move-misc-preview-left", sceneVw(NEIGHBOR_MOVES.miscPreviewLeft));
-    shelf.style.setProperty("--move-misc-preview-center", sceneVw(NEIGHBOR_MOVES.miscPreviewCenter));
+    shelf.style.setProperty("--move-delivery-preview-nature", sceneVw(NEIGHBOR_MOVES.deliveryPreviewNature));
+    shelf.style.setProperty("--move-delivery-preview-nato", sceneVw(NEIGHBOR_MOVES.deliveryPreviewNato));
+    shelf.style.setProperty("--move-delivery-preview-free", sceneVw(NEIGHBOR_MOVES.deliveryPreviewFree));
+
+    shelf.style.setProperty("--move-free-preview-nature", sceneVw(NEIGHBOR_MOVES.freePreviewNature));
+    shelf.style.setProperty("--move-free-preview-nato", sceneVw(NEIGHBOR_MOVES.freePreviewNato));
+    shelf.style.setProperty("--move-free-preview-delivery", sceneVw(NEIGHBOR_MOVES.freePreviewDelivery));
 }
 
 function buildShelf() {
@@ -262,15 +376,21 @@ function buildShelf() {
         const book = document.createElement("button");
         book.className = "book";
 
+        book.classList.add(`book-${journal.id}`);
+
         if (index === 0) {
             book.classList.add("book-left");
         }
 
         if (index === 1) {
-            book.classList.add("book-center");
+            book.classList.add("book-center-left");
         }
 
         if (index === 2) {
+            book.classList.add("book-center-right");
+        }
+
+        if (index === 3) {
             book.classList.add("book-right");
         }
 
@@ -383,7 +503,13 @@ function openJournal(journalId) {
 
     titleElement.textContent = activeJournal.title;
 
-    widget.classList.remove("theme-nature", "theme-nato", "theme-free-time");
+    widget.classList.remove(
+        "theme-nature",
+        "theme-nato",
+        "theme-free-time",
+        "theme-delivery"
+    );
+
     widget.classList.add(activeJournal.themeClass);
 
     buildSpreads();
@@ -424,7 +550,12 @@ function closeJournal() {
     setTimeout(() => {
         if (!activeJournal) {
             carousel.innerHTML = "";
-            widget.classList.remove("theme-nature", "theme-nato", "theme-free-time");
+            widget.classList.remove(
+                "theme-nature",
+                "theme-nato",
+                "theme-free-time",
+                "theme-delivery"
+            );
         }
     }, 300);
 }
@@ -476,11 +607,35 @@ function createTextPage(entry) {
     const heading = document.createElement("h4");
     heading.textContent = entry.heading;
 
-    const body = document.createElement("p");
-    body.textContent = entry.body;
-
     page.appendChild(heading);
-    page.appendChild(body);
+
+    const paragraphs = Array.isArray(entry.body)
+        ? entry.body
+        : [entry.body];
+
+    paragraphs.forEach((paragraphText) => {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = paragraphText;
+        page.appendChild(paragraph);
+    });
+
+    if (entry.button) {
+        const button = document.createElement("a");
+        button.className = "journal-page-button";
+        button.textContent = entry.button.label;
+        button.href = entry.button.href;
+
+        if (entry.button.download) {
+            button.setAttribute("download", "");
+        }
+
+        if (entry.button.external) {
+            button.target = "_blank";
+            button.rel = "noopener noreferrer";
+        }
+
+        page.appendChild(button);
+    }
 
     return page;
 }

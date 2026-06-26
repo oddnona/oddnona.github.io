@@ -673,36 +673,61 @@ a {
 .book.is-previewed .book-cover-title {
     opacity: 1;
 }
-/* Neighbor movement now happens only after first click.
-   Movement distances are scene-scaled from design.js,
-   so they stay proportional to the viewport/background-locked books.
-*/
+/* FOUR-BOOK NEIGHBOR MOVEMENT */
 
-/* Book 1 / Nature2U previewed. */
-.journal-shelf:has(.book-left.is-previewed) .book-center {
-    transform: translateX(calc(-50% + var(--move-n2u-preview-center))) rotateZ(var(--book-tilt));
+/* Nature2U previewed: move all books to the right of it. */
+.journal-shelf:has(.book-nature2u.is-previewed) .book-nato-romania {
+    transform: translateX(calc(-50% + var(--move-nature-preview-nato))) rotateZ(var(--book-tilt));
 }
 
-.journal-shelf:has(.book-left.is-previewed) .book-right {
-    transform: translateX(calc(-50% + var(--move-n2u-preview-right))) rotateZ(var(--book-tilt));
+.journal-shelf:has(.book-nature2u.is-previewed) .book-disruptive-delivery {
+    transform: translateX(calc(-50% + var(--move-nature-preview-delivery))) rotateZ(var(--book-tilt));
 }
 
-/* Book 2 / NATO previewed. */
-.journal-shelf:has(.book-center.is-previewed) .book-left {
-    transform: translateX(calc(-50% + var(--move-nato-preview-left))) rotateZ(var(--book-tilt));
+.journal-shelf:has(.book-nature2u.is-previewed) .book-free-time {
+    transform: translateX(calc(-50% + var(--move-nature-preview-free))) rotateZ(var(--book-tilt));
 }
 
-.journal-shelf:has(.book-center.is-previewed) .book-right {
-    transform: translateX(calc(-50% + var(--move-nato-preview-right))) rotateZ(var(--book-tilt));
+
+/* NATO previewed: move Nature left, Delivery and Free Time right. */
+.journal-shelf:has(.book-nato-romania.is-previewed) .book-nature2u {
+    transform: translateX(calc(-50% + var(--move-nato-preview-nature))) rotateZ(var(--book-tilt));
 }
 
-/* Book 3 / Misc previewed. */
-.journal-shelf:has(.book-right.is-previewed) .book-left {
-    transform: translateX(calc(-50% + var(--move-misc-preview-left))) rotateZ(var(--book-tilt));
+.journal-shelf:has(.book-nato-romania.is-previewed) .book-disruptive-delivery {
+    transform: translateX(calc(-50% + var(--move-nato-preview-delivery))) rotateZ(var(--book-tilt));
 }
 
-.journal-shelf:has(.book-right.is-previewed) .book-center {
-    transform: translateX(calc(-50% + var(--move-misc-preview-center))) rotateZ(var(--book-tilt));
+.journal-shelf:has(.book-nato-romania.is-previewed) .book-free-time {
+    transform: translateX(calc(-50% + var(--move-nato-preview-free))) rotateZ(var(--book-tilt));
+}
+
+
+/* Disruptive Delivery previewed: move left books left, Free Time right. */
+.journal-shelf:has(.book-disruptive-delivery.is-previewed) .book-nature2u {
+    transform: translateX(calc(-50% + var(--move-delivery-preview-nature))) rotateZ(var(--book-tilt));
+}
+
+.journal-shelf:has(.book-disruptive-delivery.is-previewed) .book-nato-romania {
+    transform: translateX(calc(-50% + var(--move-delivery-preview-nato))) rotateZ(var(--book-tilt));
+}
+
+.journal-shelf:has(.book-disruptive-delivery.is-previewed) .book-free-time {
+    transform: translateX(calc(-50% + var(--move-delivery-preview-free))) rotateZ(var(--book-tilt));
+}
+
+
+/* Free Time previewed: move all books to the left of it. */
+.journal-shelf:has(.book-free-time.is-previewed) .book-nature2u {
+    transform: translateX(calc(-50% + var(--move-free-preview-nature))) rotateZ(var(--book-tilt));
+}
+
+.journal-shelf:has(.book-free-time.is-previewed) .book-nato-romania {
+    transform: translateX(calc(-50% + var(--move-free-preview-nato))) rotateZ(var(--book-tilt));
+}
+
+.journal-shelf:has(.book-free-time.is-previewed) .book-disruptive-delivery {
+    transform: translateX(calc(-50% + var(--move-free-preview-delivery))) rotateZ(var(--book-tilt));
 }
 /* OPEN JOURNAL STAGE */
 
@@ -760,9 +785,19 @@ a {
     --journal-panel-shadow: rgba(23, 36, 58, 0.22);
 }
 
+.journal-widget.theme-delivery {
+    --journal-page-bg: #404b3b;
+    --journal-page-text: #eddfb7;
+
+    --journal-panel-bg: #ac8741;
+    --journal-panel-text: #27221f;
+    --journal-panel-border: #8da87d;
+    --journal-panel-shadow: rgba(39, 34, 31, 0.22);
+}
+
 .journal-widget.theme-free-time {
     --journal-page-bg: #000000;
-    --journal-page-text:#dca89a;
+    --journal-page-text:#e7d5c9;
 
     --journal-panel-bg: #dca89a;
     --journal-panel-text: #000000;
@@ -940,7 +975,7 @@ a {
 .journal-spread.is-active {
     --spread-x: 0px;
     --spread-y: 0px;
-    --spread-z: 190px;
+    --spread-z: 0px;
     --spread-rotate-y: 0deg;
     --spread-rotate-z: 0deg;
     --spread-scale: 1;
@@ -963,7 +998,7 @@ a {
 .journal-spread.is-prev {
     --spread-x: -205px;
     --spread-y: 10px;
-    --spread-z: 20px;
+    --spread-z: -120px;
     --spread-rotate-y: 10deg;
     --spread-rotate-z: -1.2deg;
     --spread-scale: 0.78;
@@ -981,7 +1016,7 @@ a {
 .journal-spread.is-next {
     --spread-x: 205px;
     --spread-y: 10px;
-    --spread-z: 20px;
+    --spread-z: -120px;
     --spread-rotate-y: -10deg;
     --spread-rotate-z: 1.2deg;
     --spread-scale: 0.78;
@@ -1078,7 +1113,7 @@ a {
     --spread-blur: 0px;
     --spread-x: 0px;
     --spread-y: 0px;
-    --spread-z: 145px;
+    --spread-z: 0px;
     --spread-rotate-y: 0deg;
     --spread-rotate-z: 0deg;
     --spread-scale: 1;
@@ -1550,13 +1585,43 @@ a {
 
 .page-text h4 {
     margin: 0 0 1rem;
-    font-size: 1.35rem;
+    font-size: 1.7rem;
 }
 
 .page-text p {
-    margin: 0;
+    margin: 0 0 0.9rem;
     line-height: 1.55;
-    font-size: 0.98rem;
+    font-size: 1.05rem;
+}
+
+.page-text p:last-child {
+    margin-bottom: 0;
+}
+
+.journal-page-button {
+    display: inline-block;
+    margin-top: 1.1rem;
+    padding: 0.55rem 0.85rem;
+
+    color: var(--journal-panel-text);
+    background: var(--journal-panel-bg);
+    border: 1px solid var(--journal-panel-border);
+    border-radius: 999px;
+
+    font-size: 0.78rem;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    cursor: pointer;
+    transform: none;
+}
+
+.journal-page-button:hover,
+.journal-page-button:focus-visible {
+    color: var(--journal-panel-bg);
+    background: var(--journal-panel-text);
 }
 
 /* Small desktop fallback */
