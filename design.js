@@ -74,7 +74,7 @@ const journals = [
                 alt: "Nature2U illustration sample 2",
                 heading: "N2U: Client Satisfied!",
                 body: ["Our N2U client was happy with our software feature, but they were even happier with the illustrations. At the end of the project, they surprised the whole team with printed mugs to show their gratitude.",
-                    "My illustrations motivated the client to comission me after the project as well. They wanted me to remake some of their older app instruction illustrations."
+                    "My illustrations motivated the client to commission me after the project as well. They wanted me to remake some of their older app instruction illustrations."
                 ],
                 button: {
                     label: "Read the LinkedIn Post",
@@ -85,10 +85,17 @@ const journals = [
                 layout: "text-left"
             },
             {
-                image: "n2u3.jpg",
+                image: "n2u30.jpg",
                 alt: "Nature2U illustration sample 3",
-                heading: "Commission Outcome",
-                body: "r",
+                heading: "N2U: Commission Scope",
+                body: "These were the set of instructive illustrations that Nature2U were using prior to our collaboration. They are functional, but they do not match the company's visual identity.",
+                layout: "image-left"
+            },
+            {
+                image: "n2u3.png",
+                alt: "Nature2U illustration sample 3",
+                heading: "N2U: Commission Outcome",
+                body: "These were the illustration replacements I drew. They maintain the sillhouetes and narrative of the original illustrations, while preserving Nature2U's core visual identity: brown tones and signature neon green, gardening and sightseeing hobbies, youthful affability.",
                 layout: "image-left"
             }
         ]
@@ -130,24 +137,43 @@ const journals = [
         },
         entries: [
             {
+                image: "nsip.jpg",
+                alt: "NATO Romania design sample 1",
+                heading: "NATO: What is NSIP?",
+                body:[ "NSIP stands for NATO Security Investment Programme. It is a NATO-funded program for building and upgrading security defence infrastructure, such as military airfields, command-and-control systems, fuel facilities, communications, and other capabilities needed by NATO.",
+                "Romania participates in NSIP and implements projects through its defence institutions. In 2021, I was charged with creating a logo for the specific division of the Romanian NSIP programme, something that builds on this established international logo."
+                ],
+                layout: "image-left"
+            },
+            {
                 image: "nato1.JPG",
                 alt: "NATO Romania design sample 1",
-                heading: "Logo ",
-                body: "A logo concept for NATO NSIP Romania, focused on professionalism, reliability, and institutional clarity.",
+                heading: "Logo",
+                body: ["The logo focuses on professionalism, reliability, and institutional clarity. It merges three requested symbols: NSIP, NATO, and Romania.",
+                    "It maintains the established font, slant and white color of the original NSIP logo, and builds on top of it the Romanian flag and its esteemed NATO heritage.",
+                ],
                 layout: "image-left"
             },
             {
                 image: "nato2.JPG",
                 alt: "NATO Romania design sample 2",
-                heading: "banner",
-                body: "f",
+                heading: "Logo Banner",
+                body: "The logo was applied to several physical and digital assets of the programme. This is a picture of the logo banner displayed on the MAPN quarters, the Romanian Ministry of National Defense in Bucharest.",
                 layout: "text-left"
             },
             {
                 image: "nato3.JPG",
                 alt: "NATO Romania design sample 3",
-                heading: "d",
-                body: "d",
+                heading: "Insignia",
+                body: ["The logo came in useful at conferences, as NSIP group members were able to advertise themselves through badges and various insignia that could clearly identify their authority.",
+                "Access the Romanian ordinance that first introduces the logo:"
+                ],
+                button: {
+                    label: "M36 NSIP PDF",
+                    href: "x.pdf",
+                    download: true,
+                    external: false
+                },
                 layout: "image-left"
             },
             {
@@ -188,7 +214,7 @@ const journals = [
             spineImage: "miscspine.jpg",
             coverColor: "#6e5422",
             spineColor: "#86611e",
-            textColor: "#f9e0a1",
+            textColor: "#f9e0a1", 
             tilt: "0deg",
             spineTitleX: "50%",
             spineTitleY: "38%",
@@ -196,7 +222,7 @@ const journals = [
         },
         entries: [
             {
-                image: "misc0.JPG",
+                image: "misc0.jpg",
                 alt: "Disruptive Delivery software identity concept",
                 heading: "Disruptive Delivery - Software Identity Concept",
                 body: [
@@ -326,7 +352,7 @@ let outgoingSpreadIndex = null;
 let incomingSpreadIndex = null;
 let flipMidpointTimer = null;
 let flipFinishTimer = null;
-const FLIP_ANIMATION_MS = 800;
+const FLIP_ANIMATION_MS = 300;
 const SCENE_BASE_WIDTH = 1686;
 const BOOK_SCENE_SCALE = 1.25;
 
