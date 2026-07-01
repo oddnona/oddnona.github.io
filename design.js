@@ -171,16 +171,16 @@ const journals = [
                 button: {
                     label: "M36 NSIP PDF",
                     href: "x.pdf",
-                    download: true,
-                    external: false
+                    download: false,
+                    external: true
                 },
                 layout: "image-left"
             },
             {
                 image: "nato4.jpeg",
                 alt: "NATO Romania design sample 4",
-                heading: "f",
-                body: "r",
+                heading: "Logo applications",
+                body: "The NSIP Romania logo went on to be applied to various tools of the organization, including cars.",
                 layout: "text-left"
             }
         ]
@@ -294,38 +294,45 @@ const journals = [
         },
         entries: [
             {
-                image: "misc6.jpg",
+                image: "misc6.png",
                 alt: "Personal design work sample 2",
-                heading: "d",
-                body: "d.",
+                heading: "Eunomia",
+                body:[ "Eunomia is my friend's Honors Degree dissertation project. It is an educational web application focused on constructing Logic Proofs.",
+                "I designed the presentation poster for him, focusing on depicting all the necessary text content in an organized structure.",
+                "The poster theme is Ancient Greece, because Eunomia is a minor Greek goddess of law and legislation, playing on maintaining balance and reality."
+                ],
+                button: {
+                    label: "read the poster",
+                    href: "eunomia.pdf",
+                    download: false,
+                    external: true
+                },
                 layout: "text-left"
             },
             {
                 image: "misc4.JPG",
                 alt: "Personal design work sample 3",
-                heading: "x",
-                body: "x",
+                heading: "Burning Cold",
+                body: "This is a cover art for the song Burning Cold from the rock band Out 'n' About. It depicts the contrast between fire and ice, as well as the members of the band as a united group.",
+                button: {
+                    label: "listen to the song",
+                    href: "https://youtu.be/uKXe78NP71A?si=a_rM8JLucm8r1ijC",
+                    download: false,
+                    external: true
+                },
                 layout: "image-left"
             },
             {
                 image: "misc3.JPG",
                 alt: "Personal design work sample 4",
-                heading: "e",
-                body: "s",
-                layout: "text-left"
-            },
-            {
-                image: "misc5.jpg",
-                alt: "Personal design work sample 5",
-                heading: "s",
-                body: "x",
-                layout: "image-left"
-            },
-            {
-                image: "misc1.JPG",
-                alt: "Personal design work sample 6",
-                heading: "x",
-                body: "x",
+                heading: "Soulscar",
+                body: "This is a cover art for the song Soulscar from the metal band Saryn. The illustration uses the color palette chosen by the client band. It is meant to reflect the despair felt in the lyrics and instrumentals of the song.",
+                button: {
+                    label: "listen to the song",
+                    href: "https://youtu.be/uKXe78NP71A?si=a_rM8JLucm8r1ijC",
+                    download: false,
+                    external: true
+                },
                 layout: "text-left"
             }
         ]
@@ -510,13 +517,17 @@ function buildShelf() {
     });
 }
 
+let activeEntryIndex = 0;
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
 function openJournal(journalId) {
     activeJournal = journals.find((journal) => journal.id === journalId);
-    activeSpreadIndex = 0;
-    wheelLocked = true;
+    activeEntryIndex = 0;
+    wheelLocked = false;
     wheelTotal = 0;
-
-    clearFlipTimers();
 
     isFlipAnimating = false;
     flipDirection = null;
@@ -538,27 +549,22 @@ function openJournal(journalId) {
 
     widget.classList.add(activeJournal.themeClass);
 
-    buildSpreads();
+    buildEditorialSections();
 
     designSection.classList.add("journal-is-open");
     stage.classList.add("is-open");
     stage.setAttribute("aria-hidden", "false");
 
-    updateSpreadPositions();
-
-    setTimeout(() => {
-        wheelLocked = false;
-    }, 650);
+    carousel.scrollTop = 0;
+    updateRouteCamera();
 }
 
 function closeJournal() {
     activeJournal = null;
-    activeSpreadIndex = 0;
+    activeEntryIndex = 0;
     wheelLocked = false;
     wheelTotal = 0;
     previewedJournalId = null;
-
-    clearFlipTimers();
 
     isFlipAnimating = false;
     flipDirection = null;
@@ -585,338 +591,303 @@ function closeJournal() {
         }
     }, 300);
 }
-function buildSpreads() {
+
+function buildEditorialSections() {
     carousel.innerHTML = "";
 
+    const world = document.createElement("div");
+    world.className = "journal-world";
+    world.style.setProperty("--entry-count", activeJournal.entries.length);
+    world.style.height = `${activeJournal.entries.length * 88 + 38}vh`;
+
+    const routeSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    routeSvg.classList.add("journal-route-svg");
+    routeSvg.setAttribute("aria-hidden", "true");
+
+    const routePath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    routePath.classList.add("journal-route-path");
+
+    routeSvg.appendChild(routePath);
+    world.appendChild(routeSvg);
+
     activeJournal.entries.forEach((entry, index) => {
-        const spread = document.createElement("article");
-        spread.className = "journal-spread";
-        spread.dataset.index = index;
+        const section = document.createElement("article");
+        section.className = "journal-editorial-section";
+        section.dataset.index = index;
 
-        const imagePage = createImagePage(entry);
-        const textPage = createTextPage(entry);
+        section.style.setProperty("--node-y", `${index * 88 + 12}vh`);
+        section.style.setProperty("--node-x", `${8 + index * 18}vw`);
 
-        spread.appendChild(imagePage);
-        spread.appendChild(textPage);
-
-        carousel.appendChild(spread);
-    });
-
-    const flipAxis = document.createElement("div");
-    flipAxis.className = "journal-flip-axis";
-    flipAxis.setAttribute("aria-hidden", "true");
-
-    const flipPage = document.createElement("div");
-    flipPage.className = "journal-flip-page";
-
-    flipAxis.appendChild(flipPage);
-    carousel.appendChild(flipAxis);
-}
-
-function createImagePage(entry) {
-    const page = document.createElement("div");
-    page.className = "journal-page page-image";
-
-    const img = document.createElement("img");
-    img.src = entry.image;
-    img.alt = entry.alt;
-
-    page.appendChild(img);
-
-    return page;
-}
-
-function createTextPage(entry) {
-    const page = document.createElement("div");
-    page.className = "journal-page page-text";
-
-    const heading = document.createElement("h4");
-    heading.textContent = entry.heading;
-
-    page.appendChild(heading);
-
-    const paragraphs = Array.isArray(entry.body)
-        ? entry.body
-        : [entry.body];
-
-    paragraphs.forEach((paragraphText) => {
-        const paragraph = document.createElement("p");
-        paragraph.textContent = paragraphText;
-        page.appendChild(paragraph);
-    });
-
-    if (entry.button) {
-        const button = document.createElement("a");
-        button.className = "journal-page-button";
-        button.textContent = entry.button.label;
-        button.href = entry.button.href;
-
-        if (entry.button.download) {
-            button.setAttribute("download", "");
+        if (entry.layout === "text-left") {
+            section.classList.add("text-first");
         }
 
-        if (entry.button.external) {
-            button.target = "_blank";
-            button.rel = "noopener noreferrer";
-        }
+        const chapterMarker = document.createElement("div");
+        chapterMarker.className = "journal-chapter-marker";
+        chapterMarker.textContent = String(index + 1).padStart(2, "0");
 
-        page.appendChild(button);
-    }
+        const textWrap = document.createElement("div");
+        textWrap.className = "journal-editorial-text";
 
-    return page;
-}
+        const imageWrap = document.createElement("div");
+        imageWrap.className = "journal-editorial-image";
 
-function createPageForSide(entry, side) {
-    if (side === "left") {
-        return createImagePage(entry);
-    }
+        const titleWrap = document.createElement("div");
+        titleWrap.className = "journal-editorial-title";
 
-    return createTextPage(entry);
-}
+        const img = document.createElement("img");
+        img.src = entry.image;
+        img.alt = entry.alt;
 
-function setFlipPageContent(entry, side) {
-    const flipPage = carousel.querySelector(".journal-flip-page");
+        imageWrap.appendChild(img);
 
-    if (!flipPage) {
-        return;
-    }
+        const heading = document.createElement("h4");
+        heading.textContent = entry.heading;
+        titleWrap.appendChild(heading);
 
-    const page = createPageForSide(entry, side);
-    const content = document.createElement("div");
+        const paragraphs = Array.isArray(entry.body)
+            ? entry.body
+            : [entry.body];
 
-    content.className = "journal-flip-content";
-
-    if (page.classList.contains("page-image")) {
-        content.classList.add("is-image");
-    }
-
-    if (page.classList.contains("page-text")) {
-        content.classList.add("is-text");
-    }
-
-    flipPage.innerHTML = "";
-    flipPage.classList.remove("page-image", "page-text");
-
-    while (page.firstChild) {
-        content.appendChild(page.firstChild);
-    }
-
-    flipPage.appendChild(content);
-}
-
-function clearFlipTimers() {
-    if (flipMidpointTimer) {
-        clearTimeout(flipMidpointTimer);
-        flipMidpointTimer = null;
-    }
-
-    if (flipFinishTimer) {
-        clearTimeout(flipFinishTimer);
-        flipFinishTimer = null;
-    }
-}
-
-function updateSpreadPositions() {
-    const spreads = carousel.querySelectorAll(".journal-spread");
-
-    spreads.forEach((spread, index) => {
-        spread.classList.remove(
-            "is-active",
-            "is-prev",
-            "is-next",
-            "is-hidden-left",
-            "is-hidden-right",
-            "is-flip-out-next",
-            "is-flip-in-next",
-            "is-flip-out-prev",
-            "is-flip-in-prev",
-            "is-stable-out-next",
-            "is-stable-in-next",
-            "is-stable-out-prev",
-            "is-stable-in-prev"
-        );
-
-        if (isFlipAnimating && index === outgoingSpreadIndex) {
-            if (flipDirection === "next") {
-                spread.classList.add("is-stable-out-next");
-            } else {
-                spread.classList.add("is-stable-out-prev");
-            }
-
-            return;
-        }
-
-        if (isFlipAnimating && index === incomingSpreadIndex) {
-            if (flipDirection === "next") {
-                spread.classList.add("is-stable-in-next");
-            } else {
-                spread.classList.add("is-stable-in-prev");
-            }
-
-            return;
-        }
-
-        if (index === activeSpreadIndex) {
-            spread.classList.add("is-active");
-        } else if (index === activeSpreadIndex - 1) {
-            spread.classList.add("is-prev");
-        } else if (index === activeSpreadIndex + 1) {
-            spread.classList.add("is-next");
-        } else if (index < activeSpreadIndex) {
-            spread.classList.add("is-hidden-left");
-        } else {
-            spread.classList.add("is-hidden-right");
-        }
-    });
-}
-
-function startSpreadFlip(targetIndex, direction) {
-    if (!activeJournal || isFlipAnimating) {
-        return;
-    }
-
-    if (targetIndex < 0 || targetIndex > activeJournal.entries.length - 1) {
-        return;
-    }
-
-    clearFlipTimers();
-
-    outgoingSpreadIndex = activeSpreadIndex;
-    incomingSpreadIndex = targetIndex;
-    flipDirection = direction;
-    isFlipAnimating = true;
-    wheelLocked = true;
-
-    const flipAxis = carousel.querySelector(".journal-flip-axis");
-    const flipPage = carousel.querySelector(".journal-flip-page");
-
-    if (!flipAxis || !flipPage) {
-        return;
-    }
-
-    flipAxis.classList.remove(
-        "is-flipping-next",
-        "is-flipping-prev",
-        "has-swapped"
-    );
-
-    flipPage.classList.remove(
-        "page-image",
-        "page-text"
-    );
-
-    if (direction === "next") {
-        setFlipPageContent(activeJournal.entries[outgoingSpreadIndex], "right");
-        flipAxis.classList.add("is-flipping-next");
-    } else {
-        setFlipPageContent(activeJournal.entries[outgoingSpreadIndex], "left");
-        flipAxis.classList.add("is-flipping-prev");
-    }
-
-    updateSpreadPositions();
-
-    flipMidpointTimer = setTimeout(() => {
-        if (!activeJournal || !isFlipAnimating) {
-            return;
-        }
-
-        if (direction === "next") {
-            setFlipPageContent(activeJournal.entries[incomingSpreadIndex], "left");
-        } else {
-            setFlipPageContent(activeJournal.entries[incomingSpreadIndex], "right");
-        }
-
-        flipAxis.classList.add("has-swapped");
-    }, FLIP_ANIMATION_MS / 2);
-
-    flipFinishTimer = setTimeout(() => {
-        activeSpreadIndex = targetIndex;
-
-        isFlipAnimating = false;
-        flipDirection = null;
-        outgoingSpreadIndex = null;
-        incomingSpreadIndex = null;
-        wheelTotal = 0;
-
-        updateSpreadPositions();
-
-        requestAnimationFrame(() => {
-            flipAxis.classList.remove(
-                "is-flipping-next",
-                "is-flipping-prev",
-                "has-swapped"
-            );
-
-            flipPage.classList.remove(
-                "page-image",
-                "page-text"
-            );
-
-            flipPage.innerHTML = "";
+        paragraphs.forEach((paragraphText) => {
+            const paragraph = document.createElement("p");
+            paragraph.textContent = paragraphText;
+            textWrap.appendChild(paragraph);
         });
 
-        setTimeout(() => {
-            wheelLocked = false;
-        }, 90);
-    }, FLIP_ANIMATION_MS);
+        if (entry.button) {
+            const button = document.createElement("a");
+            button.className = "journal-page-button";
+            button.textContent = entry.button.label;
+            button.href = entry.button.href;
+
+            if (entry.button.download) {
+                button.setAttribute("download", "");
+            }
+
+            if (entry.button.external) {
+                button.target = "_blank";
+                button.rel = "noopener noreferrer";
+            }
+
+            textWrap.appendChild(button);
+        }
+
+        section.appendChild(chapterMarker);
+        section.appendChild(textWrap);
+        section.appendChild(imageWrap);
+        section.appendChild(titleWrap);
+
+        world.appendChild(section);
+    });
+
+    carousel.appendChild(world);
+
+    requestAnimationFrame(() => {
+        drawJournalRoute();
+        updateActiveEntryFromScroll();
+        updateRouteCamera();
+    });
 }
 
-function goToPreviousSpread() {
-    if (!activeJournal || isFlipAnimating) {
+function drawJournalRoute() {
+    const world = carousel.querySelector(".journal-world");
+    const routeSvg = carousel.querySelector(".journal-route-svg");
+    const routePath = carousel.querySelector(".journal-route-path");
+    const markers = carousel.querySelectorAll(".journal-chapter-marker");
+
+    if (!world || !routeSvg || !routePath || markers.length < 2) {
         return;
     }
 
-    if (activeSpreadIndex > 0) {
-        startSpreadFlip(activeSpreadIndex - 1, "prev");
+    const worldWidth = world.scrollWidth;
+    const worldHeight = world.scrollHeight;
+
+    routeSvg.setAttribute("viewBox", `0 0 ${worldWidth} ${worldHeight}`);
+    routeSvg.setAttribute("width", worldWidth);
+    routeSvg.setAttribute("height", worldHeight);
+
+    const points = Array.from(markers).map((marker) => {
+        const section = marker.closest(".journal-editorial-section");
+
+        return {
+            x: section.offsetLeft + marker.offsetLeft + marker.offsetWidth / 2,
+            y: section.offsetTop + marker.offsetTop + marker.offsetHeight / 2
+        };
+    });
+
+    let pathData = `M ${points[0].x} ${points[0].y}`;
+
+    for (let index = 1; index < points.length; index += 1) {
+        const previousPoint = points[index - 1];
+        const currentPoint = points[index];
+
+        const distanceX = currentPoint.x - previousPoint.x;
+        const controlOffsetX = distanceX * 0.45;
+
+        const controlPointOneX = previousPoint.x + controlOffsetX;
+        const controlPointOneY = previousPoint.y;
+
+        const controlPointTwoX = currentPoint.x - controlOffsetX;
+        const controlPointTwoY = currentPoint.y;
+
+        pathData += ` C ${controlPointOneX} ${controlPointOneY}, ${controlPointTwoX} ${controlPointTwoY}, ${currentPoint.x} ${currentPoint.y}`;
     }
+
+    routePath.setAttribute("d", pathData);
 }
 
-function goToNextSpread() {
-    if (!activeJournal || isFlipAnimating) {
-        return;
-    }
-
-    if (activeSpreadIndex < activeJournal.entries.length - 1) {
-        startSpreadFlip(activeSpreadIndex + 1, "next");
-    }
-}
-function handleWheelNavigation(event) {
+function updateRouteCamera() {
     if (!activeJournal) {
         return;
     }
 
-    event.preventDefault();
+    const world = carousel.querySelector(".journal-world");
 
-    if (wheelLocked || isFlipAnimating) {
+    if (!world) {
         return;
     }
 
-    wheelTotal += event.deltaY + event.deltaX;
+    const maxScroll = carousel.scrollHeight - carousel.clientHeight;
+    const progress = maxScroll > 0
+        ? carousel.scrollTop / maxScroll
+        : 0;
 
-    if (Math.abs(wheelTotal) < 90) {
+    const maxShift = window.innerWidth * 0.18 * Math.max(activeJournal.entries.length - 1, 0);
+
+    world.style.setProperty("--route-shift-x", `${progress * -maxShift}px`);
+}
+
+function scrollToEntry(index) {
+    if (!activeJournal) {
         return;
     }
 
-    if (wheelTotal > 0) {
+    const maxIndex = activeJournal.entries.length - 1;
+    const safeIndex = Math.max(0, Math.min(index, maxIndex));
+    const targetSection = carousel.querySelector(
+        `.journal-editorial-section[data-index="${safeIndex}"]`
+    );
+
+    if (!targetSection) {
+        return;
+    }
+
+    activeEntryIndex = safeIndex;
+
+    carousel.scrollTo({
+        top: Math.max(0, targetSection.offsetTop - carousel.clientHeight * 0.12),
+        behavior: "smooth"
+    });
+}
+
+function goToPreviousSpread() {
+    scrollToEntry(activeEntryIndex - 1);
+}
+
+function goToNextSpread() {
+    scrollToEntry(activeEntryIndex + 1);
+}
+
+function updateActiveEntryFromScroll() {
+    if (!activeJournal) {
+        return;
+    }
+
+    const sections = carousel.querySelectorAll(".journal-editorial-section");
+
+    if (!sections.length) {
+        return;
+    }
+
+    const focusY = carousel.scrollTop + carousel.clientHeight * 0.42;
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    sections.forEach((section) => {
+        const sectionFocusY = section.offsetTop + section.offsetHeight * 0.45;
+        const distance = Math.abs(sectionFocusY - focusY);
+
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = Number(section.dataset.index);
+        }
+    });
+
+    activeEntryIndex = closestIndex;
+
+    sections.forEach((section) => {
+        const sectionIndex = Number(section.dataset.index);
+        const distanceFromActive = Math.abs(sectionIndex - activeEntryIndex);
+
+        section.classList.remove("is-current", "is-near", "is-far");
+
+        if (distanceFromActive === 0) {
+            section.classList.add("is-current");
+        } else if (distanceFromActive === 1) {
+            section.classList.add("is-near");
+        } else {
+            section.classList.add("is-far");
+        }
+    });
+}
+
+function handlePopupTouchStart(event) {
+    if (!activeJournal) {
+        return;
+    }
+
+    touchStartX = event.changedTouches[0].screenX;
+    touchStartY = event.changedTouches[0].screenY;
+}
+
+function handlePopupTouchEnd(event) {
+    if (!activeJournal) {
+        return;
+    }
+
+    touchEndX = event.changedTouches[0].screenX;
+    touchEndY = event.changedTouches[0].screenY;
+
+    const swipeX = touchEndX - touchStartX;
+    const swipeY = touchEndY - touchStartY;
+
+    if (Math.abs(swipeX) < 80) {
+        return;
+    }
+
+    if (Math.abs(swipeX) < Math.abs(swipeY)) {
+        return;
+    }
+
+    if (swipeX < 0) {
         goToNextSpread();
     } else {
         goToPreviousSpread();
     }
-
-    wheelTotal = 0;
 }
 
 closeButton.addEventListener("click", closeJournal);
 
 stage.addEventListener("click", (event) => {
-    const clickedPage = event.target.closest(".journal-page");
+    const clickedInsideWidget = event.target.closest(".journal-widget");
     const clickedCloseButton = event.target.closest(".journal-close");
 
-    if (clickedPage || clickedCloseButton) {
+    if (clickedInsideWidget || clickedCloseButton) {
         return;
     }
 
     closeJournal();
+});
+carousel.addEventListener("scroll", () => {
+    updateActiveEntryFromScroll();
+    updateRouteCamera();
+});
+carousel.addEventListener("touchstart", handlePopupTouchStart, { passive: true });
+carousel.addEventListener("touchend", handlePopupTouchEnd, { passive: true });
+window.addEventListener("resize", () => {
+    drawJournalRoute();
+    updateRouteCamera();
 });
 
 document.addEventListener("click", (event) => {
@@ -954,8 +925,6 @@ document.addEventListener("keydown", (event) => {
         goToNextSpread();
     }
 });
-
-document.addEventListener("wheel", handleWheelNavigation, { passive: false });
 
 setShelfMovementVariables();
 buildShelf();
