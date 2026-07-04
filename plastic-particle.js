@@ -172,18 +172,20 @@ const stations = [
         description: `
             Engaging and immersive scientific visualization can serve as a valuable educational tool for the
             general public. This thesis film implemented a narrative-driven 3D visualization of nanoplastic
-            trajectories in an immersive virtual environment, depicting the transport and transformation of
-            an average particle from surface drift to deeper ocean layers.
+            trajectories in an immersive virtual environment, depicting the average particle from surface drift to deeper ocean layers, based on actual simulation data.
         `,
         fullDescription: `
-            Engaging and immersive scientific visualization can serve as a valuable educational tool for the
-            general public. This project implemented a narrative-driven 3D visualization of nanoplastic
-            trajectories in an immersive virtual environment, depicting the transport and transformation of
-            an average particle from surface drift to deeper ocean layers.
+            <span class="abstract-preview-text">
+                Engaging and immersive scientific visualization can serve as a valuable educational tool for the
+                general public. This thesis film implemented a narrative-driven 3D visualization of nanoplastic
+                trajectories in an immersive virtual environment, depicting the average particle from surface drift to deeper ocean layers based on actual simulation data.
+            </span>
 
-            The system was evaluated through a user study measuring comprehension and attitude towards
-            the subject. The results indicate that this approach could improve general conceptual understanding
-            of marine plastic behavior.
+            <span class="abstract-continuation-text">
+                The core design focused on making long time spans and ocean-scale transport understandable to non-specialists. The story begins with one particle as a visual anchor, then expands to 10k trajectories to reveal the scale of dispersion. The system was evaluated through a user study measuring comprehension and attitude towards
+                the subject. The results indicate that this approach could improve general conceptual understanding
+                of marine plastic behavior, while feedback showed that certain processes such as fragmentation needed clearer visual emphasis.
+            </span>
         `,
         expanded: false,
         button: null,
@@ -194,7 +196,7 @@ const stations = [
         kicker: "Film",
         title: "Follow the Trajectory",
         description: `
-            A monoscopic recording of the story.
+            The project is a real-time 3D visualization system. A monoscopic recording of the film is available to view on YouTube and on the back of this card.
         `,
         button: "Watch Film",
         action: "film",
@@ -247,7 +249,7 @@ const stations = [
 
                     <ul>
                         <li><strong>zSpace</strong><br>stereoscopic display built for immersion; the project is adaptable to other Virtual Reality technologies</li>
-                    </ul>
+                    </ul>   
                 </div>
 
             </section>
@@ -261,7 +263,7 @@ const stations = [
         title: "Read the full thesis",
         description: `
             Open the written thesis paper, including details about the research background, methodology,
-            user study, and conclusions.
+            user study analysis, and conclusions.
         `,
         button: "Open PDF",
         action: "pdf",

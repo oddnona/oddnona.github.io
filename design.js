@@ -41,7 +41,7 @@ const journals = [
                 heading: "Who is Nature2U?",
                 body: ["Nature2U is a Dutch nature-education company that develops accessible digital field guides and various nature apps since 2011.",
                     "The company focuses on combining nature knowledge with user-friendly mobile tools: species descriptions, professional nature photography, bird sounds, spotting/logging features, and maps. It works with nature professionals to make nature recognition easy for beginners as well as enthusiasts.",
-                    "In 2023, I was part of a software developing team that helped N2U with adding a new feature to their mobile apps."
+                    "In 2023, I was part of a software developer team that helped N2U with adding a new feature to their mobile apps."
                 ],
                 button: {
                     label: "N2U website",
@@ -56,7 +56,7 @@ const journals = [
                 alt: "Nature2U illustration sample 1",
                 heading: "N2U: The Initial Project",
                 body: ["Our team had one primary task: implement a data transfering feature for the Tuinvogelgids app, so users can move their data from one device to another without authentication. Our solution consisted of a QR scanning system.",
-                    "The client put heavy emphasis on user-friendly instructions, something that anyone with little understanding of mobile devices would understand. This meant clear text instructions, but naturally my instict was to provide supporting illustrations as well."
+                    "The client put heavy emphasys on clear instructions for older users, nature hobbyists, and anyone who was not comfortable with mobile technology. This meant simple text instructions, but naturally my instinct was to provide supporting illustrations as well."
                 ],
                 layout: "image-left"
             },
@@ -64,7 +64,7 @@ const journals = [
                 image: "n2u1.jpg",
                 alt: "Nature2U illustration sample 1",
                 heading: "N2U: The Initial Project",
-                body: ["The digital drawings were done by me. The design was intended to mirror the Tuinvogelgids logo, down to the color palette and bird species. This way it was clear to the user: 'The anthropomorphized robin scans a QR code with its phone, and so should I'.",
+                body: ["I volunteered to digitally draw three simple illustrations to support the written instructions. I chose to mirror the Tuinvogelgids visual identity, employing the logo bird species and the same color palette used on the app. This way it was clear to the user: 'The anthropomorphized robin scans a QR code with its phone, and so should I'.",
                     "The bottom two illustrations would be shown to the user depending on the success of the transfer, 'Something went wrong' or 'Transfer done!'."
                 ],
                 layout: "image-left"
@@ -74,7 +74,7 @@ const journals = [
                 alt: "Nature2U illustration sample 2",
                 heading: "N2U: Client Satisfied!",
                 body: ["Our N2U client was happy with our software feature, but they were even happier with the illustrations. At the end of the project, they surprised the whole team with printed mugs to show their gratitude.",
-                    "My illustrations motivated the client to commission me after the project as well. They wanted me to remake some of their older app instruction illustrations."
+                    "My illustrations motivated the client to commission me after the project as well. They wanted me to remake six new instructional illustrations to replace older generic visuals used across their app ecosystem."
                 ],
                 button: {
                     label: "Read the LinkedIn Post",
@@ -138,39 +138,57 @@ const journals = [
         entries: [
             {
                 image: "nsip.jpg",
-                alt: "NATO Romania design sample 1",
+                alt: "NSIP identity reference",
                 heading: "NATO: What is NSIP?",
-                body:[ "NSIP stands for NATO Security Investment Programme. It is a NATO-funded program for building and upgrading security defence infrastructure, such as military airfields, command-and-control systems, fuel facilities, communications, and other capabilities needed by NATO.",
-                "Romania participates in NSIP and implements projects through its defence institutions. In 2021, I was charged with creating a logo for the specific division of the Romanian NSIP programme, something that builds on this established international logo."
+                body: [
+                    "NSIP stands for NATO Security Investment Programme. It is a NATO-funded programme for building and upgrading defence infrastructure such as military airfields, communication systems, fuel facilities, and command-and-control capabilities.",
+                    "Romania implements NSIP projects through its defence institutions, operating within the Ministry of National Defence.",
+                    "In 2021, I was asked to create a logo for Romania’s NSIP division as an independent design contribution."
+                ],
+                layout: "image-left"
+            },
+            {
+                image: "nato0.png",
+                alt: "NSIP Romania logo design",
+                heading: "The Brief",
+                body: [
+                    "I was asked to combine three symbols: the NSIP identity, NATO affiliation, and Romania.",
+                    "The logo needed to remain readable, and appropriate for an institutional defence context.",
+                    "Beyond those requirements, the visual direction was left open, so the final composition, hierarchy, and integration of symbols were my own design decisions."
                 ],
                 layout: "image-left"
             },
             {
                 image: "nato1.JPG",
-                alt: "NATO Romania design sample 1",
-                heading: "Logo",
-                body: ["The logo focuses on professionalism, reliability, and institutional clarity. It merges three requested symbols: NSIP, NATO, and Romania.",
-                    "It maintains the established font, slant and white color of the original NSIP logo, and builds on top of it the Romanian flag and its esteemed NATO heritage.",
+                alt: "NSIP Romania logo close-up",
+                heading: "Logo Design",
+                body: [
+                    "It maintains the established font, slant and white color of the original NSIP logo, and builds on top of it the Romanian tricolour and its esteemed NATO heritage.",
+                    "The design focuses on institutional clarity. It has strong contrast, simple geometry, and a composition that can remain legible at different sizes."
                 ],
                 layout: "image-left"
             },
             {
                 image: "nato2.JPG",
-                alt: "NATO Romania design sample 2",
+                alt: "NSIP Romania logo banner displayed at the Ministry of National Defence",
                 heading: "Logo Banner",
-                body: "The logo was applied to several physical and digital assets of the programme. This is a picture of the logo banner displayed on the MAPN quarters, the Romanian Ministry of National Defense in Bucharest.",
+                body: [
+                    "The logo went on to be used across official NSIP Romania materials.",
+                    "This is a picture of the logo banner displayed on the MAPN quarters, the Romanian Ministry of National Defense in Bucharest."
+                ],
                 layout: "text-left"
             },
             {
                 image: "nato3.JPG",
-                alt: "NATO Romania design sample 3",
+                alt: "NSIP Romania insignia and badges",
                 heading: "Insignia",
-                body: ["The logo came in useful at conferences, as NSIP group members were able to advertise themselves through badges and various insignia that could clearly identify their authority.",
-                "Access the Romanian ordinance that first introduces the logo:"
+                body: [
+                    "The logo came in useful at conferences, as NSIP group members were able to advertise themselves through badges and various insignia that could clearly identify their authority.",
+                    "Access the Romanian ordinance that first introduces the logo:"
                 ],
                 button: {
                     label: "M36 NSIP PDF",
-                    href: "x.pdf",
+                    href: "M36.pdf",
                     download: false,
                     external: true
                 },
@@ -178,9 +196,12 @@ const journals = [
             },
             {
                 image: "nato4.jpeg",
-                alt: "NATO Romania design sample 4",
-                heading: "Logo applications",
-                body: "The NSIP Romania logo went on to be applied to various tools of the organization, including cars.",
+                alt: "NSIP Romania logo applied to official vehicle",
+                heading: "Other Applications",
+                body: [
+                    "I designed the logo with reproduction in mind, so printing assets came naturally afterwards.",
+                    "The NSIP Romania logo went on to be applied to various tools of the organization, including cars."
+                ],
                 layout: "text-left"
             }
         ]
@@ -302,7 +323,7 @@ const journals = [
                 "The poster theme is Ancient Greece, because Eunomia is a minor Greek goddess of law and legislation, playing on maintaining balance and reality."
                 ],
                 button: {
-                    label: "read the poster",
+                    label: "view full poster",
                     href: "eunomia.pdf",
                     download: false,
                     external: true
@@ -315,7 +336,7 @@ const journals = [
                 heading: "Burning Cold",
                 body: "This is a cover art for the song Burning Cold from the rock band Out 'n' About. It depicts the contrast between fire and ice, as well as the members of the band as a united group.",
                 button: {
-                    label: "listen to the song",
+                    label: "listen on YouTube",
                     href: "https://youtu.be/uKXe78NP71A?si=a_rM8JLucm8r1ijC",
                     download: false,
                     external: true

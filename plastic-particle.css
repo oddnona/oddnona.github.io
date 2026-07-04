@@ -183,7 +183,17 @@ body {
     columns: 2;
     max-height: 360px;
 }
+#station-card.expanded .card-front h1,
+#station-card.expanded .card-front h1::after {
+    display: none;
+}
+#station-card.expanded .abstract-preview-text {
+    opacity: 0.58;
+}
 
+#station-card.expanded .abstract-continuation-text {
+    opacity: 1;
+}
 .station-actions {
     margin-top: 24px;
 }
@@ -204,7 +214,7 @@ body {
 }
 
 #station-button {
-    background: rgba(245, 232, 200, 0.14);
+    background: transparent;
     border: 1px solid rgba(245, 232, 200, 0.42);
 }
 
