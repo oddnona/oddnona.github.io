@@ -131,7 +131,7 @@ body {
   color: #452a0c;
 }
 
-.projects-hero .instructions {
+.projects-description-box p .instructions {
   max-width: 680px;
   margin: 1rem auto 0;
 
@@ -255,7 +255,6 @@ body {
     z-index: 1;
   }
 
-  /* 8 frames × 527px = 4216px total */
   .sun-sprite {
     width: 160px;
     height: 160px;
@@ -274,7 +273,6 @@ body {
     }
   }
 
-  /* 10 frames × 954px = 9540px total */
   .horse-sprite {
     width: 230px;
     height: 142px;
@@ -293,7 +291,6 @@ body {
     }
   }
 
-  /* 5 frames × 48px = 240px total */
   .chest-sprite {
     width: 96px;
     height: 72px;
@@ -1056,10 +1053,6 @@ body {
       width: 64%;
     }
   }
-  /* ------------------------------------------------------------
-    Architecture pages
-    Color roles are controlled with project-specific variables below.
-  ------------------------------------------------------------ */
 
   .architecture-card-page {
     padding: 1.4rem 1.6rem;
@@ -1070,7 +1063,6 @@ body {
     --arch-line-opacity: 0.82;
     --arch-line-width: 1.6;
 
-    /* Shared diagram color roles */
     --arch-page-bg: var(--card-page-bg);
     --arch-title-text: var(--card-page-text);
 
@@ -1091,7 +1083,6 @@ body {
     --arch-label-ring: var(--card-page-bg);
   }
 
-  /* Shared architecture boxes */
 
   .arch-box {
     position: relative;
@@ -1156,8 +1147,6 @@ body {
   opacity: 0.92;
 }
 
-  /* Shared SVG connector styling */
-
   .arch-svg-line,
   .arch-svg-branch-lines {
     position: absolute;
@@ -1203,10 +1192,6 @@ body {
     white-space: nowrap;
   }
 
-  /* ------------------------------------------------------------
-    Project diagram palette assignments
-    Change these variables to remap each project's existing palette.
-  ------------------------------------------------------------ */
 
   .weather-architecture {
     --arch-page-bg: var(--card-page-bg);
@@ -1284,10 +1269,6 @@ body {
     --rpg-state-bg: #1a2530;
   }
 
-  /* ------------------------------------------------------------
-    Weather architecture: request / response spine
-  ------------------------------------------------------------ */
-
   .weather-request-map {
     position: relative;
     width: 100%;
@@ -1343,10 +1324,6 @@ body {
   .weather-response-arrow span {
     background: var(--weather-response-label-bg, var(--arch-label-bg));
   }
-
-  /* ------------------------------------------------------------
-    RTS architecture: model-centered simulation map
-  ------------------------------------------------------------ */
 
   .rts-state-map {
     position: relative;
@@ -1570,11 +1547,6 @@ body {
     background: var(--rts-view-bg, color-mix(in srgb, var(--tech-stack-data) 45%, var(--card-page-bg)));
   }
 
-  /* ------------------------------------------------------------
-    RPG architecture: game-loop spine map
-    Connector lines are layout rows, not absolute overlays.
-  ------------------------------------------------------------ */
-
   .rpg-spine-map {
     position: relative;
     width: 100%;
@@ -1756,7 +1728,6 @@ body {
     font-size: clamp(0.82rem, 1vw, 1.05rem);
   }
 
-  /* Mobile fallback */
   @media (max-width: 900px) {
     .rpg-spine-map {
       grid-template-rows: 155px auto;
@@ -1800,10 +1771,6 @@ body {
       padding: 0.4rem;
     }
   }
-
-  /* ------------------------------------------------------------
-    Architecture mobile fallback
-  ------------------------------------------------------------ */
 
   @media (max-width: 900px) {
     .architecture-card-page {

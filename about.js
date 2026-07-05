@@ -17,23 +17,11 @@ function updateAboutScene() {
     const scrollY = window.scrollY - sceneTop;
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
-
-    /*
-        PHASE 1:
-        Right panel reveals from top to bottom.
-        Scroll range: 0vh → 100vh
-    */
     const revealStart = 0;
     const revealEnd = viewportHeight;
 
     let revealProgress = (scrollY - revealStart) / (revealEnd - revealStart);
     revealProgress = clamp(revealProgress, 0, 1);
-
-    /*
-        PHASE 2:
-        Text content moves upward inside the right panel.
-        Scroll range: 100vh → 400vh
-    */
     const contentStart = viewportHeight;
     const contentEnd = viewportHeight * 4;
 
@@ -42,13 +30,6 @@ function updateAboutScene() {
 
     const contentMove = contentProgress * 300;
     panelContent.style.transform = `translateY(-${contentMove}vh)`;
-
-    /*
-        PHASE 3:
-        Right panel disappears from bottom upward,
-        revealing the full photo again.
-        Scroll range: 400vh → 500vh
-    */
     const hideStart = viewportHeight * 4;
     const hideEnd = viewportHeight * 5;
 
@@ -65,12 +46,6 @@ function updateAboutScene() {
 
     panel.style.width = "50vw";
     panel.style.height = `${panelHeight}vh`;
-
-    /*
-        PHASE 4:
-        The full portrait itself shrinks into the compact card.
-        Scroll range: 500vh → 650vh
-    */
     const cardStart = viewportHeight * 5;
     const cardEnd = viewportHeight * 5.8;
 
@@ -101,10 +76,6 @@ function updateAboutScene() {
     portrait.style.height = `${currentHeight}px`;
     portrait.style.borderRadius = `${currentRadius}px`;
     portrait.style.boxShadow = `0 20px 60px rgba(0, 0, 0, ${currentShadow})`;
-
-    /*
-        Card text appears only after the photo has mostly become a card.
-    */
     let infoProgress = (cardProgress - 0.45) / 0.55;
     infoProgress = clamp(infoProgress, 0, 1);
 

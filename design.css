@@ -141,24 +141,37 @@ a {
     width: 360px;
     max-width: 360px;
     margin: 0;
-    padding: 0.75rem;
+    padding: 0;
 
-    text-align: right;
+    text-align: center;
     color: #452a0c;
+}
 
+.intro-box {
+    margin: 1.6rem auto 0;
+    padding: 1.35rem 1.75rem;
     background: rgba(245, 232, 200, 0.384);
     border: 1px solid rgba(69, 42, 12, 0.35);
     box-shadow: 0 10px 24px rgba(69, 42, 12, 0.22);
     backdrop-filter: blur(6px);
 }
 
-.design-intro p {
+.intro-box p {
     margin: 0;
-    color: #452a0c;
+    color: #382209;
     font-size: 0.9rem;
     line-height: 1.42;
     letter-spacing: 0.02em;
     font-weight: 400;
+}
+
+.design-intro .instructions {
+
+    font-family: "Cardo", serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+
+    color: rgb(255, 242, 209);
 }
 
 .design-commissions {
@@ -171,7 +184,6 @@ a {
     padding: 0;
     overflow: hidden;
 }
-/* SHELF */
 
 .bookshelf-frame {
     position: fixed;
@@ -262,11 +274,6 @@ a {
     overflow: visible;
     transform-style: preserve-3d;
 }
-/* PROJECTED CUBOID BOOK
-   One mathematical projection skeleton:
-   visible spine + visible cover + one attached bottom plane.
-   No page side. No loose flaps. No independent slabs.
-*/
 
 .book {
     --book-width: 180px;
@@ -280,11 +287,9 @@ a {
     --book-x: 50%;
     --book-bottom: 0%;
 
-    /* Idle projection: spine is dominant, cover is only a thin hint. */
     --view-spine-width: var(--spine-width);
     --view-cover-width: 0px;
     --book-hitbox-width: var(--spine-width);
-    /* Bottom projection. Keep this subtle; it is not a shelf slab. */
     --depth-x: calc(var(--spine-width) * 0.18);
     --depth-y: calc(var(--spine-width) * 0.12);
 
@@ -315,10 +320,7 @@ a {
         opacity 220ms ease;
 }
 
-/* Preview projection:
-   the cover becomes wide,
-   the spine remains visible but narrows because it is now the side plane.
-*/
+
 .book.is-previewed {
     --view-spine-width: clamp(16px, calc(var(--spine-width) * 0.36), 28px);
     --view-cover-width: calc(var(--book-width) - var(--spine-width));
@@ -389,10 +391,7 @@ a {
         width 700ms cubic-bezier(0.18, 1, 0.32, 1),
         border-radius 700ms cubic-bezier(0.18, 1, 0.32, 1);
 }
-/* The visible spine side.
-   This is full-width in idle, then narrows in preview.
-   Flat color only: no shading, no gradients.
-*/
+
 .book-spine {
     left: 0;
     width: var(--view-spine-width);
@@ -407,11 +406,6 @@ a {
     box-shadow: none;
 }
 
-/* The visible front cover.
-   In idle it is just a narrow hint.
-   In preview it becomes the main face.
-   Flat color only: no shading, no gradients.
-*/
 .book-cover {
     left: var(--view-spine-width);
     width: var(--view-cover-width);
@@ -426,11 +420,6 @@ a {
     box-shadow: none;
 }
 
-/* The only depth cue:
-   one bottom plane attached exactly to the current projected width.
-   It changes with the same variables as the spine and cover.
-   Flat color only, split into spine-colored and cover-colored sections.
-*/
 .book-bottom-plane {
     position: absolute;
     left: 0;
@@ -477,7 +466,6 @@ a {
         clip-path 700ms cubic-bezier(0.18, 1, 0.32, 1);
 }
 
-/* Left half of the bottom triangle: belongs to the spine. */
 .book-bottom-plane::before {
     clip-path: polygon(
         0 0,
@@ -488,7 +476,6 @@ a {
     background: var(--spine-color);
 }
 
-/* Right half of the bottom triangle: belongs to the cover. */
 .book-bottom-plane::after {
     clip-path: polygon(
         var(--view-spine-width) 0,
@@ -499,7 +486,6 @@ a {
     background: var(--cover-color);
 }
 
-/* Old experimental pieces are disabled completely. */
 .book-cube,
 .book-spine-depth,
 .book-pages,
@@ -509,9 +495,6 @@ a {
     display: none !important;
 }
 
-/* Spine shine: visible only while hovering/focusing a spine.
-   It does not activate from .is-previewed, so it will not stay after click.
-*/
 .book-spine::before {
     content: "";
     position: absolute;
@@ -545,7 +528,6 @@ a {
     transform: translateX(115%);
 }
 
-/* Cover shine stays disabled. */
 .book-cover::before {
     display: none;
 }
@@ -554,14 +536,12 @@ a {
     display: none;
 }
 
-/* Decorative bands */
 
 .book-spine::after,
 .book-cover::after {
     display: none;
 }
 
-/* Logos */
 
 .book-spine-logo,
 .book-cover-logo {
@@ -610,8 +590,6 @@ a {
 .book.is-previewed .book-spine-logo {
     opacity: 0.22;
 }
-
-/* Text */
 
 .book-spine-title {
     position: absolute;
@@ -673,9 +651,7 @@ a {
 .book.is-previewed .book-cover-title {
     opacity: 1;
 }
-/* FOUR-BOOK NEIGHBOR MOVEMENT */
 
-/* Nature2U previewed: move all books to the right of it. */
 .journal-shelf:has(.book-nature2u.is-previewed) .book-nato-romania {
     transform: translateX(calc(-50% + var(--move-nature-preview-nato))) rotateZ(var(--book-tilt));
 }
@@ -688,8 +664,6 @@ a {
     transform: translateX(calc(-50% + var(--move-nature-preview-free))) rotateZ(var(--book-tilt));
 }
 
-
-/* NATO previewed: move Nature left, Delivery and Free Time right. */
 .journal-shelf:has(.book-nato-romania.is-previewed) .book-nature2u {
     transform: translateX(calc(-50% + var(--move-nato-preview-nature))) rotateZ(var(--book-tilt));
 }
@@ -702,8 +676,6 @@ a {
     transform: translateX(calc(-50% + var(--move-nato-preview-free))) rotateZ(var(--book-tilt));
 }
 
-
-/* Disruptive Delivery previewed: move left books left, Free Time right. */
 .journal-shelf:has(.book-disruptive-delivery.is-previewed) .book-nature2u {
     transform: translateX(calc(-50% + var(--move-delivery-preview-nature))) rotateZ(var(--book-tilt));
 }
@@ -716,8 +688,6 @@ a {
     transform: translateX(calc(-50% + var(--move-delivery-preview-free))) rotateZ(var(--book-tilt));
 }
 
-
-/* Free Time previewed: move all books to the left of it. */
 .journal-shelf:has(.book-free-time.is-previewed) .book-nature2u {
     transform: translateX(calc(-50% + var(--move-free-preview-nature))) rotateZ(var(--book-tilt));
 }
@@ -729,8 +699,6 @@ a {
 .journal-shelf:has(.book-free-time.is-previewed) .book-disruptive-delivery {
     transform: translateX(calc(-50% + var(--move-free-preview-delivery))) rotateZ(var(--book-tilt));
 }
-
-/* OPEN JOURNAL STAGE */
 
 .journal-stage {
     position: fixed;

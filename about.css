@@ -1,5 +1,3 @@
-/* RESET */
-
 * {
     margin: 0;
     padding: 0;
@@ -56,15 +54,11 @@ body {
     background: rgba(69, 42, 12, 0.14);
 }
 
-/* MAIN SCENE */
 
 .about-scene {
     position: relative;
     height: 800vh;
 }
-
-
-/* PORTRAIT THAT BECOMES THE CARD */
 
 .portrait-layer {
     position: fixed;
@@ -98,7 +92,6 @@ body {
 }
 
 
-/* CARD INFO INSIDE THE PORTRAIT */
 .portrait-card-info {
     position: absolute;
 
@@ -134,7 +127,6 @@ body {
 }
 
 
-/* RIGHT TEXT PANEL */
 .about-panel {
     position: fixed;
 
@@ -156,8 +148,6 @@ body {
 .panel-content {
     width: 50vw;
 }
-
-/* CONTENT BLOCKS */
 
 .about-text-block {
     min-height: 100vh;
@@ -224,8 +214,6 @@ body {
     text-align: center;
     align-items: center;
 }
-
-/* FINAL EMPTY STATE */
 
 .reveal-photo {
     background: transparent;

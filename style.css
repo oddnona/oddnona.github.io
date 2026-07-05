@@ -91,12 +91,6 @@
     content: "";
 
     position: absolute;
-
-    /*
-       Shimmer position controls.
-       These values place the shimmer over the oval area
-       in the upper closed box.
-    */
     left: 30%;
     top: 15%;
     width: 20%;
@@ -190,8 +184,6 @@
     }
 }
 
-/* RIGHT DRAWER BUTTONS */
-
 .side-drawer-nav {
     position: fixed;
     right: 0;
@@ -283,8 +275,6 @@
 
     flex-shrink: 0;
 }
-
-/* MOBILE PLACEHOLDER */
 
 .mobile-under-construction {
     display: none;
