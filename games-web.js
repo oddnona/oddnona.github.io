@@ -3,7 +3,7 @@ const infoPanel = document.querySelector(".project-info");
 const infoTitle = document.querySelector("#info-title");
 const infoDescription = document.querySelector("#info-description");
 const flipButton = document.querySelector("#flip-button");
-const desk = document.querySelector(".desk");
+const desk = document.querySelector(".desk-stage");
 const pageDots = document.querySelectorAll(".page-dot");
 const projectInfo = {
   weather: {
